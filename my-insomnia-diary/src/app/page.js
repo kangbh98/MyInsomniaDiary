@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -13,12 +14,18 @@ export default function Home() {
         height="500"
         alt=""
       />
-      <button className="lg:w-96 w-full bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
+      <Link
+        href={`/login`}
+        className="lg:w-96 w-full bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded text-center"
+      >
         Log in
-      </button>
-      <button className="lg:w-96 w-full bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
+      </Link>
+      <Link
+        href={`/signup`}
+        className="lg:w-96 w-full bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded text-center"
+      >
         Sign up
-      </button>
+      </Link>
     </main>
   );
 }
