@@ -7,6 +7,7 @@ import SignupDetail from '../pages/SignupDetail.jsx';
 import Calendar from '../pages/Calendar.jsx';
 import Write from '../pages/Write.jsx';
 import Diary from '../pages/Diary.jsx';
+import HomeStie from '../pages/HomeSite.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <Signup />,
+  },
+  {
+    path: '/Homesite',
+    element: <HomeStie />,
+  },
+  {
+    path: '/home',
+    element: <Home />,
   },
   {
     path: '/signup/userinfo',
