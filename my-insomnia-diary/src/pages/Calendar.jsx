@@ -19,21 +19,22 @@ const Calendar = () => {
           </h2>
         </div>
 
-        <div className="mt-10 mx-auto w-full">
+        <div className="mt-10 mx-auto w-full text-center">
           <Datepicker
+            className="mx-auto"
             inline
             value={selectedDate}
             onSelectedDateChanged={handleDatePickerChange}
           />
         </div>
 
-        <div className="flex flex-col gap-2 mt-3">
+        <div className="flex flex-col gap-2 mt-3 text-center">
           <span className="text-lg font-semibold">
             {selectedDate.toLocaleDateString()}
           </span>
           <Link
             to={`/write`}
-            className="rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
+            className="mx-auto  rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
           >
             Write Sleep diary
           </Link>
