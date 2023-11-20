@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Datepicker } from 'flowbite-react';
+import BottomBar from '../components/BottomBar';
 
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -44,6 +45,7 @@ const Calendar = () => {
           </Link>
         </div>
       </div>
+      <BottomBar />
     </>
   );
 };
