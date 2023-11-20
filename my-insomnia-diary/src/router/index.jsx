@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home.jsx';
+import First from '../pages/First.jsx';
 import Login from '../pages/Login.jsx';
 import Signup from '../pages/Signup.jsx';
 import SignupUserInfo from '../pages/SignupUserInfo.jsx';
@@ -7,12 +7,12 @@ import SignupDetail from '../pages/SignupDetail.jsx';
 import Calendar from '../pages/Calendar.jsx';
 import Write from '../pages/Write.jsx';
 import Diary from '../pages/Diary.jsx';
-import HomeStie from '../pages/HomeSite.jsx';
+import Home from '../pages/Home.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <First />,
   },
   {
     path: '/login',
@@ -23,12 +23,12 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: '/Homesite',
-    element: <HomeStie />,
-  },
-  {
     path: '/home',
     element: <Home />,
+  },
+  {
+    path: '/first',
+    element: <First />,
   },
   {
     path: '/signup/userinfo',
