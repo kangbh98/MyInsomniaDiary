@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Datepicker } from 'flowbite-react';
 
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  const navigateTo = useNavigate();
+
   const handleDatePickerChange = (date) => {
     setSelectedDate(date);
     console.log(date);
+
+    navigateTo('/diary');
   };
 
   return (

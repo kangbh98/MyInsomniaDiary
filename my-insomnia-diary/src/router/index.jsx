@@ -6,6 +6,7 @@ import SignupUserInfo from '../pages/SignupUserInfo.jsx';
 import SignupDetail from '../pages/SignupDetail.jsx';
 import Calendar from '../pages/Calendar.jsx';
 import Write from '../pages/Write.jsx';
+import Diary from '../pages/Diary.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: '/write',
     element: <Write />,
+  },
+  {
+    path: '/diary',
+    element: <Diary />,
   },
 ]);
 
