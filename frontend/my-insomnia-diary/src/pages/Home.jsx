@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import BottomBar from '../components/BottomBar';
 
 const First = () => {
   return (
+    <>
     <div className="flex flex-col align-middle text-center h-full">
       <div className="flex flex-col justify-center gap-5 align-middle text-center">
         <div className="border-b">
@@ -30,6 +32,8 @@ const First = () => {
         </div>
       </div>
     </div>
+    <BottomBar />
+    </>
   );
 };
 
