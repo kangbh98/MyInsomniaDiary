@@ -31,7 +31,7 @@ const First = () => {
         </div>
         </div>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h1 className="mt-2 text-left text-s font-semibold leading-9 tracking-tight text-gray-900 ml-3">
+          <h1 className="mt-2 text-left text-s font-semibold leading-6 tracking-tight text-gray-900 text-center">
             Recommendations
           </h1>
         </div>
