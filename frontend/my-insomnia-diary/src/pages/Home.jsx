@@ -7,7 +7,7 @@ const Home = () => {
     <div className="flex flex-col align-middle text-center h-full ">
       <div className="flex flex-col justify-center gap-4 align-middle text-center">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img className="w-10 rounded-lg cursor-pointer" src="/images/alarmhome.png" alt="sub" style={{float:'right'}}/>
+      <img className="w-8 rounded-lg cursor-pointer" src="/images/alarmhome.png" alt="sub" style={{float:'right'}}/>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Home
           </h2>
