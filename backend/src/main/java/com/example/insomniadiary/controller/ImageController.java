@@ -1,5 +1,5 @@
 package com.example.insomniadiary.controller;
-
+import org.springframework.beans.factory.annotation.Value;
 import com.example.insomniadiary.domain.image.Image;
 import com.example.insomniadiary.domain.image.ImageRepository;
 import com.theokanning.openai.image.CreateImageRequest;
@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ImageController {
 
     private final ImageRepository imageRepository;
+    @Value("${openai-key}")
+    private String OPENAI_KEY;
 
     @GetMapping("/generate")
     public String generateForm(Model model) {
@@ -37,8 +39,8 @@ public class ImageController {
         return "features/result";
     }
 
-    private static String openAiImageUrl(Image imageToRequest) {
-        OpenAiService service = new OpenAiService("token");
+    private String openAiImageUrl(Image imageToRequest) {
+        OpenAiService service = new OpenAiService(OPENAI_KEY);
         CreateImageRequest createImageRequest = CreateImageRequest.builder()
                 .prompt(imageToRequest.getPrompt())
                 .n(1)
