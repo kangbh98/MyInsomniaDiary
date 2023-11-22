@@ -12,4 +12,7 @@ public class Image {
     private Long Id;
     private String concern;
     private String Dream;
+    private String url;
+
+
 }
