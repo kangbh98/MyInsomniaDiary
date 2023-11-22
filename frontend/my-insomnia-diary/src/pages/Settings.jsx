@@ -54,9 +54,9 @@ const Settings = () => {
             {isAlarmOn ? 'On' : 'Off'}
             </button>
           </div>
-          <Link to={`/login`} className="mt-5 mx-10 py-6 ring-1 
+          <Link to={`/login`} className="mt-5 py-4 ring-1 
           rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold">
-            Updates & Versions
+            Log out
           </Link>          
         </div>
     <BottomBar />
