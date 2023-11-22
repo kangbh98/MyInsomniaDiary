@@ -12,12 +12,6 @@ const Settings = () => {
 
   return (
     <>
-      <Link
-        to={`/first`}
-        className="mx-auto  rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
-      >
-        LogOut
-      </Link>
     <div className="flex flex-col align-middle text-center h-full ">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm align-middle text-center">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -60,6 +54,10 @@ const Settings = () => {
             {isAlarmOn ? 'On' : 'Off'}
             </button>
           </div>
+          <Link to={`/login`} className="mt-5 mx-10 py-6 ring-1 
+          rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold">
+            Updates & Versions
+          </Link>          
         </div>
     <BottomBar />
     </>
