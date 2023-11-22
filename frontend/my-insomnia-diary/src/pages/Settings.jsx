@@ -21,20 +21,20 @@ const Settings = () => {
 
 
       <div className="border-b pb-10 mt-10 flex flex-col justify-center gap-2 align-middle text-center">
-          <div className="mx-10 py-6 ring-1 rounded-lg ring-gray-200 hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center">
+          <div className="mb-1 py-6 ring-1 rounded-lg ring-gray-200 hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center">
           <span className="font-semibold mr-2">
             My Page
           </span>
           <img className="rounded-lg" src="/images/user.png" style={{width:'18px'}}></img>
           </div>
 
-          <div className="mx-10 py-6 ring-1 rounded-lg ring-gray-200 hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center">
+          <div className="mb-1 py-6 ring-1 rounded-lg ring-gray-200 hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center">
           <span className="font-semibold mr-2">
             Help
           </span>
           <img className="rounded-lg" src="/images/question.png" style={{width:'18px'}}></img>
           </div>
-          <div className="mx-10 py-6 ring-1 rounded-lg ring-gray-200 hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center">
+          <div className="py-6 ring-1 rounded-lg ring-gray-200 hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center">
           <span className="font-semibold mr-2">
             Updates & Versions
           </span>
@@ -42,13 +42,13 @@ const Settings = () => {
           </div>
           </div>
           <div className="flex flex-row justify-center text-center w-full pt-2 pb-4 border-b">
-          <div className="mx-10 py-6 flex items-center justify-center">
+          <div className="py-6 flex items-center justify-center">
           <span className="font-semibold mr-2">
             Alarm Set
           </span>
-          <img className="rounded-lg" src="/images/bell.png" style={{width:'18px'}}></img>
+          <img className="rounded-lg mr-6" src="/images/bell.png" style={{width:'18px'}}></img>
           </div>
-            <button className="mx-10 bg-purple-600 
+            <button className="ml-10 bg-purple-600 
             hover:bg-purple-700 text-white font-semibold px-5 mt-2 rounded-lg" onClick={toggleAlarm}
             >
             {isAlarmOn ? 'On' : 'Off'}
