@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import BottomBar from '../components/BottomBar';
 
-const First = () => {
+const Home = () => {
   return (
     <>
     <div className="flex flex-col align-middle text-center h-full ">
@@ -46,4 +46,4 @@ const First = () => {
   );
 };
 
-export default First;
+export default Home;

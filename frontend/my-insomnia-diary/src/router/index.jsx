@@ -8,6 +8,7 @@ import Calendar from '../pages/Calendar.jsx';
 import Write from '../pages/Write.jsx';
 import Diary from '../pages/Diary.jsx';
 import Home from '../pages/Home.jsx';
+import Settings from '../pages/Settings.jsx';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: '/diary',
     element: <Diary />,
+  },
+  {
+    path: '/settings',
+    element: <Settings />,
   },
 ]);
 
