@@ -6,22 +6,23 @@ import com.theokanning.openai.image.CreateImageRequest;
 import com.theokanning.openai.service.OpenAiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class ImageController {
 
     private final ImageRepository imageRepository;
 
-    @PostMapping("/generate")
+    @GetMapping("/generate")
     public String generateForm(Model model) {
         model.addAttribute("image", new Image());
-        return null;
+        return "features/generator";
     }
 
     @PostMapping("/result")
@@ -37,9 +38,9 @@ public class ImageController {
     }
 
     private static String openAiImageUrl(Image imageToRequest) {
-        OpenAiService service = new OpenAiService("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");
+        OpenAiService service = new OpenAiService("token");
         CreateImageRequest createImageRequest = CreateImageRequest.builder()
-                .prompt(imageToRequest.getConcern()+imageToRequest.getConcern())
+                .prompt(imageToRequest.getPrompt())
                 .n(1)
                 .size("256x256")
                 .build();

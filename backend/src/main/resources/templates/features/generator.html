@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<header>
+    <div></div>
+</header>
+<section>
+    <div class="container p-5">
+        <div class="container pt-5">
+            <h1>What Image Would You Like to Get?</h1>
+        </div>
+
+        <div class="container">
+            <form action="result.html" th:action="@{/result}" th:object="${image}" method="post">
+                <div class="form-group py-3">
+                    <label class="form-label">Description</label>
+                    <input class="form-control form-control-lg" name="imagePrompt" th:field="*{prompt}"
+                           placeholder="Describe here">
+                </div>
+
+
+                <div class="py-5" style="text-align: center">
+                    <input class="btn btn-primary" type="submit" value="Generate">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

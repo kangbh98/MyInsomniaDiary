@@ -10,9 +10,13 @@ import lombok.Setter;
 public class Image {
 
     private Long Id;
-    private String concern;
-    private String Dream;
+    private String Prompt;
     private String url;
 
+    public Image(String prompt) {
+        Prompt = prompt;
+    }
 
+    public Image() {
+    }
 }
