@@ -16,7 +16,7 @@ public class MemoryImageRepository implements ImageRepository {
 
 
     @Override
-    public com.example.insomniadiary.domain.image.Image save(Image image) {
+    public Image save(Image image) {
         image.setId(seq.incrementAndGet());
         repo.put(image.getId(), image);
         return image;
