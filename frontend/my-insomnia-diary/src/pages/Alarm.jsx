@@ -18,9 +18,26 @@ const Alarm = () => {
           </h1>
         </div>
         <div className="ring-1 ring-gray-300 rounded-lg p-3 w-full pb-60">
-          <div className="ring-1 ring-gray-400 rounded-lg p-2 w-full h-14 text-left text-xs mb-3">브리즈 데이터를 동기화하였습니다.</div>
-          <div className="ring-1 ring-gray-400 rounded-lg mb-3 p-2 w-full h-14 text-left text-xs">11.07 다이어리 이미지 생성이 완료되었습니다.</div>
-          <div className="ring-1 ring-gray-400 rounded-lg p-2 mb-3 w-full h-14 text-left text-xs">작성 중인 수면일기가 저징되었습니다.</div>
+          <div className="bg-gray-100 ring-1 ring-gray-400 rounded-lg p-2 w-full h-14 text-left text-xs font-semibold mb-3 ">브리즈 데이터를 동기화하였습니다.
+            <div className="font-normal text-right mt-2">
+            3분 전
+            </div>
+          </div>
+          <div className="bg-gray-100 ring-1 ring-gray-400 rounded-lg mb-3 p-2 w-full h-17 text-left text-xs font-semibold ">11.07 다이어리 이미지 생성이 완료되었습니다.
+          <div className="font-normal text-right">
+            2시간 전
+            </div></div>
+          <div className="bg-gray-100 ring-1 ring-gray-400 rounded-lg p-2 mb-3 w-full h-14 text-left text-xs font-semibold ">작성 중인 수면일기가 저징되었습니다.<div className="font-normal text-right mt-2">
+            1일 전
+            </div></div>
+            <div className="ring-1 ring-gray-400 rounded-lg mb-3 p-2 w-full h-17 text-left text-xs font-semibold ">11.04 다이어리 이미지 생성이 완료되었습니다.
+          <div className="font-normal text-right">
+            4일 전
+            </div></div>
+            <div className="ring-1 ring-gray-400 rounded-lg mb-3 p-2 w-full h-17 text-left text-xs font-semibold ">브리즈 데이터를 동기화하였습니다.
+          <div className="font-normal text-right mt-2">
+            2시간 전
+            </div></div>
         </div>
       </div>
       </div>
