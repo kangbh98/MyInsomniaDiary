@@ -9,6 +9,7 @@ import Write from '../pages/Write.jsx';
 import Diary from '../pages/Diary.jsx';
 import Home from '../pages/Home.jsx';
 import Settings from '../pages/Settings.jsx';
+import Alarm from '../pages/Alarm.jsx';
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: '/settings',
     element: <Settings />,
+  },  
+  {
+    path: '/alarm',
+    element: <Alarm />,
   },
 ]);
 
