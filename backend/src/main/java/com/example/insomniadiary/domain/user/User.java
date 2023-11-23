@@ -10,6 +10,10 @@ public class User {
     private String password;
     private String username;
     private int age;
+
+    public User() {
+    }
+
     private double weigh;
 
     public User(Long id, String email, String password, String username, int age, double weigh) {
