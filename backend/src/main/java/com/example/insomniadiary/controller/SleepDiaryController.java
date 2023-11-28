@@ -20,6 +20,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class SleepDiaryController {
 
     private final ImageRepository imageRepository;
@@ -35,22 +36,22 @@ public class SleepDiaryController {
             @RequestParam String date,
             @RequestParam String prompt) {
 
-            Image image = new Image();
-            image.setPrompt(prompt);
-            String imageUrl = openAiImageUrl(image);
+        Image image = new Image();
+        image.setPrompt(prompt);
+        String imageUrl = openAiImageUrl(image);
 
 
-            if (loginUser != null) {
-                String email = loginUser.getEmail();
-                image.setEmail(email);
-            }
+        if (loginUser != null) {
+            String email = loginUser.getEmail();
+            image.setEmail(email);
+        }
 
-            image.setUrl(imageUrl);
-            image.setDate(date);
+        image.setUrl(imageUrl);
+        image.setDate(date);
 
-            log.info("Image generated: {}", image);
-            imageRepository.save(image);
-            return ResponseEntity.ok("generate Success");
+        log.info("Image generated: {}", image);
+        imageRepository.save(image);
+        return ResponseEntity.ok("generate Success");
     }
 
     @PostMapping("/generate/sleepDiary")
@@ -64,19 +65,19 @@ public class SleepDiaryController {
             @RequestParam int exerciseTime,
             @RequestParam Map<String, Integer> pill,
             @RequestParam int SleepTime,
-            @RequestParam int wakeUpTime){
+            @RequestParam int wakeUpTime) {
 
-            SleepDiary  sleepDiary = new SleepDiary( date, caffeineIntake, caffeineIntakeTime,exercise, exerciseTime ,pill, SleepTime, wakeUpTime);
+        SleepDiary sleepDiary = new SleepDiary(date, caffeineIntake, caffeineIntakeTime, exercise, exerciseTime, pill, SleepTime, wakeUpTime);
 
-            if (loginUser != null) {
-                String email = loginUser.getEmail();
-                sleepDiary.setEmail(email);
-            }
+        if (loginUser != null) {
+            String email = loginUser.getEmail();
+            sleepDiary.setEmail(email);
+        }
 
-            log.info("Diary generated: {}", sleepDiary);
+        log.info("Diary generated: {}", sleepDiary);
 
-            sleepDiaryRepository.save(sleepDiary);
-            return ResponseEntity.ok("generate Success");
+        sleepDiaryRepository.save(sleepDiary);
+        return ResponseEntity.ok("generate Success");
 
     }
 
@@ -84,14 +85,14 @@ public class SleepDiaryController {
     public ResponseEntity<Diarydto> showDiary(
             @SessionAttribute(name = "loginUser", required = false) User loginUser,
             @RequestParam String date
-            ){
+    ) {
 
 
-             String email = loginUser.getEmail();
-             Optional<SleepDiary> byEmailAndDateSleepDiary = sleepDiaryRepository.findByEmailAndDate(email, date);
-             Optional<Image> byEmailAndDateImage = imageRepository.findByEmailAndDate(email, date);
+        String email = loginUser.getEmail();
+        Optional<SleepDiary> byEmailAndDateSleepDiary = sleepDiaryRepository.findByEmailAndDate(email, date);
+        Optional<Image> byEmailAndDateImage = imageRepository.findByEmailAndDate(email, date);
 
-             Diarydto diarydto = new Diarydto(byEmailAndDateSleepDiary.orElse(null),byEmailAndDateImage.orElse(null));
+        Diarydto diarydto = new Diarydto(byEmailAndDateSleepDiary.orElse(null), byEmailAndDateImage.orElse(null));
 
         return ResponseEntity.ok(diarydto);
     }

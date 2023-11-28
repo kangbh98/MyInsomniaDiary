@@ -12,8 +12,7 @@ public class User {
     private int age;
     private double weigh;
 
-    public User(Long id, String email, String password, String username, int age, double weigh) {
-        this.id = id;
+    public User(String email, String password, String username, int age, double weigh) {
         this.email = email;
         this.password = password;
         this.username = username;
