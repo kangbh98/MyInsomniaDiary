@@ -15,9 +15,6 @@ public class Image {
     private String Prompt;
     private String url;
 
-    public Image(String prompt) {
-        Prompt = prompt;
-    }
 
     public Image() {
     }
