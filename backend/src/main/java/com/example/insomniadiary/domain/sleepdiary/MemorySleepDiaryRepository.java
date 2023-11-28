@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-
+@Repository
 public class MemorySleepDiaryRepository implements SleepDiaryRepository{
     private Map<Long, SleepDiary> repo = new ConcurrentHashMap<Long, SleepDiary>();
     AtomicLong seq = new AtomicLong(0);
