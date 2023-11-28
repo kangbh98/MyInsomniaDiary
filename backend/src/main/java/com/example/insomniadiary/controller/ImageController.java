@@ -1,4 +1,5 @@
 package com.example.insomniadiary.controller;
+import com.example.insomniadiary.domain.user.User;
 import org.springframework.beans.factory.annotation.Value;
 import com.example.insomniadiary.domain.image.Image;
 import com.example.insomniadiary.domain.image.ImageRepository;
@@ -6,14 +7,12 @@ import com.theokanning.openai.image.CreateImageRequest;
 import com.theokanning.openai.service.OpenAiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class ImageController {
 
@@ -21,22 +20,25 @@ public class ImageController {
     @Value("${openai-key}")
     private String OPENAI_KEY;
 
-    @GetMapping("/generate")
-    public String generateForm(Model model) {
-        model.addAttribute("image", new Image());
-        return "features/generator";
-    }
-
-    @PostMapping("/result")
-    public String generate(@ModelAttribute Image image, Model model) {
-        log.info("Image generated: {}", image);
-
+    @PostMapping("/generate/image")
+    public ResponseEntity<String> generate(@SessionAttribute(name = "loginUser", required = false) User loginUser, @RequestParam String date,@RequestParam String prompt) {
+        Image image = new Image();
         String imageUrl = openAiImageUrl(image);
-        image.setUrl(imageUrl);
-        imageRepository.save(image);
 
-        model.addAttribute("imageUrl", imageUrl);
-        return "features/result";
+        image.setPrompt(prompt);
+
+        imageRepository.save(image);
+        if (loginUser != null) {
+            String email = loginUser.getEmail();
+            image.setEmail(email);
+        }
+
+        image.setUrl(imageUrl);
+        image.setDate(date);
+
+        log.info("Image generated: {}", image);
+        imageRepository.save(image);
+        return ResponseEntity.ok("generate Sucess");
     }
 
     private String openAiImageUrl(Image imageToRequest) {
@@ -54,5 +56,6 @@ public class ImageController {
 
         return imgUrl;
     }
+
 
 }
