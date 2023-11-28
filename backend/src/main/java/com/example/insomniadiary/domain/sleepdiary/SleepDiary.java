@@ -7,7 +7,8 @@ import lombok.Setter;
 import java.util.Map;
 
 @Data
-@Getter @Setter
+@Getter
+@Setter
 public class SleepDiary {
 
     private Long Id;
@@ -21,13 +22,22 @@ public class SleepDiary {
     private int SleepTime;
     private int wakeUpTime;
 
-    public SleepDiary(int caffeineIntake, int caffeineIntakeTime, int exercise, int exerciseTime, Map<String, Integer> pill, int sleepTime, int wakeUpTime) {
-        this.caffeineIntake = caffeineIntake;
-        this.caffeineIntakeTime = caffeineIntakeTime;
-        Exercise = exercise;
-        ExerciseTime = exerciseTime;
-        this.pill = pill;
-        SleepTime = sleepTime;
-        this.wakeUpTime = wakeUpTime;
+    public SleepDiary(String date,
+                      int caffeineIntake,
+                      int caffeineIntakeTime,
+                      int exercise,
+                      int exerciseTime,
+                      Map<String, Integer> pill,
+                      int sleepTime,
+                      int wakeUpTime) {
+
+                        this.date = date;
+                        this.caffeineIntake = caffeineIntake;
+                        this.caffeineIntakeTime = caffeineIntakeTime;
+                        Exercise = exercise;
+                        ExerciseTime = exerciseTime;
+                        this.pill = pill;
+                        SleepTime = sleepTime;
+                        this.wakeUpTime = wakeUpTime;
     }
 }
