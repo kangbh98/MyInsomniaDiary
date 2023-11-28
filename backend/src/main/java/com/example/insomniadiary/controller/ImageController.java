@@ -38,7 +38,7 @@ public class ImageController {
 
         log.info("Image generated: {}", image);
         imageRepository.save(image);
-        return ResponseEntity.ok("generate Sucess");
+        return ResponseEntity.ok("generate Success");
     }
 
     private String openAiImageUrl(Image imageToRequest) {
