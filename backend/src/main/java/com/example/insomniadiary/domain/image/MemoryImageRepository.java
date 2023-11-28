@@ -1,5 +1,6 @@
 package com.example.insomniadiary.domain.image;
 
+import com.example.insomniadiary.domain.sleepdiary.SleepDiary;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -25,5 +26,12 @@ public class MemoryImageRepository implements ImageRepository {
     @Override
     public Optional<Image> findByID(Long id) {
         return Optional.ofNullable(repo.get(id));
+    }
+
+    @Override
+    public Optional<Image> findByEmailAndDate(String email, String date) {
+        return repo.values().stream()
+                .filter(image -> image.getEmail().equals(email) && image.getDate().equals(date))
+                .findAny();
     }
 }

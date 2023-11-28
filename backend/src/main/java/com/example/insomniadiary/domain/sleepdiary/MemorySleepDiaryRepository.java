@@ -1,6 +1,8 @@
 package com.example.insomniadiary.domain.sleepdiary;
 
 
+import com.example.insomniadiary.domain.image.Image;
+import com.example.insomniadiary.domain.user.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -25,5 +27,12 @@ public class MemorySleepDiaryRepository implements SleepDiaryRepository{
     public Optional<SleepDiary> findByID(Long id) {
 
         return Optional.ofNullable(repo.get(id));
+    }
+
+    @Override
+    public Optional<SleepDiary> findByEmailAndDate(String email,String date) {
+        return repo.values().stream()
+                .filter(sleepDiary -> sleepDiary.getEmail().equals(email) && sleepDiary.getDate().equals(date))
+                .findAny();
     }
 }

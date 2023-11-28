@@ -23,6 +23,7 @@ public class MemoryUserRepository implements UserRepository {
     public Optional<User> findById(Long id) {
         return Optional.ofNullable(repo.get(id));
     }
+
     @Override
     public Optional<User> findByName(String username) {
         return repo.values().stream()
