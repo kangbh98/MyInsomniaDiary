@@ -316,7 +316,8 @@ const handleInput = (event) => {
           </Link>
           
 
-            <button className='btn btn-primary'>Next</button>
+            <button className='py-3 px-6 ring-1 
+          rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold text-sm font-semibold leading-6 text-gray-900 btn btn-primary'>Next</button>
         </div>
       </form>
     </>

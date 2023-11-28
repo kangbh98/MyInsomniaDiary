@@ -60,14 +60,15 @@ const handleInput = (event) => {
 
         <div className="mt-6 pb-6 flex items-center justify-end gap-x-6">
           <Link
-            to={`/calendar`}
+            to={`/Write`}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            Cancel
+            Previous
           </Link>
           
 
-            <button className='btn btn-primary'>Complete</button>
+            <button className='py-3 px-6 ring-1 
+          rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold text-sm font-semibold leading-6 text-gray-900 btn btn-primary '>Complete</button>
         </div>
       </form>
     </>
