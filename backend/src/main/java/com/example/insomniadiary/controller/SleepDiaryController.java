@@ -2,6 +2,7 @@ package com.example.insomniadiary.controller;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiary;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiaryRepository;
 import com.example.insomniadiary.domain.user.User;
+import com.example.insomniadiary.dto.Diarydto;
 import org.springframework.beans.factory.annotation.Value;
 import com.example.insomniadiary.domain.image.Image;
 import com.example.insomniadiary.domain.image.ImageRepository;
@@ -14,19 +15,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class ImageController {
+public class SleepDiaryController {
 
     private final ImageRepository imageRepository;
     private final SleepDiaryRepository sleepDiaryRepository;
     @Value("${openai-key}")
     private String OPENAI_KEY;
 
+
     @PostMapping("/generate/image")
     public ResponseEntity<String> generateImage(
+
             @SessionAttribute(name = "loginUser", required = false) User loginUser,
             @RequestParam String date,
             @RequestParam String prompt) {
@@ -73,7 +77,25 @@ public class ImageController {
 
             sleepDiaryRepository.save(sleepDiary);
             return ResponseEntity.ok("generate Success");
+
     }
+
+    @PostMapping("/diary")
+    public ResponseEntity<Diarydto> showDiary(
+            @SessionAttribute(name = "loginUser", required = false) User loginUser,
+            @RequestParam String date
+            ){
+
+
+             String email = loginUser.getEmail();
+             Optional<SleepDiary> byEmailAndDateSleepDiary = sleepDiaryRepository.findByEmailAndDate(email, date);
+             Optional<Image> byEmailAndDateImage = imageRepository.findByEmailAndDate(email, date);
+
+             Diarydto diarydto = new Diarydto(byEmailAndDateSleepDiary.orElse(null),byEmailAndDateImage.orElse(null));
+
+        return ResponseEntity.ok(diarydto);
+    }
+
 
     private String openAiImageUrl(Image imageToRequest) {
         OpenAiService service = new OpenAiService(OPENAI_KEY);
