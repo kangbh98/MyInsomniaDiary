@@ -11,6 +11,8 @@ import java.util.Map;
 public class SleepDiary {
 
     private Long Id;
+    private String date;
+    private String email;
     private int caffeineIntake;
     private int caffeineIntakeTime;
     private int Exercise;

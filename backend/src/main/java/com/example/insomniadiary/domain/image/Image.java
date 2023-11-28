@@ -10,6 +10,8 @@ import lombok.Setter;
 public class Image {
 
     private Long Id;
+    private String email;
+    private String date;
     private String Prompt;
     private String url;
 
