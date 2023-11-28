@@ -7,7 +7,8 @@ const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const navigateTo = useNavigate();
-
+  const sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 3);
   const handleDatePickerChange = (date) => {
     setSelectedDate(date);
     console.log(date);
@@ -30,6 +31,8 @@ const Calendar = () => {
             inline
             value={selectedDate}
             onSelectedDateChanged={handleDatePickerChange}
+            minDate={sixMonthsAgo}
+            maxDate={new Date()}
           />
         </div>
 
