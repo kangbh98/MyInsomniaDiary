@@ -36,7 +36,7 @@ const Alarm = () => {
             </div></div>
             <div className="ring-1 ring-gray-400 rounded-lg mb-3 p-2 w-full h-17 text-left text-xs font-semibold ">브리즈 데이터를 동기화하였습니다.
           <div className="font-normal text-right mt-2">
-            2시간 전
+            일주일 전
             </div></div>
         </div>
       </div>
