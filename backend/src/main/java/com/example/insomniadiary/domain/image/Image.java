@@ -1,21 +1,25 @@
 package com.example.insomniadiary.domain.image;
 
 
-import lombok.Data;
+import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
-@Getter@Setter
+@Entity
+@Table(name = "Image_table")
+@Getter
+@Setter
 public class Image {
 
-    private Long Id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String email;
     private String date;
     private String Prompt;
     private String url;
 
-
-    public Image() {
-    }
 }
