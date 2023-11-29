@@ -18,8 +18,8 @@ public class MemoryImageRepository {
 
 
     public Image save(Image image) {
-        image.setId(seq.incrementAndGet());
-        repo.put(image.getId(), image);
+        image.setID(seq.incrementAndGet());
+        repo.put(image.getID(), image);
         return image;
     }
 

@@ -13,8 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -63,11 +61,12 @@ public class SleepDiaryController {
             @RequestParam int caffeineIntakeTime,
             @RequestParam int exercise,
             @RequestParam int exerciseTime,
-            @RequestParam Map<String, Integer> pill,
+            @RequestParam String pill,
+            @RequestParam int pillDosage,
             @RequestParam int SleepTime,
             @RequestParam int wakeUpTime) {
 
-        SleepDiary sleepDiary = new SleepDiary(date, caffeineIntake, caffeineIntakeTime, exercise, exerciseTime, pill, SleepTime, wakeUpTime);
+        SleepDiary sleepDiary = new SleepDiary(date, caffeineIntake, caffeineIntakeTime, exercise, exerciseTime, pill, pillDosage, SleepTime, wakeUpTime);
 
         if (loginUser != null) {
             String email = loginUser.getEmail();

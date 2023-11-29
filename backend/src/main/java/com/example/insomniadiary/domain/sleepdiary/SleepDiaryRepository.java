@@ -1,13 +1,13 @@
 package com.example.insomniadiary.domain.sleepdiary;
 
 
-import com.example.insomniadiary.domain.image.Image;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
-public interface SleepDiaryRepository {
+@Repository
+public interface SleepDiaryRepository extends JpaRepository<SleepDiary,Long> {
     SleepDiary save(SleepDiary sleepDiary);
 
     Optional<SleepDiary> findByID(Long id);

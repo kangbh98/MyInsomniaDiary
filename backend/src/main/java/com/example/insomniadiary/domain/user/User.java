@@ -1,11 +1,20 @@
 package com.example.insomniadiary.domain.user;
 
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Entity
+@Table(name = "User_table")
+@Getter
+@Setter
 public class User {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
+
     private String email;
     private String password;
     private String username;
@@ -20,4 +29,6 @@ public class User {
         this.weigh = weigh;
     }
 
+    public User() {
+    }
 }

@@ -12,10 +12,9 @@ import lombok.Setter;
 @Setter
 public class Image {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID;
 
     private String email;
     private String date;
