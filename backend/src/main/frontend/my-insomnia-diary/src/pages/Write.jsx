@@ -24,8 +24,8 @@ const pillType = [
 ];
 
 function Write() {
-  const navigate = useNavigate();
-  const [post, setPost] = useState({
+  const navigate = useNavigate();//페이지 이동을 위해 네비게이트 함수 가져오기
+  const [post, setPost] = useState({//내가 쓰려는 데이터 값들 + 디폴트값
     caffeine_dosage: 'none',
     lastDosageC: '',
     Workout_total: '',
@@ -37,15 +37,15 @@ function Write() {
   })
 const handleInput = (event) => {
   setPost({ ...post, [event.target.name]: event.target.value });
-};
+};//이벤트 객체에 대해 이름, 값 가져오고 post 업데이트
   function handleSubmit(event){
-    event.preventDefault()
-    axios.post('https://jsonplaceholder.typicode.com/posts', {post})
+    event.preventDefault()//버튼 누르면 새로고침 되는 현상 방지
+    axios.post('https://jsonplaceholder.typicode.com/posts', {post})//포스트 하는 주소 기입
     .then(response => {
-      console.log(response);
-      navigate('/WriteDiary');
+      console.log(response);//로그 띄우기
+      navigate('/WriteDiary');// 창 이동 => Write Diary로
     })
-    .catch(err=>console.log(err))
+    .catch(err=>console.log(err)) // 에러뜨면 에러 캐치
   }
 
   return (
