@@ -4,10 +4,11 @@ import { useState } from 'react';
 
 const caffeineDosage = [
   { value: 'none', name: 'None' },
-  { value: '1', name: '1' },
-  { value: '2', name: '2' },
-  { value: '3', name: '3' },
-  { value: '4over', name: 'more than 4' },
+  { value: '100', name: '100' },
+  { value: '150', name: '150' },
+  { value: '200', name: '200' },
+  { value: '250', name: '250' },
+  { value: '300', name: '300' },
 ];
 
 const pillDosage = [
@@ -70,7 +71,7 @@ const handleInput = (event) => {
               <div className="mt-2 py-2 px-3 ring-1 rounded-lg ring-gray-200">
                 <fieldset>
                   <p className="mt-1 font-semibold text-sm leading-6 text-gray-600">
-                    Caffeine Dosage (Cup)
+                    Caffeine Dosage (mg)
                   </p>
                   <div className="mt-6 space-y-2">
                     {caffeineDosage.map((item) => (
