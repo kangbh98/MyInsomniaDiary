@@ -12,36 +12,23 @@ const Login = () => {
     console.log("PW : ", password);
 
     axios
-        .post(baseUrl + "/login", {
-          email: email,
-          passwd: password,
-        })
+        .post(`${baseUrl}/login?email=${email}&password=${password}`)
         .then((res) => {
           console.log(res);
           console.log("res.data.userId :: ", res.data.email);
           console.log("res.data.msg :: ", res.data.password);
-          if (res.data.email === undefined) {
-            // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
-            console.log("======================");
-            alert("입력하신 id 가 일치하지 않습니다.");
 
-          } else if (res.data.email === null) {
-            // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
-            console.log(
-                "입력하신 비밀번호 가 일치하지 않습니다."
-            );
-            alert("입력하신 비밀번호 가 일치하지 않습니다.");
-
-          } else if (res.data.email === email) {
-            // id, pw 모두 일치 userId = userId1, msg = undefined
-            console.log("======================", "로그인 성공");
-            sessionStorage.setItem("user_id", inputId); // sessionStorage에 id를 user_id라는 key 값으로 저장
-            sessionStorage.setItem("name", res.data.name); // sessionStorage에 id를 user_id라는 key 값으로 저장
-          }
+          if (res.status  === 200) {
+            console.log("======================",);
+            alert("로그인이 성공했습니다.");
+          } 
           // 작업 완료 되면 페이지 이동(새로고침)
           document.location.href = "/home";
         })
-        .catch();
+        .catch((error) => {
+          console.error(error); // 에러가 발생한 경우 에러 내용을 출력
+          alert("로그인이 실패했습니다."); // 에러가 발생한 경우 알림 추가
+        });
   };
 
   const [email, setInputId] = useState("");
