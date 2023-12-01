@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const submit = () => {
   const baseUrl = "http://localhost:8080";
-  const onClickLogin = () => {
+  const onClickSubmit = () => {
 
     console.log("click submit");
     console.log("Diary : ", diary);
@@ -30,7 +30,7 @@ const submit = () => {
 
   return (
       <>
-        <form className="pb-32" onSubmit={onClickLogin}>
+        <form className="pb-32" onSubmit={onClickSubmit}>
           <div className="space-y-4">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
