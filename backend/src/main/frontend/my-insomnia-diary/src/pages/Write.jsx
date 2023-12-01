@@ -31,8 +31,8 @@ function Write() {
   const navigate = useNavigate();//페이지 이동을 위해 네비게이트 함수 가져오기
   const [post, setPost] = useState({//내가 쓰려는 데이터 값들 + 디폴트값
     Date: formattedDate,
-    caffeineIntake: '0',
-    caffeineIntakeTime: '0',
+    caffeineIntake: 0,
+    caffeineIntakeTime: 0,
     exercise: 0,
     exerciseTime: 0,
     pill: " ",
@@ -41,17 +41,62 @@ function Write() {
     wakeUpTime: 0,
 
   })
-  const handleInput = (event) => {
-    setPost({...post, [event.target.name]: event.target.value});
-  };//이벤트 객체에 대해 이름, 값 가져오고 post 업데이트
+
+  const handleCaffeineIntake = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setPost({ ...post, caffeineIntake: value });
+  };
+  
+  const handleCaffeineIntakeTime = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setPost({ ...post, caffeineIntakeTime: value });
+  };
+  
+  const handleExercise = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setPost({ ...post, exercise: value });
+  };
+  
+  const handleExerciseTime = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setPost({ ...post, exerciseTime: value });
+  };
+  const handlePill = (event) => {
+  const value = event.target.value;
+  setPost({ ...post, pill: value });
+};
+
+  const handlePillDosage = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setPost({ ...post, pillDosage: value });
+  };
+  
+  const handleSleepTime = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setPost({ ...post, SleepTime: value });
+  };
+  
+  const handleWakeUpTime = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setPost({ ...post, wakeUpTime: value });
+  };
+
   function handleSubmit(event) {
+    
     event.preventDefault()//버튼 누르면 새로고침 되는 현상 방지
-    axios.post('https://localhost:8080/generate/sleepDiary', {post})//포스트 하는 주소 기입
+
+    axios.post('https://localhost:8080/generate/sleepDiary', post)//포스트 하는 주소 기입
         .then(response => {
+          
           console.log(response);//로그 띄우기
+          if (res.status  === 200) {
+            console.log("======================",);
+            alert("전송 성공"); //test용 : 나중에 지울게
+          }
           navigate('/WriteDiary');// 창 이동 => Write Diary로
         })
         .catch(err => console.log(err)) // 에러뜨면 에러 캐치
+        alert("전송실패");
 
   }
     return (
@@ -90,7 +135,7 @@ function Write() {
                                   type="radio"
                                   defaultChecked={item.value === 0}
                                   className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                  onChange={handleInput}
+                                  onChange={handleCaffeineIntake}
                                   value={item.value}
                               />
                               <label
@@ -121,7 +166,7 @@ function Write() {
                               id="caffeineIntakeTime"
                               autoComplete="caffeineIntakeTime"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                              onChange={handleInput}
+                              onChange={handleCaffeineIntakeTime}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -155,7 +200,7 @@ function Write() {
                               id="exercise"
                               autoComplete="exercise"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                              onChange={handleInput}
+                              onChange={handleExercise}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -178,7 +223,7 @@ function Write() {
                               id="exerciseTime"
                               autoComplete="exerciseTime"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                              onChange={handleInput}
+                              onChange={handleExerciseTime}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -216,10 +261,10 @@ function Write() {
                               name="pill"
                               className="mt-2 block w-full text-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               defaultValue="none"
-                              onChange={handleInput}
+                              onChange={handlePill}
                           >
                             {pill.map((item) => (
-                                <option key={item.value}>{item.name}</option>
+                                <option key={item.value} value={item.value}>{item.name}</option>
                             ))}
                           </select>
                         </div>
@@ -237,9 +282,9 @@ function Write() {
                                       id={item.value}
                                       name="pillDosage"
                                       type="radio"
-                                      defaultChecked={item.value === '1'}
+                                      defaultChecked={item.value === 1}
                                       className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                      onChange={handleInput}
+                                      onChange={handlePillDosage}
                                       value={item.value}
                                   />
                                   <label
@@ -283,7 +328,7 @@ function Write() {
                               autoComplete="SleepTime"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900
                         placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                              onChange={handleInput}
+                              onChange={handleSleepTime}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -302,11 +347,11 @@ function Write() {
                             className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                           <input
                               type="text"
-                              name="wakeUpTimev"
+                              name="wakeUpTime"
                               id="wakeUpTime"
                               autoComplete="wakeUpTime"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                              onChange={handleInput}
+                              onChange={handleWakeUpTime}
                           />
                         </div>
                         <span className="my-auto ml-2">times</span>
@@ -327,7 +372,7 @@ function Write() {
               </Link>
 
 
-              <button className='py-3 px-6 ring-1
+              <button type="submit" className='py-3 px-6 ring-1
           rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold text-sm font-semibold leading-6 text-gray-900 btn btn-primary'>Next
               </button>
             </div>
