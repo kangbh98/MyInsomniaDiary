@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
-const caffeineDosage = [
+const caffeineIntake = [
   { value: 'none', name: 'None' },
   { value: '100', name: '100' },
   { value: '150', name: '150' },
@@ -17,7 +17,7 @@ const pillDosage = [
   { value: '3', name: '3' },
 ];
 
-const pillType = [
+const pill = [
   { value: 'none', name: 'none'},
   { value: 'type1', name: 'type1' },
   { value: 'type2', name: 'type2' },
@@ -27,13 +27,14 @@ const pillType = [
 function Write() {
   const navigate = useNavigate();//페이지 이동을 위해 네비게이트 함수 가져오기
   const [post, setPost] = useState({//내가 쓰려는 데이터 값들 + 디폴트값
-    caffeine_dosage: 'none',
-    lastDosageC: '',
-    Workout_total: '',
+    caffeineIntake: 'none',
+    caffeineIntakeTime: '',
+    exercise: '',
+    exerciseTime: '1',
+    pill: 'none',
     pillDosage: '1',
-    pillType: 'none',
-    Wakeup: '',
-    Sleep_Time: '',
+    SleepTime: '',
+    wakeUpTime: '',
 
   })
 const handleInput = (event) => {
@@ -41,7 +42,7 @@ const handleInput = (event) => {
 };//이벤트 객체에 대해 이름, 값 가져오고 post 업데이트
   function handleSubmit(event){
     event.preventDefault()//버튼 누르면 새로고침 되는 현상 방지
-    axios.post('https://jsonplaceholder.typicode.com/posts', {post})//포스트 하는 주소 기입
+    axios.post('https://localhost:8080/generate/sleepDiary', {post})//포스트 하는 주소 기입
     .then(response => {
       console.log(response);//로그 띄우기
       navigate('/WriteDiary');// 창 이동 => Write Diary로
@@ -74,14 +75,14 @@ const handleInput = (event) => {
                     Caffeine Dosage (mg)
                   </p>
                   <div className="mt-6 space-y-2">
-                    {caffeineDosage.map((item) => (
+                    {caffeineIntake.map((item) => (
                       <div
                         key={item.value}
                         className="flex items-center gap-x-3"
                       >
                         <input
                           id={item.value}
-                          name="caffeine_dosage"
+                          name="caffeineIntake"
                           type="radio"
                           defaultChecked={item.value === 'none'}
                           className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -102,7 +103,7 @@ const handleInput = (event) => {
               <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-4 py-2 px-3 ring-1 rounded-lg ring-gray-200">
                   <label
-                    htmlFor="lastDosageC"
+                    htmlFor="caffeineIntakeTime"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
                     Last Dosage time (H before sleep)
@@ -111,9 +112,9 @@ const handleInput = (event) => {
                     <div className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                       <input
                         type="text"
-                        name="lastDosageC"
-                        id="lastDosageC"
-                        autoComplete="lastDosageC"
+                        name="caffeineIntakeTime"
+                        id="caffeineIntakeTime"
+                        autoComplete="caffeineIntakeTime"
                         className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         onChange={handleInput}
                       />
@@ -135,7 +136,7 @@ const handleInput = (event) => {
               <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
                 <div className="sm:col-span-4 py-2 px-3 ring-1 rounded-lg ring-gray-200">
                   <label
-                    htmlFor="Workout_total"
+                    htmlFor="exercise"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
                     Workout total time
@@ -144,9 +145,9 @@ const handleInput = (event) => {
                     <div className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                       <input
                         type="text"
-                        name="Workout_total"
-                        id="Workout_total"
-                        autoComplete="Workout_total"
+                        name="exercise"
+                        id="exercise"
+                        autoComplete="exercise"
                         className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         onChange={handleInput}
                         />
@@ -157,7 +158,7 @@ const handleInput = (event) => {
 
                 <div className="sm:col-span-4 py-2 px-3 ring-1 rounded-lg ring-gray-200">
                   <label
-                    htmlFor="last_Workout"
+                    htmlFor="exerciseTime"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
                     Last Workout time (H before sleep)
@@ -166,9 +167,9 @@ const handleInput = (event) => {
                     <div className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                       <input
                         type="text"
-                        name="last_Workout"
-                        id="last_Workout"
-                        autoComplete="last_Workout"
+                        name="exerciseTime"
+                        id="exerciseTime"
+                        autoComplete="exerciseTime"
                         className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         onChange={handleInput}
                         />
@@ -198,19 +199,19 @@ const handleInput = (event) => {
                   <div className="mt-2 flex flex-row justify-between">
                     <div>
                       <label
-                        htmlFor="pillType"
+                        htmlFor="pill"
                         className="block text-sm font-semibold leading-6 text-gray-900"
                       >
                         Type
                       </label>
                       <select
-                        id="pillType"
-                        name="pillType"
+                        id="pill"
+                        name="pill"
                         className="mt-2 block w-full text-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         defaultValue="none"
                         onChange={handleInput}
                       >
-                        {pillType.map((item) => (
+                        {pill.map((item) => (
                           <option key={item.value}>{item.name}</option>
                         ))}
                       </select>
@@ -269,9 +270,9 @@ const handleInput = (event) => {
                     <div className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                       <input
                         type="text"
-                        name="Sleep_Time"
-                        id="Sleep_Time"
-                        autoComplete="Sleep_Time"
+                        name="SleepTime"
+                        id="SleepTime"
+                        autoComplete="SleepTime"
                         className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900
                         placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         onChange={handleInput}
@@ -283,7 +284,7 @@ const handleInput = (event) => {
 
                 <div className="sm:col-span-4 py-2 px-3 ring-1 rounded-lg ring-gray-200">
                   <label
-                    htmlFor="Wakeup"
+                    htmlFor="wakeUpTime"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
                     Number of times you woke up
@@ -292,9 +293,9 @@ const handleInput = (event) => {
                     <div className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                       <input
                         type="text"
-                        name="Wakeup"
-                        id="Wakeup"
-                        autoComplete="Wakeup"
+                        name="wakeUpTimev"
+                        id="wakeUpTime"
+                        autoComplete="wakeUpTime"
                         className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         onChange={handleInput}
                         />
