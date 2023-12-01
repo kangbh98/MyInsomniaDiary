@@ -27,22 +27,25 @@ const pill = [
 function Write() {
   const navigate = useNavigate();//페이지 이동을 위해 네비게이트 함수 가져오기
   const [post, setPost] = useState({//내가 쓰려는 데이터 값들 + 디폴트값
-    caffeineIntake: 'none',
-    caffeineIntakeTime: '',
-    exercise: '',
+    date:'2023-11-20',
+    caffeineIntake: 0,
+    caffeineIntakeTime: 0,
+    exercise: 0,
     exerciseTime: '1',
     pill: 'none',
-    pillDosage: '1',
-    SleepTime: '',
-    wakeUpTime: '',
+    pillDosage: 1,
+    SleepTime: 0,
+    wakeUpTime: 0,
 
   })
-const handleInput = (event) => {
-  setPost({ ...post, [event.target.name]: event.target.value });
-};//이벤트 객체에 대해 이름, 값 가져오고 post 업데이트
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+    setPost({ ...post, [name]: name === 'exerciseTime' ? parseInt(value) : value });
+  };
+//이벤트 객체에 대해 이름, 값 가져오고 post 업데이트
   function handleSubmit(event){
     event.preventDefault()//버튼 누르면 새로고침 되는 현상 방지
-    axios.post('https://localhost:8080/generate/sleepDiary', {post})//포스트 하는 주소 기입
+    axios.post('https://jsonplaceholder.typicode.com/posts', {post})//포스트 하는 주소 기입
     .then(response => {
       console.log(response);//로그 띄우기
       navigate('/WriteDiary');// 창 이동 => Write Diary로
