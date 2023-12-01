@@ -21,7 +21,9 @@ const Login = () => {
           if (res.status  === 200) {
             console.log("======================",);
             alert("로그인이 성공했습니다.");
+
           }
+
           // 작업 완료 되면 페이지 이동(새로고침)
           document.location.href = "/home";
         })
