@@ -29,7 +29,11 @@ public class Serverinit implements CommandLineRunner {
 
     private void SleepDiaryDataInit() {
         SleepDiary sleepDiary = new SleepDiary("2023-11-30",100,19,3,17,"zolpidem",1,8,7);
+        SleepDiary sleepDiary2 = new SleepDiary("2023-11-16",100,19,3,17,"zolpidem",1,8,7);
+        SleepDiary sleepDiary3 = new SleepDiary("2023-11-14",100,19,3,17,"zolpidem",1,8,7);
         sleepDiaryRepository.save(sleepDiary);
+        sleepDiaryRepository.save(sleepDiary2);
+        sleepDiaryRepository.save(sleepDiary3);
         System.out.println("sleepDiary = " + sleepDiary);
     }
 }
