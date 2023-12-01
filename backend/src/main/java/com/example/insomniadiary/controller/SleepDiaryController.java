@@ -43,11 +43,13 @@ public class SleepDiaryController {
         image.setPrompt(diary);
         String imageUrl = openAiImageUrl(image);
 
+        System.out.println("imageUrl = " + imageUrl);
 
         if (loginUser != null) {
             String email = loginUser.getEmail();
             image.setEmail(email);
         }
+
 
         image.setUrl(imageUrl);
         image.setDate(date);
