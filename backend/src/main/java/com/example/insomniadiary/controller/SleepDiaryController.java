@@ -3,7 +3,6 @@ import com.example.insomniadiary.domain.sleepdiary.SleepDiary;
 import com.example.insomniadiary.dto.Diarydto;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiaryRepository;
 import com.example.insomniadiary.domain.user.User;
-import com.example.insomniadiary.dto.SleepDiaryDto;
 import org.springframework.beans.factory.annotation.Value;
 import com.example.insomniadiary.domain.image.Image;
 import com.example.insomniadiary.domain.image.ImageRepository;
@@ -14,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -102,6 +104,18 @@ public class SleepDiaryController {
         Diarydto diarydto = new Diarydto(byEmailAndDateSleepDiary.orElse(null), byEmailAndDateImage.orElse(null));
 
         return ResponseEntity.ok(diarydto);
+    }
+
+    @GetMapping("/calendar")
+    public ResponseEntity<List<String>> calendar(
+            @SessionAttribute(name = "loginUser", required = false) User loginUser
+    ){
+        List<SleepDiary> all = sleepDiaryRepository.findAll();
+        List<String> str = new ArrayList<>();
+        for (SleepDiary sleepDiary : all) {
+            str.add(sleepDiary.getDate());
+        }
+        return ResponseEntity.ok(str);
     }
 
 

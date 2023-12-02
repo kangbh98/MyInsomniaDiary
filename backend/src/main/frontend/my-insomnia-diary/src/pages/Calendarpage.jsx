@@ -39,7 +39,7 @@ const Calendarpage = () => {
       },[]) //화면 실행하면 바로 get
     async function springDataSet() {
         await axios
-            .get(baseUrl + "/data-test")//받고
+            .get(baseUrl + "/calendar")//받고
             .then((res)=>{
               console.log(res);//콘솔한번 띄우고
               setData(res.data);//컴포넌트에 반영하고
