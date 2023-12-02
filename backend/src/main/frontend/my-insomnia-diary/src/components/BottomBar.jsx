@@ -22,7 +22,7 @@ const BottomBar = () => {
         </Link>
 
         <Link
-          to={`/calendar`}
+          to={`/calendarpage`}
           data-tooltip-target="tooltip-wallet"
           type="button"
           className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group"
