@@ -26,7 +26,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password, HttpServletRequest request) {
         User loginUser = loginService.login(email, password);
-
+        System.out.println("loginUser = " + loginUser);
 
         if (loginUser == null) {
             log.info("Login failed: email={}, password={}", email, password);

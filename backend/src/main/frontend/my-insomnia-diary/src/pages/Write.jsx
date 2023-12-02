@@ -23,85 +23,75 @@ const pill = [
   { value: "b", name: 'type2' },
   { value: "c", name: 'type3' },
 ];
+
 function Write() {
 
   const currentDate = new Date();
   const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+  const baseUrl = "http://localhost:8080";
 
-  const navigate = useNavigate();//페이지 이동을 위해 네비게이트 함수 가져오기
-  const [post, setPost] = useState({//내가 쓰려는 데이터 값들 + 디폴트값
-    Date: formattedDate,
-    caffeineIntake: 0,
-    caffeineIntakeTime: 0,
-    exercise: 0,
-    exerciseTime: 0,
-    pill: " ",
-    pillDosage: 0,
-    SleepTime: 0,
-    wakeUpTime: 0,
+  const onClickSubmit = () => {
 
-  })
+    console.log("click submit");
 
-  const handleCaffeineIntake = (event) => {
-    const value = parseInt(event.target.value, 10);
-    setPost({ ...post, caffeineIntake: value });
-  };
-  
-  const handleCaffeineIntakeTime = (event) => {
-    const value = parseInt(event.target.value, 10);
-    setPost({ ...post, caffeineIntakeTime: value });
-  };
-  
-  const handleExercise = (event) => {
-    const value = parseInt(event.target.value, 10);
-    setPost({ ...post, exercise: value });
-  };
-  
-  const handleExerciseTime = (event) => {
-    const value = parseInt(event.target.value, 10);
-    setPost({ ...post, exerciseTime: value });
-  };
-  const handlePill = (event) => {
-  const value = event.target.value;
-  setPost({ ...post, pill: value });
-};
+    axios
+        .post(`${baseUrl}/generate/image?date=${formattedDate}&`)
+        .then( () => {
 
-  const handlePillDosage = (event) => {
-    const value = parseInt(event.target.value, 10);
-    setPost({ ...post, pillDosage: value });
-  };
-  
-  const handleSleepTime = (event) => {
-    const value = parseInt(event.target.value, 10);
-    setPost({ ...post, SleepTime: value });
-  };
-  
-  const handleWakeUpTime = (event) => {
-    const value = parseInt(event.target.value, 10);
-    setPost({ ...post, wakeUpTime: value });
-  };
-
-  function handleSubmit(event) {
-    
-    event.preventDefault()//버튼 누르면 새로고침 되는 현상 방지
-
-    axios.post('https://localhost:8080/generate/sleepDiary', post)//포스트 하는 주소 기입
-        .then(response => {
-          
-          console.log(response);//로그 띄우기
-          if (res.status  === 200) {
-            console.log("======================",);
-            alert("전송 성공"); //test용 : 나중에 지울게
-          }
-          navigate('/WriteDiary');// 창 이동 => Write Diary로
+          // 작업 완료 되면 페이지 이동(새로고침)
+          document.location.href = "/writediary";
         })
-        .catch(err => console.log(err)) // 에러뜨면 에러 캐치
-        alert("전송실패");
-
+        .catch((error) => {
+          console.error(error); // 에러가 발생한 경우 에러 내용을 출력
+          alert("일기 전송 실패."); // 에러가 발생한 경우 알림 추가
+        });
   }
-    return (
+
+  const handleCaffeineIntake = (e) => {
+    setInputCaffeineIntake(e.target.value);
+  };
+  const [selectedCaffeineIntake, setInputCaffeineIntake] = useState("");
+
+  const handleCaffeineIntakeTime = (e) => {
+    setInputCaffeineIntakeTime(e.target.value);
+  };
+  const [caffeineIntakeTime, setInputCaffeineIntakeTime] = useState("");
+
+  const handleExercise = (e) => {
+    setInputExercise(e.target.value);
+  };
+  const [exercise, setInputExercise] = useState("");
+
+  const handleExerciseTime = (e) => {
+    setInputExerciseTime(e.target.value);
+  };
+  const [exerciseTime, setInputExerciseTime] = useState("");
+
+  const handlePill = (e) => {
+    setInputPill(e.target.value);
+  };
+  const [inputPill, setInputPill] = useState("");
+
+  const handlePillDosage = (e) => {
+    setInputPillDosage(e.target.value);
+  };
+  const [inputPillDosage, setInputPillDosage] = useState("");
+
+  const handleSleepTime = (e) => {
+    setInputSleepTime(e.target.value);
+  };
+  const [sleepTime, setInputSleepTime] = useState("");
+
+  const handleWakeUpTime = (e) => {
+    setInputWakeUpTimeTime(e.target.value);
+  };
+  const [wakeUpTime, setInputWakeUpTimeTime] = useState("");
+
+
+
+  return (
         <>
-          <form className="pb-32" onSubmit={handleSubmit}>
+          <form className="pb-32" onSubmit={onClickSubmit}>
             <div className="space-y-4">
               <div className="border-b border-gray-900/10 pb-12">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -125,15 +115,12 @@ function Write() {
                       </p>
                       <div className="mt-6 space-y-2">
                         {caffeineIntake.map((item) => (
-                            <div
-                                key={item.value}
-                                className="flex items-center gap-x-3"
-                            >
+                            <div key={item.value} className="flex items-center gap-x-3">
                               <input
                                   id={item.value}
                                   name="caffeineIntake"
                                   type="radio"
-                                  defaultChecked={item.value === 0}
+                                  checked={item.value === selectedCaffeineIntake}
                                   className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                   onChange={handleCaffeineIntake}
                                   value={item.value}
@@ -167,6 +154,7 @@ function Write() {
                               autoComplete="caffeineIntakeTime"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                               onChange={handleCaffeineIntakeTime}
+                              value={caffeineIntakeTime}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -201,6 +189,7 @@ function Write() {
                               autoComplete="exercise"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                               onChange={handleExercise}
+                              value={exercise}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -224,6 +213,7 @@ function Write() {
                               autoComplete="exerciseTime"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                               onChange={handleExerciseTime}
+                              value={exerciseTime}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -260,17 +250,19 @@ function Write() {
                               id="pill"
                               name="pill"
                               className="mt-2 block w-full text-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              defaultValue="none"
+                              value={inputPill}
                               onChange={handlePill}
                           >
                             {pill.map((item) => (
-                                <option key={item.value} value={item.value}>{item.name}</option>
+                                <option key={item.value} value={item.value}>
+                                  {item.name}
+                                </option>
                             ))}
                           </select>
                         </div>
                         <fieldset>
                           <p className="mt-1 font-semibold text-sm leading-6 text-gray-600">
-                            dosage
+                            Dosage
                           </p>
                           <div className="mt-2 flex flex-row gap-2">
                             {pillDosage.map((item) => (
@@ -282,7 +274,7 @@ function Write() {
                                       id={item.value}
                                       name="pillDosage"
                                       type="radio"
-                                      defaultChecked={item.value === 1}
+                                      checked={item.value === inputPillDosage}
                                       className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                       onChange={handlePillDosage}
                                       value={item.value}
@@ -301,6 +293,7 @@ function Write() {
                     </div>
                   </div>
                 </div>
+
 
                 {/* Fill in the data */}
                 <div className="border-b border-gray-900/10 pb-6">
@@ -329,6 +322,7 @@ function Write() {
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900
                         placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                               onChange={handleSleepTime}
+                              value={sleepTime}
                           />
                         </div>
                         <span className="my-auto ml-2">h</span>
@@ -352,6 +346,7 @@ function Write() {
                               autoComplete="wakeUpTime"
                               className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                               onChange={handleWakeUpTime}
+                              value={wakeUpTime}
                           />
                         </div>
                         <span className="my-auto ml-2">times</span>

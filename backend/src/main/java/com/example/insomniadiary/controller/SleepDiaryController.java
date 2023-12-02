@@ -51,6 +51,7 @@ public class SleepDiaryController {
         }
 
 
+
         image.setUrl(imageUrl);
         image.setDate(date);
 
@@ -62,19 +63,18 @@ public class SleepDiaryController {
     @PostMapping("/generate/sleepDiary")
     public ResponseEntity<String> generateDiary(
             @SessionAttribute(name = "loginUser", required = false) User loginUser,
-            @RequestBody SleepDiaryDto sleepDiaryRequest) {
+            @RequestParam String date,
+            @RequestParam int caffeineIntake,
+            @RequestParam int caffeineIntakeTime,
+            @RequestParam int Exercise,
+            @RequestParam int ExerciseTime,
+            @RequestParam String pill,
+            @RequestParam int pillDosage,
+            @RequestParam int SleepTime,
+            @RequestParam int wakeUpTime) {
 
-        SleepDiary sleepDiary = new SleepDiary(
-                sleepDiaryRequest.getDate(),
-                sleepDiaryRequest.getCaffeineIntake(),
-                sleepDiaryRequest.getCaffeineIntakeTime(),
-                sleepDiaryRequest.getExercise(),
-                sleepDiaryRequest.getExerciseTime(),
-                sleepDiaryRequest.getPill(),
-                sleepDiaryRequest.getPillDosage(),
-                sleepDiaryRequest.getSleepTime(),
-                sleepDiaryRequest.getWakeUpTime()
-        );
+
+        SleepDiary sleepDiary = new SleepDiary();
 
         if (loginUser != null) {
             String email = loginUser.getEmail();
