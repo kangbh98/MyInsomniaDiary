@@ -1,0 +1,93 @@
+@thailwind base;
+@thailwind components;
+@thailwind utilites;
+.react-calendar {
+  width: 20rem; /* 가로 너비 설정 */
+  max-width: 100%; /* 최대 가로 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+  font-size:14px;
+  height:300px;
+  padding:2px; 
+  border-radius: 10px;
+  border:none;
+  /*border: 1px solid var(--festie-gray-400, #c8c8c8); */
+  font-family: SUIT Variable;
+}
+
+/*연 이동 버튼 없애기*/
+.react-calendar__navigation button.react-calendar__navigation__arrow.react-calendar__navigation__next2-button,
+.react-calendar__navigation button.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button {
+  display: none !important;
+}
+.react-calendar__navigation button {
+  background: white!important;
+}
+
+/*각 달력 타일(날짜)에 적용됩니다.*/
+.react-calendar__tile{
+  line-height:20px;
+}
+
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  font-weight: 600; /* Semibold */
+  font-size:14px;
+  line-height: 22px;
+  font-size:16px;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+
+
+
+.react-calendar__navigation__label > span {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.react-calendar__month-view__days__day--weekend {
+
+  color: var(--festie-gray-800, #3a3a3a);
+}
+
+.react-calendar__tile--active {
+  color: black;
+  border-radius: 10px;
+  background-color: grey;
+}
+.text-center > .react-calendar {
+  margin-bottom: 20px; /* Adjust the value to increase or decrease the space */
+}
+.highlight {
+  background: rgba(0, 2, 130, 0.2)!important;
+  color:black!important;
+  border-radius:30px;
+}
+.react-calendar__tile:enabled {
+  font-size:14px;
+  /* Add styles for enabled tiles here */
+  /* For example */
+  background-color: #ffffff; /* Background color for enabled tiles */
+  font-weight:500;
+  color: #000000; /* Text color for enabled tiles */
+}
+
+/* Style for disabled tiles */
+.react-calendar__tile:disabled {
+
+  font-size:14px;
+  font-weight:300;
+  background-color: #ffffff!important; 
+  color: rgba(165, 164, 164, 0.8)!important; /* Text color for disabled tiles */
+}
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: rgba(0, 2, 130, 0.35)!important;
+  color:black!important;
+  border-radius:10px!important;
+  font-weight:700;
+}

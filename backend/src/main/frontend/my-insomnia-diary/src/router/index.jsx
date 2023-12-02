@@ -4,7 +4,7 @@ import Login from '../pages/Login.jsx';
 import Signup from '../pages/Signup.jsx';
 import SignupUserInfo from '../pages/SignupUserInfo.jsx';
 import SignupDetail from '../pages/SignupDetail.jsx';
-import Calendar from '../pages/Calendar.jsx';
+import Calendarpage from '../pages/Calendarpage.jsx';
 import Write from '../pages/Write.jsx';
 import Diary from '../pages/Diary.jsx';
 import Home from '../pages/Home.jsx';
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
     element: <SignupDetail />,
   },
   {
-    path: '/calendar',
-    element: <Calendar />,
+    path: '/calendarpage',
+    element: <Calendarpage />,
   },
   {
     path: '/write',
