@@ -46,7 +46,7 @@ const Write = () => {
       setPillType(response.data.sleepDiary.pill);
       setPillDosage(response.data.sleepDiary.pillDosage);
       setText(response.data.image.prompt);
-      setwakeuptTime(response.data.wakeupTime);
+      setwakeuptTime(response.data.sleep.wakeupTime);
       setbedTime(response.data.bedTime);
       })
       .catch((error) => {
@@ -60,7 +60,7 @@ const Write = () => {
       <form className="pb-32">
         <div className="space-y-4">
           <div className=" pb-12 flex flex-col gap-2">
-            <h2 className="text-base font-semibold leading-7 text-gray-900 border-b">
+            <h2 className="text-xl text-base font-semibold leading-7 text-gray-900 border-b">
               {formattedDate}
             </h2>
 
@@ -78,15 +78,15 @@ const Write = () => {
                   Sleep Time
                 </legend>
                   <div className="flex flex-row gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full text-center">
-                    <div className="flex flex-col mt-1">
+                    <div className="flex flex-col mt-2">
                       <div className="font-semibold text-l">WakeUp</div>
-                      <div>{wakeupTime}</div>
+                      <div className="mt-1 font-semibold">{wakeupTime}:00</div>
                     </div>
-                    <div className="flex flex-col ml-1 mt-1">
+                    <div className="flex flex-col ml-2 mt-2">
                       <div className="font-semibold text-l">Bedtime</div>
-                      <div>{bedTime}</div>
+                      <div className="mt-1 font-semibold">{bedTime}:00</div>
                     </div>
-                    <div className="flex flex-col ml-9">
+                    <div className="flex flex-col ml-7">
                     <div className="rounded-lg bg-gray-100 p-2">
                       <div className="font-semibold text-xl">Total</div>
                       <div className="font-semibold">{sleepQuality}H</div>
