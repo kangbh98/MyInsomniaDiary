@@ -10,7 +10,7 @@ function Write() {
   const location = useLocation();//url 쿼리 정보 받아오기 위한 훅
   const searchParams = new URLSearchParams(location.search); //search에서 쿼리 파라미터 정보를 받아옴
   const dateParam = searchParams.get('date'); //date값 가져오기
-  const formattedDate = dateParam ? moment(dateParam).format('YYYY.MM.DD') : '?'; //만약 날짜정보 존재하면 그 날짜를 formattedDate에 넣고 표시
+  const formattedDate = dateParam ? moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD') : '?'; //만약 날짜정보 존재하면 그 날짜를 formattedDate에 넣고 표시
   //없으면 그냥 일단 물음표 넣음
   
   //GET작업 시작
@@ -32,7 +32,7 @@ function Write() {
   }, [formattedDate]);
 
   const fetchDiaryData = () => {
-    axios.get(baseUrl+`YOUR_API_ENDPOINT/${formattedDate}`)
+    axios.get(baseUrl+`/diary/${formattedDate}`)
     .then((response) => {
       console.log(response.data)
       setImage(response.data.image);
