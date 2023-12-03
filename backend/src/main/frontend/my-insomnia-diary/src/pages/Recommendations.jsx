@@ -16,7 +16,7 @@ const Recommendations = () => {
   const [averWorkoutBefBed, setAverWorkoutBefBed] = useState(0);
   const [latestSleep, setLatestSleep] = useState(0);
   const [bestSleep, setBestSleep] = useState(0);
-  const [latestCoffIntake, setlatestCoffIntake] = useState(0);
+  const [latestCoffIntake, setLatestCoffIntake] = useState(0);
   const [latestWorkoutTime, setLatestWorkoutTime] = useState(0);
   const [latestWorkoutBefBed, setLatestWorkoutBefBed] = useState(0);
   
@@ -39,9 +39,9 @@ const Recommendations = () => {
       setAverWorkoutBefBed(response.data.aver.averWorkoutBefBed);
       setLatestSleep(response.data.evaluate.latestSleep);
       setBestSleep(response.data.evaluate.bestSleep);
-      setlatestCoffIntake(response.data.evaluate.latestCoffIntake);
+      setLatestCoffIntake(response.data.evaluate.latestCoffIntake);
       setLatestWorkoutTime(response.data.evaluate.latestWorkoutTime);
-      setlatestWorkoutBefBed(response.data.evaluate.latestWorkoutBefBed);
+      setLatestWorkoutBefBed(response.data.evaluate.latestWorkoutBefBed);
     })
 
     /* 데이터 구조
