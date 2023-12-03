@@ -82,10 +82,9 @@ const Calendarpage = () => {
             {moment(selectedDate).format("YYYY.MM.DD")}
           </span>
           <Link
-            to={isHighlighted ? '/diary' : '/write'}
-            className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
-          >
-            {isHighlighted ? 'Open Diary' : 'Write Sleep diary'}
+          to={isHighlighted ? `/diary?date=${moment(selectedDate).format("YYYY-MM-DD")}` : '/write?date=${moment(selectedDate).format("YYYY-MM-DD")}'}
+          className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center">
+          {isHighlighted ? 'Open Diary' : 'Write Sleep diary'}
           </Link>
         </div>
       </div>
