@@ -42,7 +42,11 @@ public class Serverinit implements CommandLineRunner {
     }
 
     private void SleepImageInit(){
-        Image image = new Image("2023-11-30","i SEE BIG MOUNTAION IN MY DREAM","file:///C:/Users/user/Desktop/68139f4cd48c1148003b594fe1da8ce5.jpg");
+        Image image = new Image("2023-11-30","i SEE BIG MOUNTAION IN MY DREAM","https://assets-global.website-files.com/5e6aa3e3f001fae105b8e1e7/6377fb28359e1d03cb6f7567_forest.jpeg");
+        Image image2 = new Image("2023-11-16","i SEE BIG MOUNTAION IN MY DREAM","https://images.nightcafe.studio/jobs/en0lXKMVXGaE6X4cJ8v6/en0lXKMVXGaE6X4cJ8v6--1--2yx26.jpg?tr=w-1600,c-at_max");
+        Image image3 = new Image("2023-11-14","i SEE BIG MOUNTAION IN MY DREAM","https://preview.redd.it/my-first-collection-of-dalle-2-arts-v0-yrv5an0bp76b1.png?width=512&format=png&auto=webp&s=9b93ccd0af6b7b4e8db49534f034075951b3118f");
         imageRepository.save(image);
+        imageRepository.save(image2);
+        imageRepository.save(image3);
     }
 }
