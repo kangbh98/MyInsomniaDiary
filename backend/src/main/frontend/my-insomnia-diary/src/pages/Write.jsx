@@ -38,7 +38,7 @@ function Write() {
     console.log("click submit");
 
     axios
-        .post(`${baseUrl}/generate/image?date=${formattedDate}&`)
+        .post(`${baseUrl}/generate/sleepDiary?date=${formattedDate}&caffeineIntake=${caffeineIntake}&caffeineIntakeTime=${caffeineIntakeTime}&Exercise=${exercise}&ExerciseTime=${exerciseTime}&pill=${pillDosage}&SleepTime=${sleepTime}&wakeUpTime=${wakeUpTime}`)
         .then( () => {
 
           // 작업 완료 되면 페이지 이동(새로고침)

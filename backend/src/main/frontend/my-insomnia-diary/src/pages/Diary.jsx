@@ -23,8 +23,8 @@ const Write = () => {
   const [pillType, setPillType] = useState('');
   const [pillDosage, setPillDosage] = useState(0);
   const [DiaryText, setText] = useState('');
-  const [wakeupTime, setwakeuptTime] = useState('');
-  const [bedTime, setbedTime] = useState('');
+  const [wakeupTime, setwakeuptTime] = useState(0);
+  const [bedTime, setbedTime] = useState(0);
 
   const baseUrl = "http://localhost:8080";
   useEffect(() => {
@@ -46,7 +46,7 @@ const Write = () => {
       setPillType(response.data.sleepDiary.pill);
       setPillDosage(response.data.sleepDiary.pillDosage);
       setText(response.data.image.prompt);
-      setwakeuptTime(response.data.sleep.wakeupTime);
+      setwakeuptTime(response.data.sleepDiary.wakeUpTime);
       setbedTime(response.data.bedTime);
       })
       .catch((error) => {
