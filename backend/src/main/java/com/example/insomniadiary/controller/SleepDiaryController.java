@@ -76,7 +76,9 @@ public class SleepDiaryController {
             @RequestParam int wakeUpTime) {
 
 
-        SleepDiary sleepDiary = new SleepDiary();
+        SleepDiary sleepDiary = new SleepDiary(date,caffeineIntake,caffeineIntakeTime,Exercise,ExerciseTime,pill,pillDosage,SleepTime,wakeUpTime);
+
+        System.out.println("sleepDiary = " + sleepDiary);
 
         if (loginUser != null) {
             String email = loginUser.getEmail();
