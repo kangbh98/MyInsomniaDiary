@@ -69,19 +69,15 @@ const Write = () => {
 
             {/* Sleep Quality */}
             <div className="border-b">
-              <div className="mt-4">
-                <legend className="text-md font-extrabold leading-6 text-gray-900">
+              <div className="mt-3s">
+                <legend className="text-md font-extrabold leading-6 text-gray-900 mb-1">
                   Sleep Quality
                 </legend>
-                <div className="flex flex-row gap-2 py-3">
-                  <div className="ring-1 ring-gray-200 rounded-lg p-4 w-full space-x-2">
-                    <span className="font-medium text-xl">SCORE</span>
-                    <span className="font-extrabold text-3xl">{sleepQuality}</span>
+                  <div className="flex flex-row gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full">
+                    <div className="font-medium text-xl mt-2 w-full">SCORE</div>
+                    <div className="font-extrabold text-3xl">{sleepQuality}</div>
                   </div>
-                  <div className="ring-1 ring-gray-200 rounded-lg p-4 w-full text-center">
-                    <span className="text-sm">차트</span>
-                  </div>
-                </div>
+                
               </div>
             </div>
 
@@ -92,14 +88,34 @@ const Write = () => {
                   Your Data
                 </legend>
                 <div className="flex flex-row gap-2 py-3">
-                <div className="ring-1 ring-gray-200 rounded-lg p-4 w-full text-center">
-                    <span className="text-xs">{coffIntake}</span>
+                  <div className="ring-1 ring-gray-200 rounded-lg  w-full text-center  p-1 flex flex-col"> 
+                    <div className="font-semibold mb-1 border-b border-gray-300">Coffee</div>
+                    <div className="flex flex-row">
+                      <div className="text-xs">{coffBefSleep}H before</div>
+                      <img className="mt-0.1 w-4 h-4 rounded-lg ml-1" src="/images/sleep.png"></img>
+                      
                   </div>
-                  <div className="ring-1 ring-gray-200 rounded-lg p-4 w-full text-center">
-                    <span className="text-xs">{workoutTotal}</span>
+                    <div className="text-xs">total: {coffIntake}mg</div> 
                   </div>
-                  <div className="ring-1 ring-gray-200 rounded-lg p-4 w-full text-center">
-                    <span className="text-xs">{pillType}</span>
+                  <div className="ring-1 ring-gray-200 rounded-lg w-full text-center  flex flex-col p-1">
+                    <div className="font-semibold mb-1 border-b border-gray-300">Workout</div>
+                    <div className="flex flex-row">
+                      <div className="text-xs">{workoutBefSleep}H before </div>
+                      <img className="mt-0.1 w-4 h-4 rounded-lg ml-1" src="/images/sleep.png"></img>
+                      
+                  </div>
+                    <div className="text-xs">total: {workoutTotal}H</div> 
+                  </div>
+                  <div className="ring-1 ring-gray-200 rounded-lg  w-full text-center  flex flex-col p-1">
+                    <div className="font-semibold mb-1 border-b border-gray-300">Pills</div>
+                    <div className="flex flex-row">
+                      <div className="text-xs">{pillType}</div>
+                  </div>
+                    <div className="text-xs">{pillDosage !== 0 ? (
+                      <>{pillDosage} 정</>
+                      ) : (
+                      <>None</>
+                  )}</div> 
                   </div>
                 </div>
               </div>
