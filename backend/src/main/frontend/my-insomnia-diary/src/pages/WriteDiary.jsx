@@ -1,15 +1,26 @@
 import { Link} from 'react-router-dom';
+import moment from 'moment';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const submit = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const dateParam = searchParams.get('date');
+  const [formattedDate, setFormattedDate] = useState('');
+  useEffect(() => {
+    if (dateParam) {
+      const formatted = moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD');
+      setFormattedDate(formatted);
+    }
+  }, [dateParam]);
+
   const baseUrl = "http://localhost:8080";
   const onClickSubmit = () => {
 
     console.log("click submit");
     console.log("Diary : ", diary);
-    const currentDate = new Date();
-    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+
 
     axios
         .post(`${baseUrl}/generate/image?date=${formattedDate}&diary=${diary}`)
@@ -34,7 +45,7 @@ const submit = () => {
           <div className="space-y-4">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
-                2023.11.07
+                {formattedDate}
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 Write a sleep diary
