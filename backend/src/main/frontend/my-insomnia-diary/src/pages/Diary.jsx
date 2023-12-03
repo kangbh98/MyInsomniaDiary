@@ -32,7 +32,7 @@ function Write() {
   }, [formattedDate]);
 
   const fetchDiaryData = () => {
-    axios.get(baseUrl+`/diary/${formattedDate}`)
+    axios.get(baseUrl+"/diary/${formattedDate}")
     .then((response) => {
       console.log(response.data)
       setImage(response.data.image);

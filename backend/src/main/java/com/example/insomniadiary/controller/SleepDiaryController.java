@@ -90,16 +90,19 @@ public class SleepDiaryController {
         return ResponseEntity.ok("generate Success");
     }
 
-    @PostMapping("/diary")
+    @GetMapping("/diary")
     public ResponseEntity<Diarydto> showDiary(
             @SessionAttribute(name = "loginUser", required = false) User loginUser,
             @RequestParam String date
     ) {
 
+        System.out.println("date = " + date);
 
-        String email = loginUser.getEmail();
-        Optional<SleepDiary> byEmailAndDateSleepDiary = sleepDiaryRepository.findByEmailAndDate(email, date);
-        Optional<Image> byEmailAndDateImage = imageRepository.findByEmailAndDate(email, date);
+
+        Optional<SleepDiary> byEmailAndDateSleepDiary = sleepDiaryRepository.findByDate(date);
+        System.out.println("byEmailAndDateSleepDiary = " + byEmailAndDateSleepDiary);
+        Optional<Image> byEmailAndDateImage = imageRepository.findByDate(date);
+        System.out.println("byEmailAndDateImage = " + byEmailAndDateImage);
 
         Diarydto diarydto = new Diarydto(byEmailAndDateSleepDiary.orElse(null), byEmailAndDateImage.orElse(null));
 
