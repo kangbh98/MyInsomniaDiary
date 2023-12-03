@@ -11,6 +11,7 @@ import Home from '../pages/Home.jsx';
 import Settings from '../pages/Settings.jsx';
 import Alarm from '../pages/Alarm.jsx';
 import WriteDiary from '../pages/WriteDiary.jsx';
+import Recommendations from '../pages/Recommendations.jsx';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: '/writeDiary',
     element: <WriteDiary />,
+  },
+  {
+    path: '/recommendations',
+    element: <Recommendations />,
   },
 ]);
 
