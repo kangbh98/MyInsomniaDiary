@@ -37,12 +37,12 @@ const Write = () => {
       console.log(response.data)
       setImage(response.data.image.url);
       setSleepQuaility(response.data.sleepDiary.sleepTime);
-      setCoffIntake(response.sleepDiary.caffeineIntake);
-      setCoffBefSleep(response.sleepDiary.caffeineIntakeTime);
-      setWorkoutTotal(response.sleepDiary.exercise);
-      setWorkoutBefSleep(response.sleepDiary.excerciseTime);
-      setPillType(response.sleepDiary.pill);
-      setPillDosage(response.sleepDiary.pillDosage);
+      setCoffIntake(response.data.sleepDiary.caffeineIntake);
+      setCoffBefSleep(response.data.sleepDiary.caffeineIntakeTime);
+      setWorkoutTotal(response.data.sleepDiary.exercise);
+      setWorkoutBefSleep(response.data.sleepDiary.excerciseTime);
+      setPillType(response.data.sleepDiary.pill);
+      setPillDosage(response.data.sleepDiary.pillDosage);
       setText(response.data.image.prompt);
       })
       .catch((error) => {
