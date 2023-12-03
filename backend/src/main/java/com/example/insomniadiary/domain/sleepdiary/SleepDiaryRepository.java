@@ -17,6 +17,8 @@ public interface SleepDiaryRepository extends JpaRepository<SleepDiary,Long> {
 
     Optional<SleepDiary> findByEmailAndDate(String email,String date);
 
+    Optional<SleepDiary> findByDate(String date);
+
 //    @Query("SELECT DISTINCT SleepDiary.date FROM SleepDiary WHERE SUBSTRING(SleepDiary.date, 1, 7) = :yearMonth")
 //    List<String> findDatesByYearAndMonth(@Param("yearMonth") String yearMonth);
 

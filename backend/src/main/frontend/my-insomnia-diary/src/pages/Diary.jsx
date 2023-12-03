@@ -12,7 +12,7 @@ const Write = () => {
   const dateParam = searchParams.get('date'); //date값 가져오기
   const formattedDate = dateParam ? moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD') : '?'; //만약 날짜정보 존재하면 그 날짜를 formattedDate에 넣고 표시
   //없으면 그냥 일단 물음표 넣음
-  
+
   //GET작업 시작
   const [image, setImage] = useState('');
   const [sleepQuality, setSleepQuaility] = useState(0);

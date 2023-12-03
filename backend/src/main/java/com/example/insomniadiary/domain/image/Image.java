@@ -22,6 +22,15 @@ public class Image {
 
     private String Prompt;
 
+    public Image() {
+    }
+
+    public Image(String date, String prompt, String url) {
+        this.date = date;
+        this.Prompt = prompt;
+        this.url = url;
+    }
+
     @Column(length = 500)
     private String url;
 

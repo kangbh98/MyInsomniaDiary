@@ -12,4 +12,6 @@ public interface ImageRepository extends JpaRepository<Image,Long> {
     Optional<Image> findByID(Long id);
 
     Optional<Image> findByEmailAndDate(String email,String date);
+
+    Optional<Image> findByDate(String date);
 }
