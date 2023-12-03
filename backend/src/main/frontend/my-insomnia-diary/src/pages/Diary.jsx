@@ -23,6 +23,8 @@ const Write = () => {
   const [pillType, setPillType] = useState('');
   const [pillDosage, setPillDosage] = useState(0);
   const [DiaryText, setText] = useState('');
+  const [wakeupTime, setwakeuptTime] = useState('');
+  const [bedTime, setbedTime] = useState('');
 
   const baseUrl = "http://localhost:8080";
   useEffect(() => {
@@ -44,6 +46,8 @@ const Write = () => {
       setPillType(response.data.sleepDiary.pill);
       setPillDosage(response.data.sleepDiary.pillDosage);
       setText(response.data.image.prompt);
+      setwakeuptTime(response.data.wakeupTime);
+      setbedTime(response.data.bedTime);
       })
       .catch((error) => {
         console.error('Error fetching diary data:', error);
@@ -71,12 +75,24 @@ const Write = () => {
             <div className="border-b">
               <div className="mt-3s">
                 <legend className="text-md font-extrabold leading-6 text-gray-900 mb-1">
-                  Sleep Quality
+                  Sleep Time
                 </legend>
-                  <div className="flex flex-row gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full">
-                    <div className="font-medium text-xl mt-2 w-full">SCORE</div>
-                    <div className="font-extrabold text-3xl">{sleepQuality}</div>
-                  </div>
+                  <div className="flex flex-row gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full text-center">
+                    <div className="flex flex-col mt-1">
+                      <div className="font-semibold text-l">WakeUp</div>
+                      <div>{wakeupTime}</div>
+                    </div>
+                    <div className="flex flex-col ml-1 mt-1">
+                      <div className="font-semibold text-l">Bedtime</div>
+                      <div>{bedTime}</div>
+                    </div>
+                    <div className="flex flex-col ml-9">
+                    <div className="rounded-lg bg-gray-100 p-2">
+                      <div className="font-semibold text-xl">Total</div>
+                      <div className="font-semibold">{sleepQuality}H</div>
+                      </div>
+                      </div>
+                    </div>
                 
               </div>
             </div>
