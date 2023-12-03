@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-function Write() {
+const Write = () => {
   const location = useLocation();//url 쿼리 정보 받아오기 위한 훅
   const searchParams = new URLSearchParams(location.search); //search에서 쿼리 파라미터 정보를 받아옴
   const dateParam = searchParams.get('date'); //date값 가져오기
@@ -32,36 +32,24 @@ function Write() {
   }, [formattedDate]);
 
   const fetchDiaryData = () => {
-    axios.get(baseUrl+`/diary/${formattedDate}`)
+    axios.get(baseUrl+`/diary?date=${formattedDate}`)
     .then((response) => {
       console.log(response.data)
-      setImage(response.data.image);
-      setSleepQuaility(response.data.sleepQuality);
-      setCoffIntake(response.coffIntake);
-      setCoffBefSleep(response.coffBefSleep);
-      setWorkoutTotal(response.workoutTotal);
-      setWorkoutBefSleep(response.workoutBefSleep);
-      setPillType(response.pillType);
-      setPillDosage(response.pillDosage);
-      setText(response.data.diary);
+      setImage(response.data.image.url);
+      setSleepQuaility(response.data.sleepDiary.sleepTime);
+      setCoffIntake(response.sleepDiary.caffeineIntake);
+      setCoffBefSleep(response.sleepDiary.caffeineIntakeTime);
+      setWorkoutTotal(response.sleepDiary.exercise);
+      setWorkoutBefSleep(response.sleepDiary.excerciseTime);
+      setPillType(response.sleepDiary.pill);
+      setPillDosage(response.sleepDiary.pillDosage);
+      setText(response.data.image.prompt);
       })
       .catch((error) => {
         console.error('Error fetching diary data:', error);
       });
   };
-/*이런형태로 가정하고 작성
-const diaryData = {
-  image: '/images/sub.jpg', //문자열
-  sleepQuality: 96, //숫자
-  coffIntake(mg)//숫자
-  coffBefSleep(h)//숫자
-  workoutTotal
-  workoutBefSleep
-  pillType
-  pillDosage
-  diary: "content"
-};
-*/
+
   
   return (
     <>
