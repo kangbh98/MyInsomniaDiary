@@ -24,7 +24,10 @@ public class SolutionController {
 
         SolutionDto solutionDto = new SolutionDto();
         SolutionDto solutionDto1 = solutionService.dataTotal(solutionDto);
+        SolutionDto solutionDto2 = solutionService.dataAverage(solutionDto1);
+        SolutionDto solutionDto3 = solutionService.dataBest(solutionDto2);
+        SolutionDto solutionDto4 = solutionService.dataLastest(solutionDto3);
 
-        return ResponseEntity.ok(solutionDto1);
+        return ResponseEntity.ok(solutionDto4);
     }
 }

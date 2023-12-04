@@ -39,4 +39,17 @@ public class SolutionService {
 
         return solutionDto;
     }
+
+    public SolutionDto dataBest(SolutionDto solutionDto) {
+
+        Object[] averagesOfHighestSleepTimeRecords = sleepDiaryRepository.findAveragesOfHighestSleepTimeRecords();
+
+        solutionDto.setAverCoffIntake((Double) averagesOfHighestSleepTimeRecords[0]);
+        solutionDto.setAverWorkoutTime((Double) averagesOfHighestSleepTimeRecords[1]);
+        solutionDto.setAverCoffBefBed((Double) averagesOfHighestSleepTimeRecords[2]);
+        solutionDto.setBestSleep((Double) averagesOfHighestSleepTimeRecords[3]);
+        solutionDto.setAverWorkoutBefBed((Double) averagesOfHighestSleepTimeRecords[4]);
+
+        return solutionDto;
+    }
 }

@@ -36,9 +36,19 @@ public interface SleepDiaryRepository extends JpaRepository<SleepDiary,Long> {
     @Query("SELECT AVG(e.caffeineIntakeTime) FROM SleepDiary e")
     double findAverageCaffeineIntakeTime();
 
-
     long count();
-//    @Query("SELECT DISTINCT SleepDiary.date FROM SleepDiary WHERE SUBSTRING(SleepDiary.date, 1, 7) = :yearMonth")
-//    List<String> findDatesByYearAndMonth(@Param("yearMonth") String yearMonth);
+
+    // SleepTime이 가장 높은 레코드들의 평균 커피섭취량, 운동시간, 운동 전 커피섭취량, 수면 시간, 수면 전 커피섭취량을 구하는 쿼리
+    @Query("SELECT " +
+            "AVG(e.caffeineIntake) AS averCoffIntake, " +
+            "AVG(e.ExerciseTime) AS averWorkoutTime, " +
+            "AVG(e.caffeineIntakeTime) AS averCoffBefBed, " +
+            "AVG(e.SleepTime) AS bestSleep, " +
+            "AVG(e.ExerciseTime) AS averWorkoutBefBed " +
+            "FROM SleepDiary e " +
+            "WHERE e.SleepTime = (SELECT MAX(e2.SleepTime) FROM SleepDiary e2)")
+    Object[] findAveragesOfHighestSleepTimeRecords();
+
+
 
 }
