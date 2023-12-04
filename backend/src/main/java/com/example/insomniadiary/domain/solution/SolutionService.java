@@ -29,10 +29,13 @@ public class SolutionService {
 
     public SolutionDto dataLastest(SolutionDto solutionDto) {
         SleepDiary latestSleepDiary = sleepDiaryRepository.findLatestSleepDiary();
+
         solutionDto.setLatestCoffIntake(latestSleepDiary.getCaffeineIntake());
         solutionDto.setLatestWorkoutTime(latestSleepDiary.getExercise());
         solutionDto.setLatestWorkoutBefBed(latestSleepDiary.getExerciseTime());
         solutionDto.setLatestSleep(latestSleepDiary.getSleepTime());
+        solutionDto.setRecentDate(latestSleepDiary.getDate());
+        solutionDto.setLatestCoffIntake(latestSleepDiary.getCaffeineIntakeTime());
 
         return solutionDto;
     }
