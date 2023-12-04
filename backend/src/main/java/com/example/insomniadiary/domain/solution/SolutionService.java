@@ -11,12 +11,18 @@ import org.springframework.stereotype.Service;
 public class SolutionService {
     private final SleepDiaryRepository sleepDiaryRepository;
 
-    public SolutionDto dataTotalAndNum(SolutionDto solutionDto) {
-        String latestDateString = sleepDiaryRepository.findLatestDateString();
+    public SolutionDto dataTotal(SolutionDto solutionDto) {
         long count = sleepDiaryRepository.count();
-        solutionDto.setRecentDate(latestDateString);
         solutionDto.setTotalData((int) count);
 
+        return solutionDto;
+    }
+
+    public SolutionDto dataAverage(SolutionDto solutionDto) {
+        sleepDiaryRepository.findAverageExerciseTime();
+        sleepDiaryRepository.findAverageExercise();
+        sleepDiaryRepository.findAverageSleepTime();
+        sleepDiaryRepository.findAverageCaffineIntake();
         return solutionDto;
     }
 }
