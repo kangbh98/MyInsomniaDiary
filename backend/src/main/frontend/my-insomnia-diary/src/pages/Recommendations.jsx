@@ -30,18 +30,17 @@ const Recommendations = () => {
     axios.get(baseUrl+`/recommendation`)
     .then((response) => {
       console.log(response.data)
-      setTotalData(response.data.head.totalData);
-      setRecentDate(response.data.head.recentDate);
-      
-      setAverCoffIntake(response.data.aver.averCoffIntake);
-      setAverCoffBefBed(response.data.aver.averCoffBefBed);
-      setAverWorkoutTime(response.data.aver.averWorkoutTime);
-      setAverWorkoutBefBed(response.data.aver.averWorkoutBefBed);
-      setLatestSleep(response.data.evaluate.latestSleep);
-      setBestSleep(response.data.evaluate.bestSleep);
-      setLatestCoffIntake(response.data.evaluate.latestCoffIntake);
-      setLatestWorkoutTime(response.data.evaluate.latestWorkoutTime);
-      setLatestWorkoutBefBed(response.data.evaluate.latestWorkoutBefBed);
+      setTotalData(response.data.totalData);
+      setRecentDate(response.data.recentDate);
+      setAverCoffIntake(response.data.averCoffIntake);
+      setAverCoffBefBed(response.data.averCoffBefBed);
+      setAverWorkoutTime(response.data.averWorkoutTime);
+      setAverWorkoutBefBed(response.data.averWorkoutBefBed);
+      setLatestSleep(response.data.latestSleep);
+      setBestSleep(response.data.bestSleep);
+      setLatestCoffIntake(response.data.latestCoffIntake);
+      setLatestWorkoutTime(response.data.latestWorkoutTime);
+      setLatestWorkoutBefBed(response.data.latestWorkoutBefBed);
     })
 
     /* 데이터 구조
