@@ -121,8 +121,8 @@ const Recommendations = () => {
                 <legend className="text-md font-extrabold leading-6 text-gray-900 mb-1 border-b">
                   Work out
                 </legend>
-                  <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full text-sm">
-                  <div className="pb-2 border-b">
+                  <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full ">
+                  <div className="pb-2 border-b text-xs">
                   {latestSleep < bestSleep && latestWorkoutTime > averWorkoutTime ? (
                   `사용자님은 운동 시간을 ${averWorkoutTime-latestWorkoutTime}시간 정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(2)}% 개선이 가능해요`
                   ) : latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
@@ -131,7 +131,7 @@ const Recommendations = () => {
                   "사용자님은 운동 시간이 수면에 큰 영향이 없어요."
                   )}
                     </div>
-                    <div>
+                    <div className="text-xs">
                     {latestSleep < bestSleep && latestWorkoutBefBed > averWorkoutBefBed ? (
                      `사용자님은 운동을 ${latestWorkoutBefBed - averWorkoutBefBed}시간 정도 늦게한다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(2)}% 개선이 가능해요`
                     ) : latestSleep < bestSleep && latestWorkoutBefBed < averWorkoutBefBed ? (
