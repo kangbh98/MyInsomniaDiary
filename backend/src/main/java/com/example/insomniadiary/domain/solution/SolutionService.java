@@ -22,7 +22,7 @@ public class SolutionService {
         sleepDiaryRepository.findAverageExerciseTime();
         sleepDiaryRepository.findAverageExercise();
         sleepDiaryRepository.findAverageSleepTime();
-        sleepDiaryRepository.findAverageCaffineIntake();
+        sleepDiaryRepository.findAverageCaffeineIntake();
         return solutionDto;
     }
 
