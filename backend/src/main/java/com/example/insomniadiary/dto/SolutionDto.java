@@ -16,6 +16,7 @@ public class SolutionDto {
     private int latestCoffIntake; // 가장 최근 날짜의 카페인 섭취량
     private int latestWorkoutTime; // 가장 최근 날짜의 운동 시간
     private int latestWorkoutBefBed; // 가장 최근 날짜의 n시간 전 운동
+    private int latestCoffBefBed; // 가장 최근 날짜의 커피 섭취
 
     //////////////////////////////////////////////////////////
 
@@ -23,6 +24,7 @@ public class SolutionDto {
     private double averWorkoutTime; // 가장 많이 잔 날짜의 운동 시간 평균
     private double averWorkoutBefBed; // 가장 많이 잔 날짜의 n시간전 운동
     private double bestSleep;  // 가장 많이 잔 날짜의 수면 시간
+    private double averCoffBefBed; // 가장 많이 잔 날짜의 n시간 전 커피
 
     //////////////////////////////////////////////////////////
 
@@ -30,4 +32,5 @@ public class SolutionDto {
     private double TotalAverWorkoutTime; // 전체 운동 시간 평균
     private double TotalAverWorkoutBefBed; // 전체 n시간전 운동 평균
     private double TotalBestSleep;  // 전체 수면 시간 평균
+    private double TotalAverCoffBefBed; // 전체 수면 n시간 전 커피 평균
 }
