@@ -40,7 +40,7 @@ const BottomBar = () => {
         </Link>
 
         <Link
-          to={`/diary`}
+          to={`/recommendations`}
           data-tooltip-target="tooltip-profile"
           type="button"
           className="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-50 dark:hover:bg-gray-800 group"
