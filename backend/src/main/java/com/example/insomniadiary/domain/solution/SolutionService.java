@@ -19,36 +19,35 @@ public class SolutionService {
     }
 
     public SolutionDto dataAverage(SolutionDto solutionDto) {
-        solutionDto.setTotalAverWorkoutBefBed(sleepDiaryRepository.findAverageExerciseTime());
-        solutionDto.setTotalAverWorkoutTime(sleepDiaryRepository.findAverageExercise());
-        solutionDto.setTotalBestSleep(sleepDiaryRepository.findAverageSleepTime());
-        solutionDto.setTotalAverCoffIntake(sleepDiaryRepository.findAverageCaffeineIntake());
-        solutionDto.setTotalAverCoffBefBed(sleepDiaryRepository.findAverageCaffeineIntakeTime());
+        solutionDto.setTotalAverWorkoutBefBed(sleepDiaryRepository.findTotalAverageExerciseTime());
+        solutionDto.setTotalAverWorkoutTime(sleepDiaryRepository.findTotalAverageExercise());
+        solutionDto.setTotalBestSleep(sleepDiaryRepository.findTotalAverageSleepTime());
+        solutionDto.setTotalAverCoffIntake(sleepDiaryRepository.findTotalAverageCaffeineIntake());
+        solutionDto.setTotalAverCoffBefBed(sleepDiaryRepository.findTotalAverageCaffeineIntakeTime());
         return solutionDto;
     }
 
     public SolutionDto dataLastest(SolutionDto solutionDto) {
         SleepDiary latestSleepDiary = sleepDiaryRepository.findLatestSleepDiary();
 
-        solutionDto.setLatestCoffIntake(latestSleepDiary.getCaffeineIntake());
+        solutionDto.setLatestCoffBefBed(latestSleepDiary.getCaffeineIntakeTime());
         solutionDto.setLatestWorkoutTime(latestSleepDiary.getExercise());
         solutionDto.setLatestWorkoutBefBed(latestSleepDiary.getExerciseTime());
         solutionDto.setLatestSleep(latestSleepDiary.getSleepTime());
         solutionDto.setRecentDate(latestSleepDiary.getDate());
-        solutionDto.setLatestCoffIntake(latestSleepDiary.getCaffeineIntakeTime());
+        solutionDto.setLatestCoffIntake(latestSleepDiary.getCaffeineIntake());
 
         return solutionDto;
     }
 
     public SolutionDto dataBest(SolutionDto solutionDto) {
 
-        Object[] averagesOfHighestSleepTimeRecords = sleepDiaryRepository.findAveragesOfHighestSleepTimeRecords();
 
-        solutionDto.setAverCoffIntake((Double) averagesOfHighestSleepTimeRecords[0]);
-        solutionDto.setAverWorkoutTime((Double) averagesOfHighestSleepTimeRecords[1]);
-        solutionDto.setAverCoffBefBed((Double) averagesOfHighestSleepTimeRecords[2]);
-        solutionDto.setBestSleep((Double) averagesOfHighestSleepTimeRecords[3]);
-        solutionDto.setAverWorkoutBefBed((Double) averagesOfHighestSleepTimeRecords[4]);
+        solutionDto.setAverCoffIntake(sleepDiaryRepository.findAverageCaffeineIntake());
+        solutionDto.setAverWorkoutTime(sleepDiaryRepository.findAverageWorkoutTime());
+        solutionDto.setAverCoffBefBed(sleepDiaryRepository.findAverageCaffeineIntakeTime());
+        solutionDto.setBestSleep(sleepDiaryRepository.findAverageBestSleep());
+        solutionDto.setAverWorkoutBefBed(sleepDiaryRepository.findAverageWorkoutBefBed());
 
         return solutionDto;
     }

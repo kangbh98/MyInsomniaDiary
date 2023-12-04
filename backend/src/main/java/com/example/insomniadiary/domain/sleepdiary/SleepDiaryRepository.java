@@ -3,10 +3,8 @@ package com.example.insomniadiary.domain.sleepdiary;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,35 +17,41 @@ public interface SleepDiaryRepository extends JpaRepository<SleepDiary,Long> {
 
     Optional<SleepDiary> findByDate(String date);
 
-    @Query("SELECT e FROM SleepDiary e ORDER BY STR_TO_DATE(e.date, '%Y-%m-%d') DESC")
+    @Query("SELECT e FROM SleepDiary e WHERE e.date = (SELECT MAX(e2.date) FROM SleepDiary e2)")
     SleepDiary findLatestSleepDiary();
 
     @Query("SELECT AVG(e.caffeineIntake) FROM SleepDiary e")
-    double findAverageCaffeineIntake();
+    double findTotalAverageCaffeineIntake();
 
     @Query("SELECT AVG(e.Exercise) FROM SleepDiary e")
-    double findAverageExercise();
+    double findTotalAverageExercise();
 
     @Query("SELECT AVG(e.ExerciseTime) FROM SleepDiary e")
-    double findAverageExerciseTime();
+    double findTotalAverageExerciseTime();
 
     @Query("SELECT AVG(e.SleepTime) FROM SleepDiary e")
-    double findAverageSleepTime();
+    double findTotalAverageSleepTime();
     @Query("SELECT AVG(e.caffeineIntakeTime) FROM SleepDiary e")
-    double findAverageCaffeineIntakeTime();
+    double findTotalAverageCaffeineIntakeTime();
 
     long count();
 
-    // SleepTime이 가장 높은 레코드들의 평균 커피섭취량, 운동시간, 운동 전 커피섭취량, 수면 시간, 수면 전 커피섭취량을 구하는 쿼리
-    @Query("SELECT " +
-            "AVG(e.caffeineIntake) AS averCoffIntake, " +
-            "AVG(e.ExerciseTime) AS averWorkoutTime, " +
-            "AVG(e.caffeineIntakeTime) AS averCoffBefBed, " +
-            "AVG(e.SleepTime) AS bestSleep, " +
-            "AVG(e.ExerciseTime) AS averWorkoutBefBed " +
-            "FROM SleepDiary e " +
-            "WHERE e.SleepTime = (SELECT MAX(e2.SleepTime) FROM SleepDiary e2)")
-    Object[] findAveragesOfHighestSleepTimeRecords();
+
+    @Query("SELECT AVG(e.caffeineIntake) FROM SleepDiary e WHERE e.SleepTime = (SELECT MAX(e2.SleepTime) FROM SleepDiary e2)")
+    Double findAverageCaffeineIntake();
+
+    @Query("SELECT AVG(e.Exercise) FROM SleepDiary e WHERE e.SleepTime = (SELECT MAX(e2.SleepTime) FROM SleepDiary e2)")
+    Double findAverageWorkoutTime();
+
+    @Query("SELECT AVG(e.caffeineIntakeTime) FROM SleepDiary e WHERE e.SleepTime = (SELECT MAX(e2.SleepTime) FROM SleepDiary e2)")
+    Double findAverageCaffeineIntakeTime();
+
+    @Query("SELECT AVG(e.SleepTime) FROM SleepDiary e WHERE e.SleepTime = (SELECT MAX(e2.SleepTime) FROM SleepDiary e2)")
+    Double findAverageBestSleep();
+
+    @Query("SELECT AVG(e.ExerciseTime) FROM SleepDiary e WHERE e.SleepTime = (SELECT MAX(e2.SleepTime) FROM SleepDiary e2)")
+    Double findAverageWorkoutBefBed();
+
 
 
 
