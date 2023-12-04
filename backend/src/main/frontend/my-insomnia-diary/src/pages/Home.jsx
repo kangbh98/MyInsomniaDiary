@@ -2,6 +2,15 @@ import { Link } from 'react-router-dom';
 import BottomBar from '../components/BottomBar';
 
 const Home = () => {
+  const currentDate = new Date().toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+
+  // Rearrange the date parts to match the desired format 'YYYY.MM.DD'
+  const formattedDate = currentDate.split('/').reverse().join('.');
+
   return (
     <>
     <div className="flex flex-col align-middle text-center h-full ">
@@ -21,7 +30,7 @@ const Home = () => {
             <div className="flex flex-col gap-2 py-2">
               
               <div className="ring-1 ring-gray-300 rounded-lg p-4 w-full">
-                <div className="font-extrabold text-l" style={{ float: 'left', marginTop:"3px"}}>2023.11.07</div>
+                <div className="font-extrabold text-l" style={{ float: 'left', marginTop:"3px"}}>{formattedDate}</div>
                 <div className="font-extrabold text-xl" style={{ float: 'right' }}>
                 <Link
                 to="/Write"
@@ -35,10 +44,13 @@ const Home = () => {
           </div>
         </div>
         </div>
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h1 className="mt-2 text-left text-s font-semibold leading-6 tracking-tight text-gray-900 text-center">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-row text-center items-center pl-16">
+          <h1 className="mt-2 text-s font-semibold leading-6 tracking-tight text-gray-900 text-center">
             Recommendations
           </h1>
+          <Link to="/recommendations">
+          <img className="rounded-lg mt-2 ml-2" src="/images/arrow.png" style={{width:'10px'}}></img>
+          </Link>
         </div>
             <div className="ring-1 ring-gray-200 rounded-lg p-3 w-full">
                 <div className="ring-1 ring-gray-300 rounded-lg p-3 w-full text-left text-sm mb-4">마시는 카페인을 줄일 필요가 있어요.</div>
