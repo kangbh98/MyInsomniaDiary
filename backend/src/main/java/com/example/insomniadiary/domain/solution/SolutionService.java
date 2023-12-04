@@ -19,10 +19,11 @@ public class SolutionService {
     }
 
     public SolutionDto dataAverage(SolutionDto solutionDto) {
-        sleepDiaryRepository.findAverageExerciseTime();
-        sleepDiaryRepository.findAverageExercise();
-        sleepDiaryRepository.findAverageSleepTime();
-        sleepDiaryRepository.findAverageCaffeineIntake();
+        solutionDto.setTotalAverWorkoutBefBed(sleepDiaryRepository.findAverageExerciseTime());
+        solutionDto.setTotalAverWorkoutTime(sleepDiaryRepository.findAverageExercise());
+        solutionDto.setTotalBestSleep(sleepDiaryRepository.findAverageSleepTime());
+        solutionDto.setTotalAverCoffIntake(sleepDiaryRepository.findAverageCaffeineIntake());
+        solutionDto.setTotalAverCoffBefBed(sleepDiaryRepository.findAverageCaffeineIntakeTime());
         return solutionDto;
     }
 

@@ -33,6 +33,8 @@ public interface SleepDiaryRepository extends JpaRepository<SleepDiary,Long> {
 
     @Query("SELECT AVG(e.SleepTime) FROM SleepDiary e")
     double findAverageSleepTime();
+    @Query("SELECT AVG(e.caffeineIntakeTime) FROM SleepDiary e")
+    double findAverageCaffeineIntakeTime();
 
 
     long count();
