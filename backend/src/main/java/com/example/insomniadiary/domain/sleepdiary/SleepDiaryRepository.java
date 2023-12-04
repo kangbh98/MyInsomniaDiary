@@ -19,6 +19,22 @@ public interface SleepDiaryRepository extends JpaRepository<SleepDiary,Long> {
 
     Optional<SleepDiary> findByDate(String date);
 
+    @Query("SELECT e FROM SleepDiary e ORDER BY STR_TO_DATE(e.date, '%Y-%m-%d') DESC")
+    SleepDiary findLatestSleepDiary();
+
+    @Query("SELECT CAST(AVG(e.caffeineIntake) AS int) FROM SleepDiary e")
+    int findAverageCaffineIntake();
+
+    @Query("SELECT CAST(AVG(e.Exercise) AS int) FROM SleepDiary e")
+    int findAverageExercise();
+
+    @Query("SELECT CAST(AVG(e.ExerciseTime) AS int) FROM SleepDiary e")
+    int findAverageExerciseTime();
+
+    @Query("SELECT CAST(AVG(e.SleepTime) AS int) FROM SleepDiary e")
+    int findAverageSleepTime();
+
+    long count();
 //    @Query("SELECT DISTINCT SleepDiary.date FROM SleepDiary WHERE SUBSTRING(SleepDiary.date, 1, 7) = :yearMonth")
 //    List<String> findDatesByYearAndMonth(@Param("yearMonth") String yearMonth);
 

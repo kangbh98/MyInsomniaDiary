@@ -17,15 +17,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:5173")
 public class SolutionController {
-    private final SleepDiaryRepository sleepDiaryRepository;
     private final SolutionService solutionService;
 
     @GetMapping("/recommendation")
     public ResponseEntity<SolutionDto> Solution(@SessionAttribute(name = "loginUser", required = false) User loginUser) {
 
         SolutionDto solutionDto = new SolutionDto();
+        SolutionDto solutionDto1 = solutionService.dataTotal(solutionDto);
 
-
-        return solutionDto;
+        return ResponseEntity.ok(solutionDto1);
     }
 }
