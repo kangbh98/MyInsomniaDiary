@@ -25,4 +25,14 @@ public class SolutionService {
         sleepDiaryRepository.findAverageCaffineIntake();
         return solutionDto;
     }
+
+    public SolutionDto dataLastest(SolutionDto solutionDto) {
+        SleepDiary latestSleepDiary = sleepDiaryRepository.findLatestSleepDiary();
+        solutionDto.setLatestCoffIntake(latestSleepDiary.getCaffeineIntake());
+        solutionDto.setLatestWorkoutTime(latestSleepDiary.getExercise());
+        solutionDto.setLatestWorkoutBefBed(latestSleepDiary.getExerciseTime());
+        solutionDto.setLatestSleep(latestSleepDiary.getSleepTime());
+
+        return solutionDto;
+    }
 }
