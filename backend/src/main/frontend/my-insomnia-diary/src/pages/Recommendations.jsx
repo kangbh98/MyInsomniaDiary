@@ -17,8 +17,15 @@ const Recommendations = () => {
   const [latestSleep, setLatestSleep] = useState(0);
   const [bestSleep, setBestSleep] = useState(0);
   const [latestCoffIntake, setLatestCoffIntake] = useState(0);
+  const [latestCoffBefBed, setLatestCoffBefBed]= useState(0);
   const [latestWorkoutTime, setLatestWorkoutTime] = useState(0);
   const [latestWorkoutBefBed, setLatestWorkoutBefBed] = useState(0);
+  
+  const [TotalAverCoffIntake, setTotalAverCoffIntake] = useState(0);
+  const [TotalAverCoffBefBed, setTotalAverCoffBefBed] = useState(0);
+  const [TotalAverWorkoutTime, setTotalAverWorkoutTime] = useState(0);
+  const [TotalAverWorkoutBefBed, setTotalAverWorkoutBefBed] = useState(0);
+  const [TotalBestSleep, setTotalBestSleep] = useState(0);
   
   const baseUrl = "http://localhost:8080";
   useEffect(() => {{
@@ -30,37 +37,49 @@ const Recommendations = () => {
     axios.get(baseUrl+`/recommendation`)
     .then((response) => {
       console.log(response.data)
-      setTotalData(response.data.head.totalData);
-      setRecentDate(response.data.head.recentDate);
-      
-      setAverCoffIntake(response.data.aver.averCoffIntake);
-      setAverCoffBefBed(response.data.aver.averCoffBefBed);
-      setAverWorkoutTime(response.data.aver.averWorkoutTime);
-      setAverWorkoutBefBed(response.data.aver.averWorkoutBefBed);
-      setLatestSleep(response.data.evaluate.latestSleep);
-      setBestSleep(response.data.evaluate.bestSleep);
-      setLatestCoffIntake(response.data.evaluate.latestCoffIntake);
-      setLatestWorkoutTime(response.data.evaluate.latestWorkoutTime);
-      setLatestWorkoutBefBed(response.data.evaluate.latestWorkoutBefBed);
+      setTotalData(response.data.totalData);
+      setRecentDate(response.data.recentDate);
+      setAverCoffIntake(response.data.averCoffIntake);
+      setAverCoffBefBed(response.data.averCoffBefBed);
+      setAverWorkoutTime(response.data.averWorkoutTime);
+      setAverWorkoutBefBed(response.data.averWorkoutBefBed);
+      setLatestSleep(response.data.latestSleep);
+      setBestSleep(response.data.bestSleep);
+      setLatestCoffIntake(response.data.latestCoffIntake);
+      setLatestCoffBefBed(response.data.latestCoffBefBed);
+      setLatestWorkoutTime(response.data.latestWorkoutTime);
+      setLatestWorkoutBefBed(response.data.latestWorkoutBefBed);
+      setTotalAverCoffIntake(response.data.TotalAverCoffIntake);
+      setTotalAverCoffBefBed(response.data.TotalAverCoffBefBed);
+      setTotalAverWorkoutBefBed(response.data.TotalAverWorkoutBefBed);
+      setTotalAverWorkoutTime(response.data.TotalAverWorkoutTime);
+      setTotalBestSleep(response.data.TotalBestSleep);
     })
 
     /* 데이터 구조
     data : {
-      head : {
-        totalData : 데이터 갯수(숫자)
+        totalData : 데이터 갯수(Int)
         recentData : 최근 날짜 (문자열)
-      }
-      aver : {//수면점수 좋을때 평균
-        averCoffIntake : 섭취량 평균 (숫자)
-        averWorkoutTime : 운동시간 평균 (숫자)
-        averWorkoutBefBed : 수면전 n시간 운동시간 평균 (숫자)
-      }
-      evaluate : {//점수비교
-        latestCoffIntake : 최근 커피 섭취량(숫자)
-        latestWorkoutTime : 최근 운동시간 (숫자)
-        latestWorkoutBefBed : 최근 수면 전 n시간 운동 (숫자)
-        latestSleep : 최근 수면 시간
-        bestSleep : 위 평균들에 해당하는 최고 점수
+
+        averCoffIntake : 수면 가장 좋을 때 섭취량 평균 (double)
+        averCoffBefBed : 수면 가장 좋을 때 수면 몇시간 전 커피? (double)<=얘 추가
+        averWorkoutTime : 수면 가장 좋을 때 운동시간 평균 (double)
+        averWorkoutBefBed : 수면 가장 좋을 때 수면전 n시간 운동시간 평균 (double)
+        bestSleep : 수면 가장 좋을때 평균시간 (double)
+        
+        latestCoffIntake : 최근 커피 섭취량(Int)
+        latestCoffBefBed : 수면 몇시간전 커피? 최근데이터 (Int)  <=얘 추가
+        latestWorkoutTime : 최근 운동시간 (Int)
+        latestWorkoutBefBed : 최근 수면 전 n시간 운동 (Int)
+        latestSleep : 최근 수면 시간(Int)
+
+        TotalAverCoffBefBed(double)<=얘추가
+        ToatlAverCoffIntake(double)
+        TotalAverWorkoutTime(double)
+        TotalAverWorkoutBefBed(double)
+        TotalBestSleep(double)
+
+        //새로운거
       }
     }
     */
@@ -148,17 +167,50 @@ const Recommendations = () => {
 
             {/* Graphs - 추후 */}
             <div className="border-b mt-3">
-              <div className="mt-3s">
-                <legend className="text-md font-extrabold leading-6 text-gray-900 mb-1 border-b">
-                  Statistics
-                </legend>
-                  <div className="flex flex-row gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full text-sm">
-                    그래프
-                  </div>
-                
-              </div>
-            </div>
-
+  <div className="mt-3s">
+    <legend className="text-md font-extrabold leading-6 text-gray-900 mb-1 border-b">
+      Statistics (average)
+    </legend>
+    <div className="flex flex-col rounded-lg w-full ">
+      <div className="flex flex-row  border-b text-sm font-semibold">
+        <div className="flex-1 "> </div>
+        <div className="flex-1 text-center pt-1 pb-2 ">Recent</div>
+        <div className="flex-1 text-center pt-1 pb-2">Your Best</div>
+        <div className="flex-1 text-center pt-1 pb-2">Total</div>
+      </div>
+      <div className="flex flex-row text-xs">
+        <div className="flex-1 py-2 font-semibold pl-1 border-b border-r ">Coff Intake</div>
+        <div className="flex-1 text-center pt-2">{latestCoffIntake}mg</div>
+        <div className="flex-1 text-center pt-2">{averCoffIntake.toFixed(1)}mg</div>
+        <div className="flex-1 text-center pt-2">{TotalAverCoffIntake.toFixed(1)}mg</div>
+      </div>
+      <div className="flex flex-row text-xs">
+        <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Coff before Sleep</div>
+        <div className="flex-1 text-center pt-4">{latestCoffBefBed}H</div>
+        <div className="flex-1 text-center pt-4">{averCoffBefBed.toFixed(1)}H</div>
+        <div className="flex-1 text-center pt-4">{TotalAverCoffBefBed.toFixed(1)}H</div>
+      </div>
+      <div className="flex flex-row text-xs">
+        <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Workout total Time</div>
+        <div className="flex-1 text-center pt-4">{latestWorkoutTime}H</div>
+        <div className="flex-1 text-center pt-4">{averWorkoutTime.toFixed(1)}H</div>
+        <div className="flex-1 text-center pt-4">{TotalAverWorkoutTime.toFixed(1)}H</div>
+      </div>
+      <div className="flex flex-row text-xs">
+        <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Workout before Sleep </div>
+        <div className="flex-1 text-center pt-6">{latestWorkoutBefBed}H</div>
+        <div className="flex-1 text-center pt-6">{averWorkoutBefBed.toFixed(1)}H</div>
+        <div className="flex-1 text-center pt-6">{TotalAverWorkoutBefBed.toFixed(1)}H</div>
+      </div>
+      <div className="flex flex-row text-xs">
+        <div className="flex-1 py-2  font-semibold pl-1  border-r">Sleep Time</div>
+        <div className="flex-1 text-center pt-2">{latestSleep}H</div>
+        <div className="flex-1 text-center pt-2">{bestSleep.toFixed(1)}H</div>
+        <div className="flex-1 text-center pt-2">{TotalBestSleep.toFixed(1)}H</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
