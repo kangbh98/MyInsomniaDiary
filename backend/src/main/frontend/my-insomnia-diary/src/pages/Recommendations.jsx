@@ -82,7 +82,7 @@ const Recommendations = () => {
       <form className="pb-32">
         <div className="space-y-4">
           <div className=" pb-12 flex flex-col">
-            <h2 className="border-b mt-8 text-base font-semibold leading-7 text-gray-900 text-xl">
+            <h2 className="border-b mt-8 text-base font-semibold leading-7 text-gray-900 text-center text-xl">
               Recommendations
             </h2>
             {/* Image */}
@@ -116,7 +116,7 @@ const Recommendations = () => {
             </div>
 
             {/* 운동 */}
-            <div className="border-b">
+            <div className="border-b mt-3">
               <div className="mt-3s">
                 <legend className="text-md font-extrabold leading-6 text-gray-900 mb-1 border-b">
                   Work out
@@ -147,7 +147,7 @@ const Recommendations = () => {
             </div>
 
             {/* Graphs - 추후 */}
-            <div className="border-b">
+            <div className="border-b mt-3">
               <div className="mt-3s">
                 <legend className="text-md font-extrabold leading-6 text-gray-900 mb-1 border-b">
                   Statistics
