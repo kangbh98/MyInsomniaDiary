@@ -28,9 +28,9 @@ public class SolutionDto {
 
     //////////////////////////////////////////////////////////
 
-    private double TotalAverCoffIntake; //  전체 커피섭취 평균
-    private double TotalAverWorkoutTime; // 전체 운동 시간 평균
-    private double TotalAverWorkoutBefBed; // 전체 n시간전 운동 평균
-    private double TotalBestSleep;  // 전체 수면 시간 평균
-    private double TotalAverCoffBefBed; // 전체 수면 n시간 전 커피 평균
+    private double totalAverCoffIntake; //  전체 커피섭취 평균
+    private double totalAverWorkoutTime; // 전체 운동 시간 평균
+    private double totalAverWorkoutBefBed; // 전체 n시간전 운동 평균
+    private double totalBestSleep;  // 전체 수면 시간 평균
+    private double totalAverCoffBefBed; // 전체 수면 n시간 전 커피 평균
 }
