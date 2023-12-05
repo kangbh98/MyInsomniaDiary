@@ -26,10 +26,9 @@ const Calendarpage = () => {
     //데이터 있는 부분 칠하는 코드
     // Marks를 상태로 정의 :전역변수처럼 쓰면서 SpringDataSet으로 추가하려고
     const [marks, setMarks] = useState([]);
-    const isHighlighted = marks.find(
-        (x) => x === moment(selectedDate).format('YYYY-MM-DD')
-    );//데이터 있냐 없냐 구분
-
+    const isHighlighted = marks.some(
+        (x) => x.date === moment(selectedDate).format('YYYY-MM-DD')
+    );
     //GET부분//
     const baseUrl = "http://localhost:8080";
     const [ data, setData ] = useState('');
@@ -47,7 +46,7 @@ const Calendarpage = () => {
             const receivedDates = res.data;
             const marks = receivedDates.map((item) => ({
                 date: moment(item.date).format("YYYY-MM-DD"),
-                score: item.SleepTime,
+                score: item.sleepTime,
             }));
             console.log(marks);
             setMarks(marks);
@@ -59,7 +58,35 @@ const Calendarpage = () => {
     //GET부분 끝//
     return (
         <>
-            <div className="flex min-h-full flex-1 flex-col justify-center py-12">
+            <div className="flex min-h-full flex-1 flex-col justify-center pb-12">
+            <div className="ml-48 text-right"> {/* Position table to the right */}
+  <table style={{ width: '100px', height:'40px' }}> {/* 테이블 크기 지정 */}
+    <tbody>
+      <tr>
+        <td className="highlight-high" style={{ borderRadius: '80%', width: '15px'}} >
+        </td>
+        <td style={{ fontSize:"11px" }}>8 이상</td>
+        <td></td>
+
+        <td className="highlight-medium" style={{  borderRadius: '80%', width: '15px' }}>
+        </td>
+        <td style={{fontSize:"11px" }}>6 이상</td>
+      </tr>
+      <tr> <td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <td className="highlight-lm" style={{  borderRadius: '80%', width: '15px'}}>
+        </td>
+
+        <td style={{  fontSize:"11px" }}>3 이상</td>
+        <td></td>
+
+        <td className="highlight-low" style={{  borderRadius: '80%', width: '15px' }}>
+        </td>
+        <td style={{  fontSize:"11px" }}>3 미만</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm pb-3 border-b-2 border-gray-200">
                     <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         Write Your Daily
@@ -95,34 +122,7 @@ const Calendarpage = () => {
                 </div>
                 
                 <div className="flex flex-col gap-2 mt-3 text-center border-t-2 border-gray-200 pt-6">
-                <div className="ml-48 text-right"> {/* Position table to the right */}
-  <table style={{ width: '120px' }}> {/* 테이블 크기 지정 */}
-    <tbody>
-      <tr>
-        <td className="highlight-high" style={{ borderRadius: '80%', width: '15px'}} >
-        </td>
-        
-        <td style={{ width: '24px', fontSize:"11px" }}>8 이상</td>
-
-        <td style={{ width: '4px' }}></td> {/* Empty td for spacing */}
-        <td className="highlight-medium" style={{  borderRadius: '80%', width: '15px' }}>
-        </td>
-        <td style={{ width: '24px', fontSize:"11px" }}>6 이상</td>
-      </tr>
-      <tr>
-        <td className="highlight-lm" style={{  borderRadius: '80%', width: '15px'}}>
-        </td>
-        
-        <td style={{ width: '24px', fontSize:"11px" }}>3 이상</td>
-
-        <td style={{ width: '4px' }}></td> {/* Empty td for spacing */}
-        <td className="highlight-low" style={{  borderRadius: '80%', width: '15px' }}>
-        </td>
-        <td style={{ width: '24px', fontSize:"11px" }}>3 미만</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+                
           <span className="text-lg font-semibold">
             {moment(selectedDate).format("YYYY.MM.DD")}
           </span>
