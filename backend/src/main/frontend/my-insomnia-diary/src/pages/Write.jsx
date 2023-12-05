@@ -1,6 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import moment from "moment";
 
 const caffeineIntake = [
   { value: 0, name: 'None' },
@@ -26,8 +28,11 @@ const pill = [
 
 function Write() {
 
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+  const location = useLocation();//url 쿼리 정보 받아오기 위한 훅
+  const searchParams = new URLSearchParams(location.search); //search에서 쿼리 파라미터 정보를 받아옴
+  const dateParam = searchParams.get('date'); //date값 가져오기
+  const formattedDate = dateParam ? moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD') : '?'; //만약 날짜정보 존재하면 그 날짜를 formattedDate에 넣고 표시
+  //없으면 그냥 일단 물음표 넣음
   const baseUrl = "http://localhost:8080";
 
 
@@ -52,7 +57,7 @@ function Write() {
         .post(`${baseUrl}/generate/sleepDiary?${queryString}`)
         .then(() => {
           // 작업 완료되면 페이지 이동(새로고침)
-          document.location.href = "/Writediary";
+          document.location.href = `/writediary?date=${formattedDate}`;
         })
         .catch((error) => {
           console.error(error);

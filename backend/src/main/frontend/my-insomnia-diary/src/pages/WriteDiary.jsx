@@ -8,6 +8,7 @@ const submit = () => {
   const searchParams = new URLSearchParams(location.search);
   const dateParam = searchParams.get('date');
   const [formattedDate, setFormattedDate] = useState('');
+
   useEffect(() => {
     if (dateParam) {
       const formatted = moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD');
