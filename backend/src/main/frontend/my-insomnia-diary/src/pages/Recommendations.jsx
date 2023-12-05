@@ -152,7 +152,7 @@ const Recommendations = () => {
                       {latestSleep < bestSleep && latestWorkoutTime > averWorkoutTime ? (
                           `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도늘린다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                          `사용자님은 운동 시간을 ${averWorkoutTime-latestWorkoutTime}시간 정도 늘린다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : (
                           "사용자님은 운동 시간이 수면에 큰 영향이 없어요."
                       )}
