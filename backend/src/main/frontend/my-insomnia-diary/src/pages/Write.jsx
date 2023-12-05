@@ -52,7 +52,7 @@ function Write() {
         .post(`${baseUrl}/generate/sleepDiary?${queryString}`)
         .then(() => {
           // 작업 완료되면 페이지 이동(새로고침)
-          document.location.href = "/writediary";
+          document.location.href = "/Writediary";
         })
         .catch((error) => {
           console.error(error);
