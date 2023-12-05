@@ -1,32 +1,69 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
-import moment from "moment";
+
+const caffeineIntake = [
+  { value: 0, name: 'None' },
+  { value: 100, name: '100' },
+  { value: 150, name: '150' },
+  { value: 200, name: '200' },
+  { value: 250, name: '250' },
+  { value: 300, name: '300' },
+];
+
+const pillDosage = [
+  { value: 1, name: '1' },
+  { value: 2, name: '2' },
+  { value: 3, name: '3' },
+];
+
+const pill = [
+  { value: "", name: 'none'},
+  { value: "a", name: 'type1' },
+  { value: "b", name: 'type2' },
+  { value: "c", name: 'type3' },
+];
 
 function Write() {
-    //없으면 그냥 일단 물음표 넣음
+
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
   const baseUrl = "http://localhost:8080";
-  const onClickSubmit = () => {
 
-    console.log("click submit");
 
-    axios
-        .post(`${baseUrl}/generate/sleepDiary?caffeineIntake=${caffeineIntake}&caffeineIntakeTime=${caffeineIntakeTime}&Exercise=${exercise}&ExerciseTime=${exerciseTime}&pill=${pillDosage}&SleepTime=${sleepTime}&wakeUpTime=${wakeUpTime}`)
-        .then( () => {
+    const onClickSubmit = () => {
+      const requestData = {
+        date: encodeURIComponent(formattedDate),
+        caffeineIntake: encodeURIComponent(JSON.stringify(selectedCaffeineIntake)),
+        caffeineIntakeTime: encodeURIComponent(caffeineIntakeTime),
+        Exercise: encodeURIComponent(exercise),
+        ExerciseTime: encodeURIComponent(exerciseTime),
+        pill: encodeURIComponent(inputPill),
+        pillDosage: encodeURIComponent(JSON.stringify(inputPillDosage)),
+        SleepTime: encodeURIComponent(sleepTime),
+        wakeUpTime: encodeURIComponent(wakeUpTime),
+      };
 
-          // 작업 완료 되면 페이지 이동(새로고침)
-          document.location.href = `/writediary`;
-        })
-        .catch((error) => {
-          console.error(error); // 에러가 발생한 경우 에러 내용을 출력
-          alert("일기 전송 실패."); // 에러가 발생한 경우 알림 추가
-        });
-  }
+      const queryString = Object.keys(requestData)
+          .map((key) => `${key}=${requestData[key]}`)
+          .join("&");
+
+      axios
+          .post(`${baseUrl}/generate/sleepDiary?${queryString}`)
+          .then(() => {
+            // 작업 완료되면 페이지 이동(새로고침)
+            document.location.href = "/writediary";
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("일기 전송 실패.");
+          });
+    };
 
   const handleCaffeineIntake = (e) => {
-    setInputCaffeineIntake(e.target.value);
+    setInputCaffeineIntake(parseInt(e.target.value,10));
   };
-  const [caffeineIntake, setInputCaffeineIntake] = useState("");
+  const [selectedCaffeineIntake, setInputCaffeineIntake] = useState(0);
 
   const handleCaffeineIntakeTime = (e) => {
     setInputCaffeineIntakeTime(e.target.value);
@@ -49,9 +86,9 @@ function Write() {
   const [inputPill, setInputPill] = useState("");
 
   const handlePillDosage = (e) => {
-    setInputPillDosage(e.target.value);
+    setInputPillDosage(parseInt(e.target.value,10));
   };
-  const [pillDosage, setInputPillDosage] = useState("");
+  const [inputPillDosage, setInputPillDosage] = useState(0);
 
   const handleSleepTime = (e) => {
     setInputSleepTime(e.target.value);
@@ -71,6 +108,7 @@ function Write() {
           <div className="space-y-4">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
+                {formattedDate}
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 Write a sleep diary
@@ -88,21 +126,26 @@ function Write() {
                     <p className="mt-1 font-semibold text-sm leading-6 text-gray-600">
                       Caffeine Dosage (mg)
                     </p>
-                    <div className="mt-2 flex flex-row justify-end">
-                      <div className="mt-2 flex flex-row justify-end">
-                        <div className="w-20 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                          <input
-                              type="text"
-                              name="CaffeineIntake"
-                              id="CaffeineIntake"
-                              autoComplete="CaffeineIntake"
-                              className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                              onChange={handleCaffeineIntake}
-                              value={caffeineIntake}
-                          />
-                        </div>
-                        <span className="my-auto ml-2">mg</span>
-                      </div>
+                    <div className="mt-6 space-y-2">
+                      {caffeineIntake.map((item) => (
+                          <div key={item.value} className="flex items-center gap-x-3">
+                            <input
+                                id={item.value}
+                                name="caffeineIntake"
+                                type="radio"
+                                checked={item.value === selectedCaffeineIntake}
+                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                onChange={handleCaffeineIntake}
+                                value={item.value}
+                            />
+                            <label
+                                htmlFor={item.value}
+                                className="block text-sm font-medium leading-6 text-gray-900"
+                            >
+                              {item.name}
+                            </label>
+                          </div>
+                      ))}
                     </div>
                   </fieldset>
                 </div>
@@ -115,7 +158,8 @@ function Write() {
                       Last Dosage time (H before sleep)
                     </label>
                     <div className="mt-2 flex flex-row justify-end">
-                      <div className="w-20 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <div
+                          className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                         <input
                             type="text"
                             name="caffeineIntakeTime"
@@ -215,32 +259,49 @@ function Write() {
                         >
                           Type
                         </label>
-                        <div
-                            className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                          <input
-                              type="text"
-                              name="pill"
-                              id="pill"
-                             autoComplete="pill"
-                             className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                             onChange={handlePill}
-                              value={inputPill}
-                          />
+                        <select
+                            id="pill"
+                            name="pill"
+                            className="mt-2 block w-full text-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            value={inputPill}
+                            onChange={handlePill}
+                        >
+                          {pill.map((item) => (
+                              <option key={item.value} value={item.value}>
+                                {item.name}
+                              </option>
+                          ))}
+                        </select>
+                      </div>
+                      <fieldset>
+                        <p className="mt-1 font-semibold text-sm leading-6 text-gray-600">
+                          Dosage
+                        </p>
+                        <div className="mt-2 flex flex-row gap-2">
+                          {pillDosage.map((item) => (
+                              <div
+                                  key={item.value}
+                                  className="flex items-center gap-x-3"
+                              >
+                                <input
+                                    id={item.value}
+                                    name="pillDosage"
+                                    type="radio"
+                                    checked={item.value === inputPillDosage}
+                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                    onChange={handlePillDosage}
+                                    value={item.value}
+                                />
+                                <label
+                                    htmlFor={item.value}
+                                    className="block text-sm font-medium leading-6 text-gray-900"
+                                >
+                                  {item.name}
+                                </label>
+                              </div>
+                          ))}
                         </div>
-                      </div>
-                      <div
-                          className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                        <input
-                            type="text"
-                            name="pillDosage"
-                            id="pillDosage"
-                            autoComplete="pillDosage"
-                            className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            onChange={handlePillDosage}
-                            value={pillDosage}
-                        />
-                      </div>
-                      <span className="my-auto ml-2">mg</span>
+                      </fieldset>
                     </div>
                   </div>
                 </div>

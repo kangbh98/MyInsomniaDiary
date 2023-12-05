@@ -66,17 +66,18 @@ public class SleepDiaryController {
     public ResponseEntity<String> generateDiary(
             @SessionAttribute(name = "loginUser", required = false) User loginUser,
             @RequestParam String date,
-            @RequestParam int caffeineIntake,
-            @RequestParam int caffeineIntakeTime,
-            @RequestParam int Exercise,
-            @RequestParam int ExerciseTime,
+            @RequestParam String caffeineIntake,
+            @RequestParam String caffeineIntakeTime,
+            @RequestParam String Exercise,
+            @RequestParam String ExerciseTime,
             @RequestParam String pill,
-            @RequestParam int pillDosage,
-            @RequestParam int SleepTime,
-            @RequestParam int wakeUpTime) {
+            @RequestParam String pillDosage,
+            @RequestParam String SleepTime,
+            @RequestParam String wakeUpTime) {
 
+        SleepDiary sleepDiary = new SleepDiary(date,Integer.parseInt(caffeineIntake),Integer.parseInt(caffeineIntakeTime),Integer.parseInt(Exercise),Integer.parseInt(ExerciseTime),pill,Integer.parseInt(pillDosage),Integer.parseInt(SleepTime),Integer.parseInt(wakeUpTime));
 
-        SleepDiary sleepDiary = new SleepDiary(date,caffeineIntake,caffeineIntakeTime,Exercise,ExerciseTime,pill,pillDosage,SleepTime,wakeUpTime);
+        System.out.println("caffeineIntake = " + caffeineIntake);
 
         System.out.println("sleepDiary = " + sleepDiary);
 
