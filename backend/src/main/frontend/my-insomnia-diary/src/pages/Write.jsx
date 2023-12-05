@@ -248,7 +248,7 @@ function Write() {
                             value={pillDosage}
                         />
                       </div>
-                      <span className="my-auto ml-2">quantity</span>
+                      <span className="my-auto ml-2">mg</span>
                     </div>
                   </div>
                 </div>
