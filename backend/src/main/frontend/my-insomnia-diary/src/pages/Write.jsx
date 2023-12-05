@@ -31,34 +31,34 @@ function Write() {
   const baseUrl = "http://localhost:8080";
 
 
-    const onClickSubmit = () => {
-      const requestData = {
-        date: encodeURIComponent(formattedDate),
-        caffeineIntake: encodeURIComponent(JSON.stringify(selectedCaffeineIntake)),
-        caffeineIntakeTime: encodeURIComponent(caffeineIntakeTime),
-        Exercise: encodeURIComponent(exercise),
-        ExerciseTime: encodeURIComponent(exerciseTime),
-        pill: encodeURIComponent(inputPill),
-        pillDosage: encodeURIComponent(JSON.stringify(inputPillDosage)),
-        SleepTime: encodeURIComponent(sleepTime),
-        wakeUpTime: encodeURIComponent(wakeUpTime),
-      };
-
-      const queryString = Object.keys(requestData)
-          .map((key) => `${key}=${requestData[key]}`)
-          .join("&");
-
-      axios
-          .post(`${baseUrl}/generate/sleepDiary?${queryString}`)
-          .then(() => {
-            // 작업 완료되면 페이지 이동(새로고침)
-            document.location.href = "/writediary";
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("일기 전송 실패.");
-          });
+  const onClickSubmit = () => {
+    const requestData = {
+      date: encodeURIComponent(formattedDate),
+      caffeineIntake: encodeURIComponent(JSON.stringify(selectedCaffeineIntake)),
+      caffeineIntakeTime: encodeURIComponent(caffeineIntakeTime),
+      Exercise: encodeURIComponent(exercise),
+      ExerciseTime: encodeURIComponent(exerciseTime),
+      pill: encodeURIComponent(inputPill),
+      pillDosage: encodeURIComponent(JSON.stringify(inputPillDosage)),
+      SleepTime: encodeURIComponent(sleepTime),
+      wakeUpTime: encodeURIComponent(wakeUpTime),
     };
+
+    const queryString = Object.keys(requestData)
+        .map((key) => `${key}=${requestData[key]}`)
+        .join("&");
+
+    axios
+        .post(`${baseUrl}/generate/sleepDiary?${queryString}`)
+        .then(() => {
+          // 작업 완료되면 페이지 이동(새로고침)
+          document.location.href = "/writediary";
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("일기 전송 실패.");
+        });
+  };
 
   const handleCaffeineIntake = (e) => {
     setInputCaffeineIntake(parseInt(e.target.value,10));
