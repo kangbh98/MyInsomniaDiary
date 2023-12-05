@@ -47,14 +47,13 @@ const Calendarpage = () => {
             const receivedDates = res.data;
             const marks = receivedDates.map((item) => ({
                 date: moment(item.date).format("YYYY-MM-DD"),
-                score: item.score,
+                score: item.SleepTime,
             }));
             console.log(marks);
             setMarks(marks);
         })
         .catch((error) => {
             console.log(error);
-            alert("데이터를 불러올 수 없습니다.");
         });
     }
     //GET부분 끝//
@@ -67,7 +66,7 @@ const Calendarpage = () => {
                     </h2>
                 </div>
 
-                <div className="mt-2 mx-auto w-full text-center">
+                <div className="mt-1 mx-auto w-full text-center">
                 <Calendar
     onChange={handleDateChange}
     value={selectedDate}
@@ -94,8 +93,36 @@ const Calendarpage = () => {
     }}
 />
                 </div>
-
+                
                 <div className="flex flex-col gap-2 mt-3 text-center border-t-2 border-gray-200 pt-6">
+                <div className="ml-48 text-right"> {/* Position table to the right */}
+  <table style={{ width: '120px' }}> {/* 테이블 크기 지정 */}
+    <tbody>
+      <tr>
+        <td className="highlight-high" style={{ borderRadius: '80%', width: '15px'}} >
+        </td>
+        
+        <td style={{ width: '24px', fontSize:"11px" }}>8 이상</td>
+
+        <td style={{ width: '4px' }}></td> {/* Empty td for spacing */}
+        <td className="highlight-medium" style={{  borderRadius: '80%', width: '15px' }}>
+        </td>
+        <td style={{ width: '24px', fontSize:"11px" }}>6 이상</td>
+      </tr>
+      <tr>
+        <td className="highlight-lm" style={{  borderRadius: '80%', width: '15px'}}>
+        </td>
+        
+        <td style={{ width: '24px', fontSize:"11px" }}>3 이상</td>
+
+        <td style={{ width: '4px' }}></td> {/* Empty td for spacing */}
+        <td className="highlight-low" style={{  borderRadius: '80%', width: '15px' }}>
+        </td>
+        <td style={{ width: '24px', fontSize:"11px" }}>3 미만</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
           <span className="text-lg font-semibold">
             {moment(selectedDate).format("YYYY.MM.DD")}
           </span>

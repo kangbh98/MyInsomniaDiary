@@ -6,7 +6,7 @@
   max-width: 100%; /* 최대 가로 너비 설정 */
   margin: 0 auto; /* 가운데 정렬 */
   font-size:14px;
-  height:300px;
+  height:310px;
   padding:2px; 
   border-radius: 10px;
   border:none;
@@ -72,14 +72,14 @@
   color:black!important;
   border-radius:30px;
 }
-.highligh-lm{
-  background-color: rgba(230, 7, 7, 0.815)!important;
-  color:white!important;
+.highlight-lm{
+  background-color: rgba(230, 7, 7, 0.615)!important;
+  color:black!important;
   border-radius:30px;
 }
 .highlight-low {
-  background: rgba(0, 0, 5, 0.1);
-  color:white;
+  background: rgba(0, 0, 5, 0.1)!important;
+  color:black!important;
   border-radius:30px;
 }
 .react-calendar__tile:enabled {
