@@ -22,7 +22,7 @@ function Write() {
         .then( () => {
 
           // 작업 완료 되면 페이지 이동(새로고침)
-          document.location.href = `/writediary?date=${formattedDate}`;
+          document.location.href = `/writediary`;
         })
         .catch((error) => {
           console.error(error); // 에러가 발생한 경우 에러 내용을 출력
