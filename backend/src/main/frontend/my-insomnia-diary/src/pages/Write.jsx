@@ -222,19 +222,15 @@ function Write() {
                         >
                           Type
                         </label>
-                        <select
-                            id="pill"
+                        <input
+                            type="text"
                             name="pill"
-                            className="mt-2 block w-full text-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            value={inputPill}
+                            id="pill"
+                            autoComplete="pill"
+                            className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             onChange={handlePill}
-                        >
-                          {pill.map((item) => (
-                              <option key={item.value} value={item.value}>
-                                {item.name}
-                              </option>
-                          ))}
-                        </select>
+                            value={inputPill}
+                        />
                       </div>
                       <div
                           className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
