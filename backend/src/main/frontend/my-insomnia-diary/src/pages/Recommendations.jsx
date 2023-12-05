@@ -142,9 +142,9 @@ const Recommendations = () => {
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full ">
                     <div className="pb-2 border-b text-xs">
                       {latestSleep < bestSleep && latestWorkoutTime > averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${averWorkoutTime-latestWorkoutTime}시간 정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100)}% 개선이 가능해요`
+                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100)}% 개선이 가능해요`
                       ) : latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${averWorkoutTime-latestWorkoutTime}시간 정도늘린다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100)}% 개선이 가능해요`
+                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도늘린다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100)}% 개선이 가능해요`
                       ) : (
                           "사용자님은 운동 시간이 수면에 큰 영향이 없어요."
                       )}
