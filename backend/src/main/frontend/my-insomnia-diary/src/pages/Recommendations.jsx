@@ -120,10 +120,18 @@ const Recommendations = () => {
                     Caffeine
                   </legend>
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full text-xs">
-                    <div className="pb-2 border-b">
-                      {latestSleep < bestSleep && latestCoffIntake > averCoffIntake ? (
-                          `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도  줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(2)}% 개선 가능`) : ("사용자님은 커피가 수면에 큰 영향이 없어요.")}
-                      {/* 코드설명 : 만약 수면 질 좋을때보다 점수도 낮고, 커피도 더 많이먹었으면, 커피를 줄일 경우 최대*/}
+                  <div className="pb-2 border-b">
+                    {latestSleep < tBestSleep ? (
+                    // Logic when latestSleep is greater than bestSleep but less than tBestSleep
+                    `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄여서 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
+                    :(latestSleep < bestSleep ? (
+                    // Logic when latestSleep is less than bestSleep
+                    `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
+                    : 
+                    // Default logic when none of the above conditions are met
+                    "사용자님은 커피가 수면에 큰 영향이 없어요."
+                    )}
+                    {/* 코드설명 : 만약 수면 질 좋을때보다 점수도 낮고, 커피도 더 많이먹었으면, 커피를 줄일 경우 최대 */}
                     </div>
                     <div>
                       카페인을 일찍 먹는게 수면 개선에 도움이 돼요.
@@ -142,18 +150,18 @@ const Recommendations = () => {
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full ">
                     <div className="pb-2 border-b text-xs">
                       {latestSleep < bestSleep && latestWorkoutTime > averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(2)}% 개선이 가능해요`
+                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도늘린다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(2)}% 개선이 가능해요`
+                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도늘린다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : (
                           "사용자님은 운동 시간이 수면에 큰 영향이 없어요."
                       )}
                     </div>
                     <div className="text-xs">
-                      {latestSleep < bestSleep && latestWorkoutBefBed > averWorkoutBefBed ? (
-                          `사용자님은 운동을 ${latestWorkoutBefBed - averWorkoutBefBed}시간 정도 늦게한다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(2)}% 개선이 가능해요`
-                      ) : latestSleep < bestSleep && latestWorkoutBefBed < averWorkoutBefBed ? (
-                          `사용자님은 운동 시간을 ${averWorkoutBefBed - latestWorkoutBefBed}시간 정도 일찍한다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(2)}% 개선이 가능해요`
+                      {latestSleep < tBestSleep && latestWorkoutBefBed > averWorkoutBefBed ? (
+                          `사용자님은 운동을 ${latestWorkoutBefBed - averWorkoutBefBed}시간 정도 늦게한다면 최대 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                      ) : latestSleep < tBestSleep && latestWorkoutBefBed < averWorkoutBefBed ? (
+                          `사용자님은 운동 시간을 ${averWorkoutBefBed - latestWorkoutBefBed}시간 정도 일찍한다면 최대 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : (
                           "사용자님은 운동 시기가 수면에 큰 영향이 없어요."
                       )}
@@ -180,32 +188,32 @@ const Recommendations = () => {
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2 font-semibold pl-1 border-b border-r ">Coff Intake</div>
                       <div className="flex-1 text-center pt-2">{latestCoffIntake}mg</div>
-                      <div className="flex-1 text-center pt-2">{averCoffIntake.toFixed(2)}mg</div>
-                      <div className="flex-1 text-center pt-2">{tCoffIntake}mg</div>
+                      <div className="flex-1 text-center pt-2">{averCoffIntake.toFixed(1)}mg</div>
+                      <div className="flex-1 text-center pt-2">{tCoffIntake.toFixed(1)}mg</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Coff before Sleep</div>
                       <div className="flex-1 text-center pt-4">{latestCoffBefBed}H</div>
-                      <div className="flex-1 text-center pt-4">{averCoffBefBed.toFixed(2)}H</div>
-                      <div className="flex-1 text-center pt-4">{tCoffBefBed}H</div>
+                      <div className="flex-1 text-center pt-4">{averCoffBefBed.toFixed(1)}H</div>
+                      <div className="flex-1 text-center pt-4">{tCoffBefBed.toFixed(1)}H</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Workout total Time</div>
                       <div className="flex-1 text-center pt-4">{latestWorkoutTime}H</div>
-                      <div className="flex-1 text-center pt-4">{averWorkoutTime.toFixed(2)}H</div>
-                      <div className="flex-1 text-center pt-4">{tWorkoutTime}H</div>
+                      <div className="flex-1 text-center pt-4">{averWorkoutTime.toFixed(1)}H</div>
+                      <div className="flex-1 text-center pt-4">{tWorkoutTime.toFixed(1)}H</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Workout before Sleep </div>
                       <div className="flex-1 text-center pt-6">{latestWorkoutBefBed}H</div>
-                      <div className="flex-1 text-center pt-6">{averWorkoutBefBed.toFixed(2)}H</div>
-                      <div className="flex-1 text-center pt-6">{tWorkoutBefBed}H</div>
+                      <div className="flex-1 text-center pt-6">{averWorkoutBefBed.toFixed(1)}H</div>
+                      <div className="flex-1 text-center pt-6">{tWorkoutBefBed.toFixed(1)}H</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1  border-r">Sleep Time</div>
                       <div className="flex-1 text-center pt-2">{latestSleep}H</div>
-                      <div className="flex-1 text-center pt-2">{bestSleep.toFixed(2)}H</div>
-                      <div className="flex-1 text-center pt-2">{tBestSleep}H</div>
+                      <div className="flex-1 text-center pt-2">{bestSleep.toFixed(1)}H</div>
+                      <div className="flex-1 text-center pt-2">{tBestSleep.toFixed(1)}H</div>
                     </div>
                   </div>
                 </div>
