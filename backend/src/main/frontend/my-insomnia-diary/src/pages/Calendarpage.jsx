@@ -80,9 +80,9 @@ const Calendarpage = () => {
             const { score } = found;
             if (score >= 8) {
                 return "highlight-high"; // Apply a class for high scores
-            } else if (score >= 6 && score < 8) {
+            } else if (score >= 6) {
                 return "highlight-medium"; // Apply a class for medium scores
-            } else if (score >=3 && score < 6)
+            } else if (score >=3)
             {
                 return "highlight-lm";
             }
