@@ -1,5 +1,6 @@
 package com.example.insomniadiary.controller;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiary;
+import com.example.insomniadiary.dto.CalendarDto;
 import com.example.insomniadiary.dto.Diarydto;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiaryRepository;
 import com.example.insomniadiary.domain.user.User;
@@ -108,13 +109,16 @@ public class SleepDiaryController {
     }
 
     @GetMapping("/calendar")
-    public ResponseEntity<List<String>> calendar(
+    public ResponseEntity<List<CalendarDto>> calendar(
             @SessionAttribute(name = "loginUser", required = false) User loginUser
     ){
         List<SleepDiary> all = sleepDiaryRepository.findAll();
-        List<String> str = new ArrayList<>();
+
+        List<CalendarDto> str = new ArrayList<>();
+
         for (SleepDiary sleepDiary : all) {
-            str.add(sleepDiary.getDate());
+            CalendarDto calendarDto = new CalendarDto(sleepDiary.getDate(), sleepDiary.getSleepTime());
+            str.add(calendarDto);
         }
         return ResponseEntity.ok(str);
     }
