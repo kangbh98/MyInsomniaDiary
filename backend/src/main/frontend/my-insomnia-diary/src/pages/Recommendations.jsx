@@ -20,11 +20,11 @@ const Recommendations = () => {
   const [latestCoffBefBed, setLatestCoffBefBed]= useState(0);
   const [latestWorkoutTime, setLatestWorkoutTime] = useState(0);
   const [latestWorkoutBefBed, setLatestWorkoutBefBed] = useState(0);
-  const [TotalAverCoffIntake, setTotalAverCoffIntake] = useState(0);
-  const [TotalAverCoffBefBed, setTotalAverCoffBefBed] = useState(0);
-  const [TotalAverWorkoutTime, setTotalAverWorkoutTime] = useState(0);
-  const [TotalAverWorkoutBefBed, setTotalAverWorkoutBefBed] = useState(0);
-  const [TotalBestSleep, setTotalBestSleep] = useState(0);
+  const [TACoffIntake, setTACoffIntake] = useState(0);
+  const [TACoffBefBed, setTACoffBefBed] = useState(0);
+  const [TAWorkoutTime, setTAWorkoutTime] = useState(0);
+  const [TAWorkoutBefBed, setTAWorkoutBefBed] = useState(0);
+  const [TABestSleep, setTABestSleep] = useState(0);
 
   const baseUrl = "http://localhost:8080";
   useEffect(() => {{
@@ -48,11 +48,11 @@ const Recommendations = () => {
           setLatestCoffBefBed(response.data.latestCoffBefBed);
           setLatestWorkoutTime(response.data.latestWorkoutTime);
           setLatestWorkoutBefBed(response.data.latestWorkoutBefBed);
-          setTotalAverCoffIntake(response.data.TotalAverCoffIntake);
-          setTotalAverCoffBefBed(response.data.TotalAverCoffBefBed);
-          setTotalAverWorkoutBefBed(response.data.TotalAverWorkoutBefBed);
-          setTotalAverWorkoutTime(response.data.TotalAverWorkoutTime);
-          setTotalBestSleep(response.data.TotalBestSleep);
+          setTACoffIntake(response.data.TotalAverCoffIntake);
+          setTACoffBefBed(response.data.TotalAverCoffBefBed);
+          setTAWorkoutBefBed(response.data.TotalAverWorkoutBefBed);
+          setTAWorkoutTime(response.data.TotalAverWorkoutTime);
+          setTABestSleep(response.data.TotalBestSleep);
         })
 
         /* 데이터 구조
@@ -181,31 +181,31 @@ const Recommendations = () => {
                       <div className="flex-1 py-2 font-semibold pl-1 border-b border-r ">Coff Intake</div>
                       <div className="flex-1 text-center pt-2">{latestCoffIntake}mg</div>
                       <div className="flex-1 text-center pt-2">{averCoffIntake}mg</div>
-                      <div className="flex-1 text-center pt-2">{TotalAverCoffIntake}mg</div>
+                      <div className="flex-1 text-center pt-2">{TACoffIntake}mg</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Coff before Sleep</div>
                       <div className="flex-1 text-center pt-4">{latestCoffBefBed}H</div>
                       <div className="flex-1 text-center pt-4">{averCoffBefBed}H</div>
-                      <div className="flex-1 text-center pt-4">{TotalAverCoffBefBed}H</div>
+                      <div className="flex-1 text-center pt-4">{TACoffBefBed}H</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Workout total Time</div>
                       <div className="flex-1 text-center pt-4">{latestWorkoutTime}H</div>
                       <div className="flex-1 text-center pt-4">{averWorkoutTime}H</div>
-                      <div className="flex-1 text-center pt-4">{TotalAverWorkoutTime}H</div>
+                      <div className="flex-1 text-center pt-4">{TAWorkoutTime}H</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1 border-b border-r">Workout before Sleep </div>
                       <div className="flex-1 text-center pt-6">{latestWorkoutBefBed}H</div>
                       <div className="flex-1 text-center pt-6">{averWorkoutBefBed}H</div>
-                      <div className="flex-1 text-center pt-6">{TotalAverWorkoutBefBed}H</div>
+                      <div className="flex-1 text-center pt-6">{TAWorkoutBefBed}H</div>
                     </div>
                     <div className="flex flex-row text-xs">
                       <div className="flex-1 py-2  font-semibold pl-1  border-r">Sleep Time</div>
                       <div className="flex-1 text-center pt-2">{latestSleep}H</div>
                       <div className="flex-1 text-center pt-2">{bestSleep}H</div>
-                      <div className="flex-1 text-center pt-2">{TotalBestSleep}H</div>
+                      <div className="flex-1 text-center pt-2">{TABestSleep}H</div>
                     </div>
                   </div>
                 </div>
