@@ -63,18 +63,23 @@
   margin-bottom: 20px; /* Adjust the value to increase or decrease the space */
 }
 .highlight-high {
-  background: rgba(0, 2, 130, 0.3)!important;
+  background: rgba(59, 255, 157, 0.6)tant;
   color:black!important;
   border-radius:30px;
 }
 .highlight-medium {
-  background: rgba(0, 2, 130, 0.2)!important;
+  background: rgb(250, 253, 50)!important;
   color:black!important;
   border-radius:30px;
 }
+.highligh-lm{
+  background-color: rgba(230, 7, 7, 0.815)!important;
+  color:white!important;
+  border-radius:30px;
+}
 .highlight-low {
-  background: rgba(0, 2, 130, 0.1)!important;
-  color:black!important;
+  background: rgba(0, 0, 5, 0.1)!important;
+  color:white!important;
   border-radius:30px;
 }
 .react-calendar__tile:enabled {

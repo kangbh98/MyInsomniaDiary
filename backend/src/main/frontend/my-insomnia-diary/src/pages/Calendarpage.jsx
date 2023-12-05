@@ -78,11 +78,15 @@ const Calendarpage = () => {
         const found = marks.find((mark) => mark.date === moment(date).format("YYYY-MM-DD"));
         if (found) {
             const { score } = found;
-            if (score >= 90) {
+            if (score >= 8) {
                 return "highlight-high"; // Apply a class for high scores
-            } else if (score >= 70 && score < 90) {
+            } else if (score >= 6 && score < 8) {
                 return "highlight-medium"; // Apply a class for medium scores
-            } else {
+            } else if (score >=3 && score < 6)
+            {
+                return "highlight-lm";
+            }
+            else {
                 return "highlight-low"; // Apply a class for low scores
             }
         }
