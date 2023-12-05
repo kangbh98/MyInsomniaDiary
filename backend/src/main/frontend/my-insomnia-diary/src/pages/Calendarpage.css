@@ -62,8 +62,18 @@
 .text-center > .react-calendar {
   margin-bottom: 20px; /* Adjust the value to increase or decrease the space */
 }
-.highlight {
+.highlight-high {
+  background: rgba(0, 2, 130, 0.3)!important;
+  color:black!important;
+  border-radius:30px;
+}
+.highlight-medium {
   background: rgba(0, 2, 130, 0.2)!important;
+  color:black!important;
+  border-radius:30px;
+}
+.highlight-low {
+  background: rgba(0, 2, 130, 0.1)!important;
   color:black!important;
   border-radius:30px;
 }

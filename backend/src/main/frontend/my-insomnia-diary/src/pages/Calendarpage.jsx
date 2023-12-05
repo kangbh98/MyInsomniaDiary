@@ -31,28 +31,31 @@ const Calendarpage = () => {
     );//데이터 있냐 없냐 구분
 
     //GET부분//
-    const baseUrl = "http://localhost:8080";
+    const baseUrl = "http://localhowst:8080";
     const [ data, setData ] = useState('');
-
+    
     useEffect(() => {
         springDataSet();
     },[]) //화면 실행하면 바로 get
     async function springDataSet() {
         await axios
-            .get(baseUrl + "/calendar")//받고
-            .then((res)=>{
-                console.log(res);//콘솔한번 띄우고
-                setData(res.data);//컴포넌트에 반영하고
-                const receivedDates = res.data;
-                const marks = receivedDates.map(date => moment(date).format('YYYY-MM-DD'));
-                //혹시몰라 moment 라이브러리로 날짜 형식 바꿔서 매핑하기
-                console.log(marks); //데이터 콘솔띄우고
-                setMarks(marks);//컴포넌트 반영
-            })
-            .catch((error)=>{
-                console.log(error);
-                alert("데이터를 불러올 수 없습니다.");
-            })
+        .get(baseUrl + "/calendar")
+        .then((res) => {
+            console.log(res);
+            setData(res.data);
+
+            const receivedDates = res.data;
+            const marks = receivedDates.map((item) => ({
+                date: moment(item.date).format("YYYY-MM-DD"),
+                score: item.score,
+            }));
+            console.log(marks);
+            setMarks(marks);
+        })
+        .catch((error) => {
+            console.log(error);
+            alert("데이터를 불러올 수 없습니다.");
+        });
     }
     //GET부분 끝//
     return (
@@ -65,16 +68,27 @@ const Calendarpage = () => {
                 </div>
 
                 <div className="mt-2 mx-auto w-full text-center">
-                    <Calendar onChange={handleDateChange} value={selectedDate}formatDay={(locale, date) => formatDay(locale, date)}
-                              minDate={threeMonthsAgo} //날짜 범위 조정
-                              maxDate={today} //날짜 범위 조정
-                              tileClassName={({ date, view }) => {//하이라이트 반영함수
-                                  if (marks.find((x) => x === moment(date).format("YYYY-MM-DD"))) {
-                                      return "highlight";
-                                  }
-                                  return null;}}
-
-                    ></Calendar>
+                <Calendar
+    onChange={handleDateChange}
+    value={selectedDate}
+    formatDay={(locale, date) => formatDay(locale, date)}
+    minDate={threeMonthsAgo}
+    maxDate={today}
+    tileClassName={({ date }) => {
+        const found = marks.find((mark) => mark.date === moment(date).format("YYYY-MM-DD"));
+        if (found) {
+            const { score } = found;
+            if (score >= 90) {
+                return "highlight-high"; // Apply a class for high scores
+            } else if (score >= 70 && score < 90) {
+                return "highlight-medium"; // Apply a class for medium scores
+            } else {
+                return "highlight-low"; // Apply a class for low scores
+            }
+        }
+        return null;
+    }}
+/>
                 </div>
 
                 <div className="flex flex-col gap-2 mt-3 text-center border-t-2 border-gray-200 pt-6">
