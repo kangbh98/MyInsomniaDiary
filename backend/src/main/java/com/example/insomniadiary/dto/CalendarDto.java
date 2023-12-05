@@ -8,10 +8,10 @@ import lombok.Setter;
 @Setter
 public class CalendarDto {
     private String date;
-    private int SleepTime;
+    private int sleepTime;
 
     public CalendarDto(String date, int sleepTime) {
         this.date = date;
-        SleepTime = sleepTime;
+        this.sleepTime = sleepTime;
     }
 }
