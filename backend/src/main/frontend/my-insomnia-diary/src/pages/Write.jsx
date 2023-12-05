@@ -21,9 +21,9 @@ const pillDosage = [
 
 const pill = [
   { value: "", name: 'none'},
-  { value: "a", name: 'type1' },
-  { value: "b", name: 'type2' },
-  { value: "c", name: 'type3' },
+  { value: "a", name: 'type1💊' },
+  { value: "b", name: 'type2💊' },
+  { value: "c", name: 'type3💊' },
 ];
 
 function Write() {
@@ -185,7 +185,7 @@ function Write() {
               <div className="border-b border-gray-900/10 pb-6">
                 <div className="mt-4">
                   <legend className="text-md font-extrabold leading-6 text-gray-900">
-                    Workout
+                    💪Workout
                   </legend>
                 </div>
 
@@ -195,7 +195,7 @@ function Write() {
                         htmlFor="exercise"
                         className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Workout total time
+                      💪Workout total time⏱️
                     </label>
                     <div className="mt-2 flex flex-row justify-end">
                       <div
