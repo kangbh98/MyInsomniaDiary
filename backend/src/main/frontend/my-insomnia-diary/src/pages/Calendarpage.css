@@ -63,17 +63,17 @@
   margin-bottom: 20px; /* Adjust the value to increase or decrease the space */
 }
 .highlight-high {
-  background: rgba(59, 255, 157, 0.6)!important;
+  background: rgba(57, 239, 148, 0.6) !important;
   color:black!important;
   border-radius:30px;
 }
 .highlight-medium {
-  background: rgb(250, 253, 50)!important;
+  background: rgb(252, 252, 160) !important;
   color:black!important;
   border-radius:30px;
 }
 .highlight-lm{
-  background-color: rgba(230, 7, 7, 0.615)!important;
+  background-color: rgba(255, 137, 137, 0.61) !important;
   color:black!important;
   border-radius:30px;
 }
