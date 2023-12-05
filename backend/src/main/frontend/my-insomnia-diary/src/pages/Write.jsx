@@ -3,13 +3,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import moment from "moment";
 
-const pill = [
-  { value: "", name: 'none'},
-  { value: "a", name: 'sleeping'},
-  { value: "b", name: 'tranquilize' },
-  { value: "c", name: 'tranquilize' },
-];
-
 function Write() {
     //없으면 그냥 일단 물음표 넣음
   const baseUrl = "http://localhost:8080";
@@ -222,15 +215,18 @@ function Write() {
                         >
                           Type
                         </label>
-                        <input
-                            type="text"
-                            name="pill"
-                            id="pill"
-                            autoComplete="pill"
-                            className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            onChange={handlePill}
-                            value={inputPill}
-                        />
+                        <div
+                            className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                          <input
+                              type="text"
+                              name="pill"
+                              id="pill"
+                             autoComplete="pill"
+                             className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                             onChange={handlePill}
+                              value={inputPill}
+                          />
+                        </div>
                       </div>
                       <div
                           className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
