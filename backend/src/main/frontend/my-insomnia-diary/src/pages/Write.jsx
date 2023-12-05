@@ -3,42 +3,22 @@ import axios from 'axios';
 import { useState } from 'react';
 import moment from "moment";
 
-const caffeineIntake = [
-  { value: 0, name: 'None' },
-  { value: 100, name: '100' },
-  { value: 150, name: '150' },
-  { value: 200, name: '200' },
-  { value: 250, name: '250' },
-  { value: 300, name: '300' },
-];
-
-const pillDosage = [
-  { value: 1, name: '1' },
-  { value: 2, name: '2' },
-  { value: 3, name: '3' },
-];
-
 const pill = [
   { value: "", name: 'none'},
-  { value: "a", name: 'type1' },
-  { value: "b", name: 'type2' },
-  { value: "c", name: 'type3' },
+  { value: "a", name: 'sleeping'},
+  { value: "b", name: 'tranquilize' },
+  { value: "c", name: 'tranquilize' },
 ];
 
 function Write() {
-  const location = useLocation();//url 쿼리 정보 받아오기 위한 훅
-  const searchParams = new URLSearchParams(location.search); //search에서 쿼리 파라미터 정보를 받아옴
-  const dateParam = searchParams.get('date'); //date값 가져오기
-  const formattedDate = dateParam ? moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD') : '?'; //만약 날짜정보 존재하면 그 날짜를 formattedDate에 넣고 표시
-  //없으면 그냥 일단 물음표 넣음
+    //없으면 그냥 일단 물음표 넣음
   const baseUrl = "http://localhost:8080";
-
   const onClickSubmit = () => {
 
     console.log("click submit");
 
     axios
-        .post(`${baseUrl}/generate/sleepDiary?date=${formattedDate}&caffeineIntake=${caffeineIntake}&caffeineIntakeTime=${caffeineIntakeTime}&Exercise=${exercise}&ExerciseTime=${exerciseTime}&pill=${pillDosage}&SleepTime=${sleepTime}&wakeUpTime=${wakeUpTime}`)
+        .post(`${baseUrl}/generate/sleepDiary?caffeineIntake=${caffeineIntake}&caffeineIntakeTime=${caffeineIntakeTime}&Exercise=${exercise}&ExerciseTime=${exerciseTime}&pill=${pillDosage}&SleepTime=${sleepTime}&wakeUpTime=${wakeUpTime}`)
         .then( () => {
 
           // 작업 완료 되면 페이지 이동(새로고침)
@@ -53,7 +33,7 @@ function Write() {
   const handleCaffeineIntake = (e) => {
     setInputCaffeineIntake(e.target.value);
   };
-  const [selectedCaffeineIntake, setInputCaffeineIntake] = useState("");
+  const [caffeineIntake, setInputCaffeineIntake] = useState("");
 
   const handleCaffeineIntakeTime = (e) => {
     setInputCaffeineIntakeTime(e.target.value);
@@ -78,7 +58,7 @@ function Write() {
   const handlePillDosage = (e) => {
     setInputPillDosage(e.target.value);
   };
-  const [inputPillDosage, setInputPillDosage] = useState("");
+  const [pillDosage, setInputPillDosage] = useState("");
 
   const handleSleepTime = (e) => {
     setInputSleepTime(e.target.value);
@@ -98,7 +78,6 @@ function Write() {
           <div className="space-y-4">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
-                {formattedDate}
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 Write a sleep diary
@@ -116,26 +95,21 @@ function Write() {
                     <p className="mt-1 font-semibold text-sm leading-6 text-gray-600">
                       Caffeine Dosage (mg)
                     </p>
-                    <div className="mt-6 space-y-2">
-                      {caffeineIntake.map((item) => (
-                          <div key={item.value} className="flex items-center gap-x-3">
-                            <input
-                                id={item.value}
-                                name="caffeineIntake"
-                                type="radio"
-                                checked={item.value === selectedCaffeineIntake}
-                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                onChange={handleCaffeineIntake}
-                                value={item.value}
-                            />
-                            <label
-                                htmlFor={item.value}
-                                className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                              {item.name}
-                            </label>
-                          </div>
-                      ))}
+                    <div className="mt-2 flex flex-row justify-end">
+                      <div className="mt-2 flex flex-row justify-end">
+                        <div className="w-20 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                          <input
+                              type="text"
+                              name="CaffeineIntake"
+                              id="CaffeineIntake"
+                              autoComplete="CaffeineIntake"
+                              className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                              onChange={handleCaffeineIntake}
+                              value={caffeineIntake}
+                          />
+                        </div>
+                        <span className="my-auto ml-2">mg</span>
+                      </div>
                     </div>
                   </fieldset>
                 </div>
@@ -148,8 +122,7 @@ function Write() {
                       Last Dosage time (H before sleep)
                     </label>
                     <div className="mt-2 flex flex-row justify-end">
-                      <div
-                          className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <div className="w-20 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                         <input
                             type="text"
                             name="caffeineIntakeTime"
@@ -263,35 +236,19 @@ function Write() {
                           ))}
                         </select>
                       </div>
-                      <fieldset>
-                        <p className="mt-1 font-semibold text-sm leading-6 text-gray-600">
-                          Dosage
-                        </p>
-                        <div className="mt-2 flex flex-row gap-2">
-                          {pillDosage.map((item) => (
-                              <div
-                                  key={item.value}
-                                  className="flex items-center gap-x-3"
-                              >
-                                <input
-                                    id={item.value}
-                                    name="pillDosage"
-                                    type="radio"
-                                    checked={item.value === inputPillDosage}
-                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                    onChange={handlePillDosage}
-                                    value={item.value}
-                                />
-                                <label
-                                    htmlFor={item.value}
-                                    className="block text-sm font-medium leading-6 text-gray-900"
-                                >
-                                  {item.name}
-                                </label>
-                              </div>
-                          ))}
-                        </div>
-                      </fieldset>
+                      <div
+                          className="w-12 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                        <input
+                            type="text"
+                            name="pillDosage"
+                            id="pillDosage"
+                            autoComplete="pillDosage"
+                            className="block flex-1 border-0 bg-transparent py-1 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            onChange={handlePillDosage}
+                            value={pillDosage}
+                        />
+                      </div>
+                      <span className="my-auto ml-2">quantity</span>
                     </div>
                   </div>
                 </div>
