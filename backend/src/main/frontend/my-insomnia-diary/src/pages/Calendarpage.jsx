@@ -31,7 +31,7 @@ const Calendarpage = () => {
     );//데이터 있냐 없냐 구분
 
     //GET부분//
-    const baseUrl = "http://localhowst:8080";
+    const baseUrl = "http://localhost:8080";
     const [ data, setData ] = useState('');
     
     useEffect(() => {
