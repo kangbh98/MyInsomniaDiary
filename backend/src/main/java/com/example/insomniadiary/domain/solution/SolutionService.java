@@ -55,26 +55,23 @@ public class SolutionService {
     }
 
     public SolutionDto calculateAverageSleepTimeByExerciseGroup(SolutionDto solutionDto) {
-        double[] averageSleepTimes = new double[4];
 
-        averageSleepTimes[0] = calculateAverageSleepTime(0, 2);
-        averageSleepTimes[1] = calculateAverageSleepTime(2, 4);
-        averageSleepTimes[2] = calculateAverageSleepTime(4, 6);
-        averageSleepTimes[3] = calculateAverageSleepTime(6, 8);
+        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(0, 2));
+        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(2, 4));
+        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(4, 6));
+        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(6, 8));
 
-        solutionDto.setSleeAverByWorkoutTime1(averageSleepTimes);
 
         return solutionDto;
     }
     public SolutionDto  calculateAverageSleepTimeByExerciseTimeGroup(SolutionDto solutionDto) {
-        double[] averageSleepTimes = new double[4];
 
-        averageSleepTimes[0] = calculateAverageSleepTime(0, 3);
-        averageSleepTimes[1] = calculateAverageSleepTime(3, 6);
-        averageSleepTimes[2] = calculateAverageSleepTime(6, 9);
-        averageSleepTimes[3] = calculateAverageSleepTime(9, 12);
 
-        solutionDto.setSleeAverByWorkoutBefBed1(averageSleepTimes);
+         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(0, 3));
+         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(3, 6));
+         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(6, 9));
+         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(9, 12));
+
 
         return solutionDto;
     }

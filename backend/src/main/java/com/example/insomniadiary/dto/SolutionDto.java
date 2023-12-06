@@ -35,7 +35,13 @@ public class SolutionDto {
     private double totalAverCoffBefBed; // 전체 수면 n시간 전 커피 평균
 
     //////////////////////////////////////////////////////////
-    private double[] sleeAverByWorkoutTime1= new double[4];
-    private double[] sleeAverByWorkoutBefBed1= new double[4];
+    private double sleeAverByWorkoutTime1;
+    private double sleeAverByWorkoutTime2;
+    private double sleeAverByWorkoutTime3;
+    private double sleeAverByWorkoutTime4;
+    private double sleeAverByWorkoutBefBed1;
+    private double sleeAverByWorkoutBefBed2;
+    private double sleeAverByWorkoutBefBed3;
+    private double sleeAverByWorkoutBefBed4;
 
 }
