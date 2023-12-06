@@ -102,7 +102,7 @@ public class SolutionService {
         for (SleepDiary sleepDiary : sleepDiaries) {
             totalSleepTime += sleepDiary.getSleepTime();
         }
-        
+
         return totalSleepTime / sleepDiaries.size();
     }
 
