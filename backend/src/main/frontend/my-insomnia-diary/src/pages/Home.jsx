@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   const fetchDiaryData = () => {
-    axios.get(baseUrl+`/homecheck?date=${formattedDate}`)
+    axios.get(baseUrl+`/home?date=${formattedDate}`)
     .then((response) => {
       console.log(response.data);
       if (response.data.image) {
@@ -34,14 +34,15 @@ const Home = () => {
   };
   const diaryButton = image ? (
     <Link
-      to={`/ViewDiary/${formattedDate}`}
+      to={`/diary?date=${moment(selectedDate).format("YYYY-MM-DD")}`}
+      
       className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
     >
       View Diary
     </Link>
   ) : (
     <Link
-      to="/Write"
+      to={`/write?date=${moment(selectedDate).format("YYYY-MM-DD")}`}
       className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
     >
       Write Diary
