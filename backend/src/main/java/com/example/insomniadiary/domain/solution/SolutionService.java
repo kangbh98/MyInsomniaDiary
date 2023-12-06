@@ -56,10 +56,10 @@ public class SolutionService {
 
     public SolutionDto calculateAverageSleepTimeByExerciseGroup(SolutionDto solutionDto) {
 
-        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(0, 2));
-        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(2, 4));
-        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(4, 6));
-        solutionDto.setSleeAverByWorkoutTime1(calculateAverageSleepTime(6, 8));
+        solutionDto.setSleepAverByWorkoutTime1(calculateAverageSleepTime(0, 2));
+        solutionDto.setSleepAverByWorkoutTime2(calculateAverageSleepTime(2, 4));
+        solutionDto.setSleepAverByWorkoutTime3(calculateAverageSleepTime(4, 6));
+        solutionDto.setSleepAverByWorkoutTime4(calculateAverageSleepTime(6, 8));
 
 
         return solutionDto;
@@ -67,10 +67,10 @@ public class SolutionService {
     public SolutionDto  calculateAverageSleepTimeByExerciseTimeGroup(SolutionDto solutionDto) {
 
 
-         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(0, 3));
-         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(3, 6));
-         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(6, 9));
-         solutionDto.setSleeAverByWorkoutBefBed1(calculateAverageSleepTime2(9, 12));
+         solutionDto.setSleepAverByWorkoutBefBed1(calculateAverageSleepTime2(0, 3));
+         solutionDto.setSleepAverByWorkoutBefBed2(calculateAverageSleepTime2(3, 6));
+         solutionDto.setSleepAverByWorkoutBefBed3(calculateAverageSleepTime2(6, 9));
+         solutionDto.setSleepAverByWorkoutBefBed4(calculateAverageSleepTime2(9, 12));
 
 
         return solutionDto;
@@ -102,7 +102,7 @@ public class SolutionService {
         for (SleepDiary sleepDiary : sleepDiaries) {
             totalSleepTime += sleepDiary.getSleepTime();
         }
-
+        
         return totalSleepTime / sleepDiaries.size();
     }
 

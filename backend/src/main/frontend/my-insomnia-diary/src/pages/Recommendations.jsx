@@ -25,9 +25,14 @@ const Recommendations = () => {
   const [tWorkoutTime, setTAWorkoutTime] = useState(0);
   const [tWorkoutBefBed, setTAWorkoutBefBed] = useState(0);
   const [tBestSleep, setTABestSleep] = useState(0);
-  const [sleepAverByWorkoutTime, setSleepAverByWorkoutTime] = useState([]);
-  const [sleepAverByWorkoutBefBed, setSleepAverByWorkoutBefBed] = useState([]);
-
+  const [sleepAverByWorkoutTime1, setSleepAverByWorkoutTime1] = useState(0);
+  const [sleepAverByWorkoutTime2, setSleepAverByWorkoutTime2] = useState(0);
+  const [sleepAverByWorkoutTime3, setSleepAverByWorkoutTime3] = useState(0);
+  const [sleepAverByWorkoutTime4, setSleepAverByWorkoutTime4] = useState(0);
+  const [sleepAverByWorkoutBefBed1, setSleepAverbyWorkoutBefBed1] = useState(0);
+  const [sleepAverByWorkoutBefBed2, setSleepAverbyWorkoutBefBed2] = useState(0);
+  const [sleepAverByWorkoutBefBed3, setSleepAverbyWorkoutBefBed3] = useState(0);
+  const [sleepAverByWorkoutBefBed4, setSleepAverbyWorkoutBefBed4] = useState(0);
   const baseUrl = "http://localhost:8080";
   useEffect(() => {{
     fetchRecommendationData();
@@ -55,8 +60,14 @@ const Recommendations = () => {
           setTAWorkoutBefBed(response.data.totalAverWorkoutBefBed);
           setTAWorkoutTime(response.data.totalAverWorkoutTime);
           setTABestSleep(response.data.totalBestSleep);
-          setSleepAverByWorkoutTime(response.data.sleeAverByWorkoutTime1 || []);
-          setSleepAverByWorkoutBefBed(response.data.sleeAverByWorkoutBefBed1 || []);
+          setSleepAverByWorkoutTime1(response.data.sleepAverByWorkoutTime1);
+          setSleepAverByWorkoutTime2(response.data.sleepAverByWorkoutTime2);
+          setSleepAverByWorkoutTime3(response.data.sleepAverByWorkoutTime3);
+          setSleepAverByWorkoutTime4(response.data.sleepAverByWorkoutTime4);
+          setSleepAverbyWorkoutBefBed1(response.data.sleepAverByWorkoutBefBed1);
+          setSleepAverbyWorkoutBefBed2(response.data.sleepAverByWorkoutBefBed2);
+          setSleepAverbyWorkoutBefBed3(response.data.sleepAverByWorkoutBefBed3);
+          setSleepAverbyWorkoutBefBed4(response.data.sleepAverByWorkoutBefBed4);
         })
 
         /* 데이터 구조
@@ -82,6 +93,16 @@ const Recommendations = () => {
             TotalAverWorkoutBefBed(double)
             TotalBestSleep(double)
 
+            sleepAverByWorkoutTime1(double) : 운동안하는 게으른
+            sleepAverByWorkoutTime2(double) : 운동시간 2~4
+            sleepAverByWorkoutTime3(double) : 운동시간 4~6
+            sleepAverByWorkoutTime4(double) : 운동시간 6~8
+
+            sleepAverByWorkoutBefBed1(double) : 수면 전 0~3시간 사이 운동
+            sleepAverByWorkoutBefBed2(double) : 수면 전 3~6시간 사이 운동
+            sleepAverByWorkoutBefBed3(double) : 수면 전 6~9시간 사이 운동
+            sleepAverByWorkoutBefBed4(double) : 수면 전 9~12시간 사이 운동
+
           }
         }
         */
@@ -90,6 +111,7 @@ const Recommendations = () => {
         });
 
   };
+
   useEffect(() => {
     const today = new Date();
     const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1)
@@ -97,8 +119,21 @@ const Recommendations = () => {
         .padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
     setCurrentDate(formattedDate);
   }, []);
+  const sleepAverByWorkoutTime = [
+    sleepAverByWorkoutTime1,
+    sleepAverByWorkoutTime2,
+    sleepAverByWorkoutTime3,
+    sleepAverByWorkoutTime4,
+  ];
+  const sleepAverByWorkoutBefBed = [
+    sleepAverByWorkoutBefBed1,
+    sleepAverByWorkoutBefBed2,
+    sleepAverByWorkoutBefBed3,
+    sleepAverByWorkoutBefBed4
+  ];
+
   const maxSleepAverT = Math.max(...sleepAverByWorkoutTime);
-  const maxSleepAverTIndex = sleepAverByWorkoutTime.indexOf(maxSleepAverT) * 3;
+  const maxSleepAverTIndex = sleepAverByWorkoutTime.indexOf(maxSleepAverT) * 2;
   const maxSleepAverB = Math.max(...sleepAverByWorkoutBefBed);
   const maxSleepAverBIndex = sleepAverByWorkoutTime.indexOf(maxSleepAverB) * 3;
   return (
