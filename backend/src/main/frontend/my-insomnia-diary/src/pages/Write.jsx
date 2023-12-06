@@ -6,24 +6,23 @@ import moment from "moment";
 
 const caffeineIntake = [
   { value: 0, name: 'None' },
-  { value: 100, name: '100' },
-  { value: 150, name: '150' },
-  { value: 200, name: '200' },
-  { value: 250, name: '250' },
-  { value: 300, name: '300' },
+  { value: 100, name: '150: ☕️*1'},
+  { value: 200, name: '300: ☕️*2' },
+  { value: 250, name: '450: ☕️*3'},
+  { value: 250, name: '600: ☕️*4'},
 ];
 
 const pillDosage = [
-  { value: 1, name: '1' },
-  { value: 2, name: '2' },
-  { value: 3, name: '3' },
+  { value: 1, name: '💊 * 1' },
+  { value: 2, name: '💊 * 2' },
+  { value: 3, name: '💊 * 3' },
 ];
 
 const pill = [
   { value: "", name: 'none'},
-  { value: "a", name: 'type1💊' },
-  { value: "b", name: 'type2💊' },
-  { value: "c", name: 'type3💊' },
+  { value: "sleep inducer", name: 'sleep inducer' },
+  { value: "tranquilizer", name: 'tranquilizer' },
+  { value: "anxiolytic", name: 'anxiolytic' },
 ];
 
 function Write() {
@@ -327,7 +326,7 @@ function Write() {
                         htmlFor="Sleep_Time"
                         className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Total Sleep time
+                      Total Sleep time💤🛌
                     </label>
                     <div className="mt-2 flex flex-row justify-end">
                       <div
