@@ -131,7 +131,7 @@ const Recommendations = () => {
     sleepAverByWorkoutBefBed3,
     sleepAverByWorkoutBefBed4
   ];
-  
+
   const maxSleepAverT = Math.max(...sleepAverByWorkoutTime);
   const maxSleepAverTIndex = sleepAverByWorkoutTime.indexOf(maxSleepAverT) * 2;
   const maxSleepAverB = Math.max(...sleepAverByWorkoutBefBed);
@@ -161,18 +161,18 @@ const Recommendations = () => {
                     Caffeine
                   </legend>
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full text-xs">
-                  <div className="pb-2 border-b">
-                    {latestSleep < tBestSleep && latestCoffIntake> tCoffIntake ? (
-                    // Logic when latestSleep is greater than bestSleep but less than tBestSleep
-                    `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄여서 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
-                    :(latestSleep < bestSleep && latestCoffIntake > averCoffIntake ? (
-                    // Logic when latestSleep is less than bestSleep
-                    `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
-                    : 
-                    // Default logic when none of the above conditions are met
-                    "사용자님은 커피가 수면에 큰 영향이 없어요."
-                    )}
-                    {/* 코드설명 : 만약 수면 질 좋을때보다 점수도 낮고, 커피도 더 많이먹었으면, 커피를 줄일 경우 최대 */}
+                    <div className="pb-2 border-b">
+                      {latestSleep < tBestSleep ? (
+                              // Logic when latestSleep is greater than bestSleep but less than tBestSleep
+                              `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄여서 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
+                          :(latestSleep < bestSleep ? (
+                                      // Logic when latestSleep is less than bestSleep
+                                      `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
+                                  :
+                                  // Default logic when none of the above conditions are met
+                                  "사용자님은 커피가 수면에 큰 영향이 없어요."
+                          )}
+                      {/* 코드설명 : 만약 수면 질 좋을때보다 점수도 낮고, 커피도 더 많이먹었으면, 커피를 줄일 경우 최대 */}
                     </div>
                     <div>
                       카페인을 일찍 먹는게 수면 개선에 도움이 돼요.
