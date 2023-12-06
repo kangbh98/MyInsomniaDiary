@@ -2,6 +2,7 @@ import {Link, useLocation} from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import example from '/Users/noel/InsomniaDiary/backend/src/main/frontend/my-insomnia-diary/src/pages/exampleimage.jpg'
 
 const submit = () => {
   const location = useLocation();
@@ -62,17 +63,22 @@ const submit = () => {
                     >
                       Diary
                     </label>
+                    <p className="mt-2 text-sm leading-6 text-gray-600">
+                      Write about your sleep experience in detail. The more you share, the better we can generate your sleep image!
+                    </p>
                     <div className="mt-2">
-                    <textarea
-                        id="about"
-                        name="about"
-                        rows={5}
-                        value={diary}
-                        className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        onChange={handleInputDiary}
-                    />
+                      <textarea
+                          id="about"
+                          name="about"
+                          rows={5}
+                          value={diary}
+                          placeholder="Share your sleep experience in detail..."
+                          className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          onChange={handleInputDiary}
+                        />
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -89,6 +95,17 @@ const submit = () => {
 
             <button className='py-3 px-6 ring-1
           rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold text-sm font-semibold leading-6 text-gray-900 btn btn-primary '>Complete</button>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="text-lg font-semibold leading-6 text-gray-900">
+              Example Sleep Image
+            </h2>
+            <img src={example}
+                alt="Example Sleep Image"
+                className="mt-2 rounded-md border border-gray-300"
+                style={{ maxWidth: '100%' }}
+            />
           </div>
         </form>
       </>
