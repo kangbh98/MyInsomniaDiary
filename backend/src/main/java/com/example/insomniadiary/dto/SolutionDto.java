@@ -33,4 +33,9 @@ public class SolutionDto {
     private double totalAverWorkoutBefBed; // 전체 n시간전 운동 평균
     private double totalBestSleep;  // 전체 수면 시간 평균
     private double totalAverCoffBefBed; // 전체 수면 n시간 전 커피 평균
+
+    //////////////////////////////////////////////////////////
+    private double[] sleeAverByWorkoutTime1= new double[4];
+    private double[] sleeAverByWorkoutBefBed1= new double[4];
+
 }

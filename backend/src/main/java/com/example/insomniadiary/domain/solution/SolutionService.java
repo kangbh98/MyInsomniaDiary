@@ -6,6 +6,8 @@ import com.example.insomniadiary.dto.SolutionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SolutionService {
@@ -51,4 +53,60 @@ public class SolutionService {
 
         return solutionDto;
     }
+
+    public SolutionDto calculateAverageSleepTimeByExerciseGroup(SolutionDto solutionDto) {
+        double[] averageSleepTimes = new double[4];
+
+        averageSleepTimes[0] = calculateAverageSleepTime(0, 2);
+        averageSleepTimes[1] = calculateAverageSleepTime(2, 4);
+        averageSleepTimes[2] = calculateAverageSleepTime(4, 6);
+        averageSleepTimes[3] = calculateAverageSleepTime(6, 8);
+
+        solutionDto.setSleeAverByWorkoutTime1(averageSleepTimes);
+
+        return solutionDto;
+    }
+    public SolutionDto  calculateAverageSleepTimeByExerciseTimeGroup(SolutionDto solutionDto) {
+        double[] averageSleepTimes = new double[4];
+
+        averageSleepTimes[0] = calculateAverageSleepTime(0, 3);
+        averageSleepTimes[1] = calculateAverageSleepTime(3, 6);
+        averageSleepTimes[2] = calculateAverageSleepTime(6, 9);
+        averageSleepTimes[3] = calculateAverageSleepTime(9, 12);
+
+        solutionDto.setSleeAberByWorkoutBefBed1(averageSleepTimes);
+
+        return solutionDto;
+    }
+
+    private double calculateAverageSleepTime(int start, int end) {
+        List<SleepDiary> sleepDiaries = sleepDiaryRepository.findByExerciseBetween(start, end);
+
+        if (sleepDiaries.isEmpty()) {
+            return 0.0; // 또는 다른 기본값을 설정하세요.
+        }
+
+        double totalSleepTime = 0.0;
+        for (SleepDiary sleepDiary : sleepDiaries) {
+            totalSleepTime += sleepDiary.getSleepTime();
+        }
+
+        return totalSleepTime / sleepDiaries.size();
+    }
+
+    private double calculateAverageSleepTime2(int start, int end) {
+        List<SleepDiary> sleepDiaries = sleepDiaryRepository.findByExerciseTimeBetween(start, end);
+
+        if (sleepDiaries.isEmpty()) {
+            return 0.0; // 또는 다른 기본값을 설정하세요.
+        }
+
+        double totalSleepTime = 0.0;
+        for (SleepDiary sleepDiary : sleepDiaries) {
+            totalSleepTime += sleepDiary.getSleepTime();
+        }
+
+        return totalSleepTime / sleepDiaries.size();
+    }
+
 }

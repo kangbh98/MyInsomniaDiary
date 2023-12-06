@@ -23,7 +23,9 @@ public class SolutionController {
         SolutionDto solutionDto2 = solutionService.dataAverage(solutionDto1);
         SolutionDto solutionDto3 = solutionService.dataBest(solutionDto2);
         SolutionDto solutionDto4 = solutionService.dataLastest(solutionDto3);
+        SolutionDto solutionDto5 = solutionService.calculateAverageSleepTimeByExerciseGroup(solutionDto4);
+        SolutionDto solutionDto6 = solutionService.calculateAverageSleepTimeByExerciseTimeGroup(solutionDto5);
 
-        return ResponseEntity.ok(solutionDto4);
+        return ResponseEntity.ok(solutionDto6);
     }
 }

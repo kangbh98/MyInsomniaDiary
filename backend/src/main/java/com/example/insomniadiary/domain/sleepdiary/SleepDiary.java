@@ -1,11 +1,8 @@
 package com.example.insomniadiary.domain.sleepdiary;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Map;
 
 @Entity
 @Table(name = "SleepDiary_table")
@@ -21,22 +18,22 @@ public class SleepDiary {
     private String email;
     private int caffeineIntake;
     private int caffeineIntakeTime;
-    private int Exercise;
-    private int ExerciseTime;
+    private int exercise;
+    private int exerciseTime;
     private String pill;
     private int pillDosage;
-    private int SleepTime;
+    private int sleepTime;
     private int wakeUpTime;
 
     public SleepDiary(String date, int caffeineIntake, int caffeineIntakeTime, int exercise, int exerciseTime, String pill, int pillDosage, int sleepTime, int wakeUpTime) {
         this.date = date;
         this.caffeineIntake = caffeineIntake;
         this.caffeineIntakeTime = caffeineIntakeTime;
-        this.Exercise = exercise;
-        this.ExerciseTime = exerciseTime;
+        this.exercise = exercise;
+        this.exerciseTime = exerciseTime;
         this.pill = pill;
         this.pillDosage = pillDosage;
-        this.SleepTime = sleepTime;
+        this.sleepTime = sleepTime;
         this.wakeUpTime = wakeUpTime;
     }
 
