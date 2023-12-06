@@ -25,6 +25,8 @@ const Recommendations = () => {
   const [tWorkoutTime, setTAWorkoutTime] = useState(0);
   const [tWorkoutBefBed, setTAWorkoutBefBed] = useState(0);
   const [tBestSleep, setTABestSleep] = useState(0);
+  const [sleepAverByWorkoutTime, setSleepAverByWorkoutTime] = useState([]);
+  const [sleepAverByWorkoutBefBed, setSleepAverByWorkoutBefBed] = useState([]);
 
   const baseUrl = "http://localhost:8080";
   useEffect(() => {{
@@ -53,6 +55,8 @@ const Recommendations = () => {
           setTAWorkoutBefBed(response.data.totalAverWorkoutBefBed);
           setTAWorkoutTime(response.data.totalAverWorkoutTime);
           setTABestSleep(response.data.totalBestSleep);
+          setSleepAverByWorkoutTime(response.data.sleepAverByWorkoutTime);
+          setSleepAverByWorkoutBefBed(response.data.sleepAverByWorkoutBefBed);
         })
 
         /* 데이터 구조
@@ -78,7 +82,6 @@ const Recommendations = () => {
             TotalAverWorkoutBefBed(double)
             TotalBestSleep(double)
 
-            //새로운거
           }
         }
         */
@@ -94,7 +97,10 @@ const Recommendations = () => {
         .padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
     setCurrentDate(formattedDate);
   }, []);
-
+  const maxSleepAverT = Math.max(...sleepAverByWorkoutTime);
+  const maxSleepAverTIndex = sleepAverByWorkoutTime.indexOf(maxSleepAverT) * 3;
+  const maxSleepAverB = Math.max(...sleepAverByWorkoutBefBed);
+  const maxSleepAverBIndex = sleepAverByWorkoutTime.indexOf(maxSleepAverB) * 3;
   return (
       <>
         <form className="pb-32">
@@ -149,19 +155,19 @@ const Recommendations = () => {
                   </legend>
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full ">
                     <div className="pb-2 border-b text-xs">
-                      {latestSleep < bestSleep && latestWorkoutTime > averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${latestWorkoutTime-averWorkoutTime}시간 정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                      {latestSleep < maxSleepAverT && latestWorkoutTime > maxSleepAverTIndex ? (
+                          `사용자님은 운동 시간을 ${latestWorkoutTime-maxSleepAverT}시간 정도 줄인다면 최대 ${((maxSleepAverT - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${averWorkoutTime-latestWorkoutTime}시간 정도 늘린다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                          `사용자님은 운동 시간을 ${maxSleepAverT-latestWorkoutTime}시간 정도 늘린다면 최대 ${((maxSleepAverT - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : (
                           "사용자님은 운동 시간이 수면에 큰 영향이 없어요."
                       )}
                     </div>
                     <div className="text-xs">
-                      {latestSleep < tBestSleep && latestWorkoutBefBed > averWorkoutBefBed ? (
-                          `사용자님은 운동을 ${latestWorkoutBefBed - averWorkoutBefBed}시간 정도 늦게한다면 최대 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
-                      ) : latestSleep < tBestSleep && latestWorkoutBefBed < averWorkoutBefBed ? (
-                          `사용자님은 운동 시간을 ${averWorkoutBefBed - latestWorkoutBefBed}시간 정도 일찍한다면 최대 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                      {latestSleep < maxSleepAverB && latestWorkoutBefBed > maxSleepAverBIndex ? (
+                          `사용자님은 운동을 ${latestWorkoutBefBed - maxSleepAverBIndex}시간 정도 늦게한다면 최대 ${((maxSleepAverB - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                      ) : latestSleep < tBestSleep && latestWorkoutBefBed < maxSleepAverBIndex ? (
+                          `사용자님은 운동 시간을 ${maxSleepAverBIndex - latestWorkoutBefBed}시간 정도 일찍한다면 최대 ${((maxSleepAverB - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
                       ) : (
                           "사용자님은 운동 시기가 수면에 큰 영향이 없어요."
                       )}

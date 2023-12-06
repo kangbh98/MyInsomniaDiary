@@ -8,7 +8,7 @@ import moment from 'moment';
 const Home = () => {
   const [stringg, setstringg] = useState("");//존재 여부  
   // 날짜 부분을 원하는 형식 'YYYY.MM.DD'에 맞게 재배열
-  const formattedDate = moment().format('YYYY.MM.DD');
+  const formattedDate = moment().format('YYYY-MM-DD');
 
 
   const baseUrl = "http://localhost:8080";
