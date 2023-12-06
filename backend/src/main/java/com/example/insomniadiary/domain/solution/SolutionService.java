@@ -74,7 +74,7 @@ public class SolutionService {
         averageSleepTimes[2] = calculateAverageSleepTime(6, 9);
         averageSleepTimes[3] = calculateAverageSleepTime(9, 12);
 
-        solutionDto.setSleeAberByWorkoutBefBed1(averageSleepTimes);
+        solutionDto.setSleeAverByWorkoutBefBed1(averageSleepTimes);
 
         return solutionDto;
     }
