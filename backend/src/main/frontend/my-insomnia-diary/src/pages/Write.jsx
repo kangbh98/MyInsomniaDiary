@@ -6,10 +6,10 @@ import moment from "moment";
 
 const caffeineIntake = [
   { value: 0, name: 'None' },
-  { value: 100, name: '150: ☕️*1'},
-  { value: 200, name: '300: ☕️*2' },
-  { value: 250, name: '450: ☕️*3'},
-  { value: 250, name: '600: ☕️*4'},
+  { value: 150, name: '150mg: ☕️ * 1'},
+  { value: 300, name: '300mg: ☕️ * 2' },
+  { value: 450, name: '450mg: ☕️ * 3'},
+  { value: 600, name: '600mg ~: ☕️ * 4'},
 ];
 
 const pillDosage = [
