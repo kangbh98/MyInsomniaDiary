@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   const fetchDiaryData = () => {
-    axios.get(baseUrl+`/home?date=${formattedDate}`)
+    axios.get(baseUrl+`/homecheck?date=${formattedDate}`)
     .then((response) => {
       console.log(response.data);
       if (response.data.image) {
