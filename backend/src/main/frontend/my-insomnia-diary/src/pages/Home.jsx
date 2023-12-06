@@ -2,18 +2,15 @@ import { Link } from 'react-router-dom';
 import BottomBar from '../components/BottomBar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 
 const Home = () => {
-  const currentDate = new Date().toLocaleDateString('en-GB', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
+  const [stringg, setstringg] = useState("");//존재 여부  
+  // 날짜 부분을 원하는 형식 'YYYY.MM.DD'에 맞게 재배열
+  const formattedDate = moment().format('YYYY.MM.DD');
 
-  // Rearrange the date parts to match the desired format 'YYYY.MM.DD'
-  const formattedDate = currentDate.split('/').reverse().join('-');
-  const [image, setImage] = useState('');
+
   const baseUrl = "http://localhost:8080";
   useEffect(() => {
     
@@ -22,27 +19,24 @@ const Home = () => {
 
   const fetchDiaryData = () => {
     axios.get(baseUrl+`/home?date=${formattedDate}`)
-    .then((response) => {
-      console.log(response.data);
-      if (response.data.image) {
-        setImage(response.data.image.url);
-      }
+    .then((res) => {
+      console.log(res.data);
+      setstringg(res.data.stringg);
       })
       .catch((error) => {
         console.error('Error fetching diary data:', error);
       });
   };
-  const diaryButton = image ? (
+  const diaryButton = stringg==="1" ? (
     <Link
-      to={`/diary?date=${moment(selectedDate).format("YYYY-MM-DD")}`}
-      
+      to={`/diary?date=${moment(formattedDate).format("YYYY-MM-DD")}`}
       className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
     >
       View Diary
     </Link>
   ) : (
     <Link
-      to={`/write?date=${moment(selectedDate).format("YYYY-MM-DD")}`}
+      to={`/write?date=${moment(formattedDate).format("YYYY-MM-DD")}`}
       className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
     >
       Write Diary
