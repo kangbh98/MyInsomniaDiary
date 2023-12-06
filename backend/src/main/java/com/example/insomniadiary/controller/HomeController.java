@@ -5,6 +5,7 @@ import com.example.insomniadiary.domain.image.ImageRepository;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiary;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiaryRepository;
 import com.example.insomniadiary.domain.user.User;
+import com.example.insomniadiary.dto.HomeDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,15 +24,18 @@ public class HomeController {
     private final SleepDiaryRepository sleepDiaryRepository;
 
     @GetMapping("/home")
-    public ResponseEntity<String> home(
+    public ResponseEntity<HomeDto> home(
             @SessionAttribute(name = "loginUser", required = false) User loginUser,
             @RequestParam String date){
 
+
         Optional<SleepDiary> byDate = sleepDiaryRepository.findByDate(date);
+        HomeDto homeDto = new HomeDto();
         if (!byDate.isPresent()) {
-            return ResponseEntity.ok("1");
+            homeDto.setStringg("2");;
         }else {
-            return ResponseEntity.ok("2");
+            homeDto.setStringg("1");
         }
+        return ResponseEntity.ok(homeDto);
     }
 }
