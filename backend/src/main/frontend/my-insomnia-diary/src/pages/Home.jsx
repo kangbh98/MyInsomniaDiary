@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import BottomBar from '../components/BottomBar';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 
 const Home = () => {
   const currentDate = new Date().toLocaleDateString('en-GB', {
@@ -9,8 +12,41 @@ const Home = () => {
   });
 
   // Rearrange the date parts to match the desired format 'YYYY.MM.DD'
-  const formattedDate = currentDate.split('/').reverse().join('.');
+  const formattedDate = currentDate.split('/').reverse().join('-');
+  const [image, setImage] = useState('');
+  const baseUrl = "http://localhost:8080";
+  useEffect(() => {
+    
+      fetchDiaryData();
+  }, []);
 
+  const fetchDiaryData = () => {
+    axios.get(baseUrl+`/home?date=${formattedDate}`)
+    .then((response) => {
+      console.log(response.data);
+      if (response.data.image) {
+        setImage(response.data.image.url);
+      }
+      })
+      .catch((error) => {
+        console.error('Error fetching diary data:', error);
+      });
+  };
+  const diaryButton = image ? (
+    <Link
+      to={`/ViewDiary/${formattedDate}`}
+      className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
+    >
+      View Diary
+    </Link>
+  ) : (
+    <Link
+      to="/Write"
+      className="mx-auto rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
+    >
+      Write Diary
+    </Link>
+  );
   return (
     <>
     <div className="flex flex-col align-middle text-center h-full ">
@@ -32,12 +68,7 @@ const Home = () => {
               <div className="ring-1 ring-gray-300 rounded-lg p-4 w-full">
                 <div className="font-extrabold text-l" style={{ float: 'left', marginTop:"3px"}}>{formattedDate}</div>
                 <div className="font-extrabold text-xl" style={{ float: 'right' }}>
-                <Link
-                to="/Write"
-                className="mx-auto  rounded-md bg-indigo-500 px-2.5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center"
-                >
-                Write Diary
-                </Link>
+                {diaryButton}
                 </div>
               <div style={{ clear: 'both' }}></div>
             </div>
