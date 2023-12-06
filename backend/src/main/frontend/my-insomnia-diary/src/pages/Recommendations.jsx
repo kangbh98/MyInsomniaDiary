@@ -162,10 +162,10 @@ const Recommendations = () => {
                   </legend>
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full text-xs">
                     <div className="pb-2 border-b">
-                      {latestSleep < tBestSleep ? (
+                      {latestSleep < tBestSleep && latestCoffIntake > tCoffIntake ? (
                               // Logic when latestSleep is greater than bestSleep but less than tBestSleep
-                              `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄여서 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
-                          :(latestSleep < bestSleep ? (
+                              `사용자님은 커피를 ${latestCoffIntake - tCoffIntake}mg정도 줄여서 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
+                          :(latestSleep < bestSleep && latestCoffIntake > averCoffIntake ? (
                                       // Logic when latestSleep is less than bestSleep
                                       `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
                                   :
