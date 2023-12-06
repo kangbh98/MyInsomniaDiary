@@ -2,7 +2,6 @@ import {Link, useLocation} from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import example from '/Users/noel/InsomniaDiary/backend/src/main/frontend/my-insomnia-diary/src/pages/exampleimage.jpg'
 
 const submit = () => {
   const location = useLocation();
@@ -49,38 +48,38 @@ const submit = () => {
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 {formattedDate}
               </h2>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
-                Write a sleep diary
+              <p className="mt-1 text-lg font-semibold leading-6 text-gray-600 border-b pb-2">
+                Write your diary
               </p>
 
               {/* Diary */}
-              <div className="pb-2">
-                <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                  <div className="col-span-full">
+                <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div className="">
                     <label
                         htmlFor="diary"
                         className="block text-md font-extrabold leading-6 text-gray-900"
                     >
                       Diary
                     </label>
-                    <p className="mt-2 text-sm leading-6 text-gray-600">
-                      Write about your sleep experience in detail. The more you share, the better we can generate your sleep image!
-                    </p>
+                    
                     <div className="mt-2">
                       <textarea
                           id="about"
                           name="about"
                           rows={5}
                           value={diary}
-                          placeholder="Share your sleep experience in detail..."
-                          className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          placeholder="Click and write"
+                          className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm text-sm sm:leading-6"
                           onChange={handleInputDiary}
                         />
                     </div>
+                    <p className="p-2 text-xs leading-6 text-gray-600">
+                      * The more you share, the better image gets!
+                    </p>
                   </div>
 
                 </div>
-              </div>
+
             </div>
           </div>
 
@@ -97,14 +96,17 @@ const submit = () => {
           rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold text-sm font-semibold leading-6 text-gray-900 btn btn-primary '>Complete</button>
           </div>
 
-          <div className="mt-8">
+          <div className="items-center text-center mt-8">
             <h2 className="text-lg font-semibold leading-6 text-gray-900">
-              Example Sleep Image
+              Sleep Image Example
             </h2>
-            <img src={example}
-                alt="Example Sleep Image"
-                className="mt-2 rounded-md border border-gray-300"
-                style={{ maxWidth: '100%' }}
+            
+          <img 
+                className="ml-4 mt-2 rounded-md border border-gray-300"
+                style={{ maxWidth: '90%' }}
+              src="/images/exampleimage.jpg"
+              alt="Example Sleep Image"
+              
             />
           </div>
         </form>
