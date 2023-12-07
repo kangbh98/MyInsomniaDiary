@@ -6,16 +6,16 @@ import moment from "moment";
 
 const caffeineIntake = [
   { value: 0, name: 'None' },
-  { value: 150, name: '150mg: ☕️ * 1'},
-  { value: 300, name: '300mg: ☕️ * 2' },
-  { value: 450, name: '450mg: ☕️ * 3'},
+  { value: 150, name: '150mg  : ☕️ * 1'},
+  { value: 300, name: '300mg  : ☕️ * 2' },
+  { value: 450, name: '450mg  : ☕️ * 3'},
   { value: 600, name: '600mg ~: ☕️ * 4'},
 ];
 
 const pillDosage = [
-  { value: 1, name: '💊 * 1' },
-  { value: 2, name: '💊 * 2' },
-  { value: 3, name: '💊 * 3' },
+  { value: 1, name: '1' },
+  { value: 2, name: '2' },
+  { value: 3, name: '3' },
 ];
 
 const pill = [
@@ -115,15 +115,16 @@ function Write() {
                 {formattedDate}
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
-                Write a sleep diary
+                Fill in the blanks
               </p>
 
               {/* Caffeine */}
               <div className="border-b border-gray-900/10 pb-6">
-                <div className="mt-4">
-                  <legend className="text-md font-extrabold leading-6 text-gray-900">
+                <div className="mt-4 flex flex-row">
+                  <legend className="pl-3 text-md font-extrabold leading-6 text-gray-900">
                     Caffeine
                   </legend>
+                <img className="ml-2  rounded-lg" src="/images/coffee.png" style={{width:'25px'}}></img>
                 </div>
                 <div className="mt-2 py-2 px-3 ring-1 rounded-lg ring-gray-200">
                   <fieldset>
@@ -183,8 +184,8 @@ function Write() {
               {/* Workout */}
               <div className="border-b border-gray-900/10 pb-6">
                 <div className="mt-4">
-                  <legend className="text-md font-extrabold leading-6 text-gray-900">
-                    💪Workout
+                  <legend className="pl-3 flex flex-row text-md font-extrabold leading-6 text-gray-900">
+                    Workout <img className="ml-2 rounded-lg" src="/images/gym.png" style={{width:'25px'}}></img>
                   </legend>
                 </div>
 
@@ -194,7 +195,7 @@ function Write() {
                         htmlFor="exercise"
                         className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      💪Workout total time⏱️
+                      Total workout time
                     </label>
                     <div className="mt-2 flex flex-row justify-end">
                       <div
@@ -242,8 +243,8 @@ function Write() {
               {/* Pills */}
               <div className="border-b border-gray-900/10 pb-6">
                 <div className="mt-4">
-                  <legend className="text-md font-extrabold leading-6 text-gray-900">
-                    Pills
+                  <legend className="pl-3 flex flex-row text-md font-extrabold leading-6 text-gray-900">
+                    Pills <img className="ml-2  rounded-lg" src="/images/pill.png" style={{width:'24px'}}></img>
                   </legend>
                 </div>
 
@@ -266,7 +267,7 @@ function Write() {
                         <select
                             id="pill"
                             name="pill"
-                            className="mt-2 block w-full text-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="mt-2 block w-full text-xs rounded-md border-0 py-1.5 pl-2 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             value={inputPill}
                             onChange={handlePill}
                         >
@@ -315,8 +316,8 @@ function Write() {
               {/* Fill in the data */}
               <div className="border-b border-gray-900/10 pb-6">
                 <div className="mt-4">
-                  <legend className="text-md font-extrabold leading-6 text-gray-900">
-                    Fill in the data
+                  <legend className="flex flex-row text-md font-extrabold leading-6 text-gray-900">
+                    Sleep  <img className="ml-2  rounded-lg" src="/images/day.png" style={{width:'30px'}}></img>
                   </legend>
                 </div>
 
