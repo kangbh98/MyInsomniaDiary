@@ -1,13 +1,14 @@
-import {Link, useLocation} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const submit = () => {
+const WriteDiary = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const dateParam = searchParams.get('date');
   const [formattedDate, setFormattedDate] = useState('');
+
 
   useEffect(() => {
     if (dateParam) {
@@ -21,7 +22,7 @@ const submit = () => {
 
     console.log("click submit");
     console.log("Diary : ", diary);
-    const formatted = moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD');
+
 
     axios
         .post(`${baseUrl}/generate/image?date=${formattedDate}&diary=${diary}`)
@@ -114,4 +115,4 @@ const submit = () => {
   );
 }
 
-export default submit;
+export default WriteDiary;

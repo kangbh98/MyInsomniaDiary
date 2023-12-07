@@ -59,6 +59,7 @@ public class SleepDiaryController {
 
         image.setUrl(imageUrl);
         image.setEmail("1");
+        image.setDate(date);
 //        File file = new File(imageUrl);
 //        String image1 = awsS3Service.upload(file, "Image");
 //        image.setUrl(image1);
