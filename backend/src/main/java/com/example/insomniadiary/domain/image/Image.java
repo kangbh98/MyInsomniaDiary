@@ -20,7 +20,9 @@ public class Image {
     private String email;
     private String date;
 
+    @Column(length = 500)
     private String Prompt;
+
 
     public Image() {
     }

@@ -62,6 +62,7 @@ function Write() {
           console.error(error);
           alert("일기 전송 실패.");
         });
+
   };
 
   const handleCaffeineIntake = (e) => {

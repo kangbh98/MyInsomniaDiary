@@ -21,7 +21,7 @@ const submit = () => {
 
     console.log("click submit");
     console.log("Diary : ", diary);
-
+    const formatted = moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD');
 
     axios
         .post(`${baseUrl}/generate/image?date=${formattedDate}&diary=${diary}`)
@@ -53,16 +53,16 @@ const submit = () => {
               </p>
 
               {/* Diary */}
-                <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                  <div className="">
-                    <label
-                        htmlFor="diary"
-                        className="block text-md font-extrabold leading-6 text-gray-900"
-                    >
-                      Diary
-                    </label>
-                    
-                    <div className="mt-2">
+              <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="">
+                  <label
+                      htmlFor="diary"
+                      className="block text-md font-extrabold leading-6 text-gray-900"
+                  >
+                    Diary
+                  </label>
+
+                  <div className="mt-2">
                       <textarea
                           id="about"
                           name="about"
@@ -71,14 +71,14 @@ const submit = () => {
                           placeholder="Click and write"
                           className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm text-sm sm:leading-6"
                           onChange={handleInputDiary}
-                        />
-                    </div>
-                    <p className="p-2 text-xs leading-6 text-gray-600">
-                      * The more you share, the better image gets!
-                    </p>
+                      />
                   </div>
-
+                  <p className="p-2 text-xs leading-6 text-gray-600">
+                    * The more you share, the better image gets!
+                  </p>
                 </div>
+
+              </div>
 
             </div>
           </div>
@@ -100,13 +100,13 @@ const submit = () => {
             <h2 className="text-lg font-semibold leading-6 text-gray-900">
               Sleep Image Example
             </h2>
-            
-          <img 
+
+            <img
                 className="ml-4 mt-2 rounded-md border border-gray-300"
                 style={{ maxWidth: '90%' }}
-              src="/images/exampleimage.jpg"
-              alt="Example Sleep Image"
-              
+                src="/images/exampleimage.jpg"
+                alt="Example Sleep Image"
+
             />
           </div>
         </form>

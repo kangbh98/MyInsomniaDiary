@@ -1,4 +1,5 @@
 package com.example.insomniadiary.controller;
+import com.example.insomniadiary.domain.image.AwsS3Service;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiary;
 import com.example.insomniadiary.dto.CalendarDto;
 import com.example.insomniadiary.dto.Diarydto;
@@ -15,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +30,7 @@ public class SleepDiaryController {
 
     private final ImageRepository imageRepository;
     private final SleepDiaryRepository sleepDiaryRepository;
+    private final AwsS3Service awsS3Service;
     @Value("${openai-key}")
     private String OPENAI_KEY;
 
@@ -53,10 +57,12 @@ public class SleepDiaryController {
             image.setEmail(email);
         }
 
-
-
         image.setUrl(imageUrl);
-        image.setDate(date);
+        image.setEmail("1");
+//        File file = new File(imageUrl);
+//        String image1 = awsS3Service.upload(file, "Image");
+//        image.setUrl(image1);
+//        image.setDate(date);
 
         log.info("Image generated: {}", image);
         imageRepository.save(image);
@@ -103,6 +109,11 @@ public class SleepDiaryController {
         Optional<SleepDiary> byEmailAndDateSleepDiary = sleepDiaryRepository.findByDate(date);
         Optional<Image> byEmailAndDateImage = imageRepository.findByDate(date);
 
+//        Image image = byEmailAndDateImage.get();
+//        String url = image.getUrl();
+//        String s3 = awsS3Service.getS3(url);
+//        image.setUrl(s3);
+
         Diarydto diarydto = new Diarydto(byEmailAndDateSleepDiary.orElse(null), byEmailAndDateImage.orElse(null));
 
         return ResponseEntity.ok(diarydto);
@@ -126,13 +137,13 @@ public class SleepDiaryController {
 
     private String openAiImageUrl(Image imageToRequest) {
         OpenAiService service = new OpenAiService(OPENAI_KEY);
-        CreateImageRequest createImageRequest = CreateImageRequest.builder()
+        CreateImageRequest build = CreateImageRequest.builder()
                 .prompt(imageToRequest.getPrompt())
                 .n(1)
                 .size("256x256")
                 .build();
 
-        String imgUrl = service.createImage(createImageRequest)
+        String imgUrl = service.createImage(build)
                 .getData()
                 .get(0)
                 .getUrl();
