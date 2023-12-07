@@ -9,7 +9,6 @@ const WriteDiary = () => {
   const dateParam = searchParams.get('date');
   const [formattedDate, setFormattedDate] = useState('');
 
-
   useEffect(() => {
     if (dateParam) {
       const formatted = moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD');
@@ -18,15 +17,15 @@ const WriteDiary = () => {
   }, [dateParam]);
 
   const baseUrl = "http://localhost:8080";
-  const onClickSubmit = () => {
-
+  const onClickSubmit = (event) => {
+    event.preventDefault();
     console.log("click submit");
     console.log("Diary : ", diary);
 
 
     axios
         .post(`${baseUrl}/generate/image?date=${formattedDate}&diary=${diary}`)
-        .then( () => {
+        .then(() => {
 
           // 작업 완료 되면 페이지 이동(새로고침)
           document.location.href = "/home";
