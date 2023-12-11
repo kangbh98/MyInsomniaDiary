@@ -1,5 +1,5 @@
 package com.example.insomniadiary.controller;
-import com.example.insomniadiary.domain.image.AwsS3Service;
+import com.example.insomniadiary.domain.image.proptservice.PromptService;
 import com.example.insomniadiary.domain.sleepdiary.SleepDiary;
 import com.example.insomniadiary.dto.CalendarDto;
 import com.example.insomniadiary.dto.Diarydto;
@@ -16,8 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,15 +23,14 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class SleepDiaryController {
 
     private final ImageRepository imageRepository;
     private final SleepDiaryRepository sleepDiaryRepository;
-    private final AwsS3Service awsS3Service;
     @Value("${openai-key}")
     private String OPENAI_KEY;
-
+    private final PromptService promptService;
 
     @PostMapping("/generate/image")
     public ResponseEntity<String> generateImage(
@@ -138,10 +135,11 @@ public class SleepDiaryController {
 
     private String openAiImageUrl(Image imageToRequest) {
         OpenAiService service = new OpenAiService(OPENAI_KEY);
+        String s = promptService.promptService(imageToRequest);
         CreateImageRequest build = CreateImageRequest.builder()
-                .prompt(imageToRequest.getPrompt())
+                .prompt(s)
                 .n(1)
-                .size("256x256")
+                .size("512x512")
                 .build();
 
         String imgUrl = service.createImage(build)

@@ -33,7 +33,7 @@ const Recommendations = () => {
   const [sleepAverByWorkoutBefBed2, setSleepAverbyWorkoutBefBed2] = useState(0);
   const [sleepAverByWorkoutBefBed3, setSleepAverbyWorkoutBefBed3] = useState(0);
   const [sleepAverByWorkoutBefBed4, setSleepAverbyWorkoutBefBed4] = useState(0);
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "http://ec2-15-164-210-112.ap-northeast-2.compute.amazonaws.com:8080";
   useEffect(() => {{
     fetchRecommendationData();
   }
@@ -190,19 +190,19 @@ const Recommendations = () => {
                   </legend>
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full ">
                     <div className="pb-2 border-b text-xs">
-                      {latestSleep < maxSleepAverT && latestWorkoutTime > maxSleepAverTIndex ? (
-                          `사용자님은 운동 시간을 ${latestWorkoutTime-maxSleepAverT}시간 정도 줄인다면 최대 ${((maxSleepAverT - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
-                      ) : latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${maxSleepAverT-latestWorkoutTime}시간 정도 늘린다면 최대 ${((maxSleepAverT - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                      {!isNaN(latestSleep) && !isNaN(maxSleepAverT) && !isNaN(latestWorkoutTime) && !isNaN(maxSleepAverTIndex) &&  latestSleep < maxSleepAverT && latestWorkoutTime > maxSleepAverTIndex ? (
+                          `사용자님은 운동 시간을 ${latestWorkoutTime-maxSleepAverT}시간 정도 줄여야 해요`
+                      ) : !isNaN(latestSleep) && !isNaN(maxSleepAverT) && !isNaN(latestWorkoutTime) && !isNaN(maxSleepAverTIndex) && latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
+                          `사용자님은 운동 시간을 ${maxSleepAverT-latestWorkoutTime}시간 정도 늘려야 해요`
                       ) : (
                           "사용자님은 운동 시간이 수면에 큰 영향이 없어요."
                       )}
                     </div>
                     <div className="text-xs">
-                      {latestSleep < maxSleepAverB && latestWorkoutBefBed > maxSleepAverBIndex ? (
-                          `사용자님은 운동을 ${latestWorkoutBefBed - maxSleepAverBIndex}시간 정도 늦게한다면 최대 ${((maxSleepAverB - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
-                      ) : latestSleep < tBestSleep && latestWorkoutBefBed < maxSleepAverBIndex ? (
-                          `사용자님은 운동 시간을 ${maxSleepAverBIndex - latestWorkoutBefBed}시간 정도 일찍한다면 최대 ${((maxSleepAverB - latestSleep) / latestSleep * 100).toFixed(0)}% 개선이 가능해요`
+                      {!isNaN(latestSleep) && !isNaN(maxSleepAverB) && !isNaN(latestWorkoutBefBed) && !isNaN(maxSleepAverBIndex) &&latestSleep < maxSleepAverB && latestWorkoutBefBed > maxSleepAverBIndex ? (
+                          `사용자님은 운동을 ${latestWorkoutBefBed - maxSleepAverBIndex}시간 정도 늦게 하는 것을 추천드립니다.`
+                      ) : !isNaN(latestSleep) && !isNaN(maxSleepAverB) && !isNaN(latestWorkoutBefBed) && !isNaN(maxSleepAverBIndex) &&latestSleep < tBestSleep && latestWorkoutBefBed < maxSleepAverBIndex ? (
+                          `사용자님은 운동 시간을 ${maxSleepAverBIndex - latestWorkoutBefBed}시간 정도 일찍하는 것을 추천드립니다.`
                       ) : (
                           "사용자님은 운동 시기가 수면에 큰 영향이 없어요."
                       )}

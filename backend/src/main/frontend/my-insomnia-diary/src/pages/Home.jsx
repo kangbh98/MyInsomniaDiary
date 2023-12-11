@@ -11,7 +11,7 @@ const Home = () => {
   const formattedDate = moment().format('YYYY-MM-DD');
 
 
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "http://ec2-15-164-210-112.ap-northeast-2.compute.amazonaws.com:8080";
   useEffect(() => {
 
     fetchDiaryData();

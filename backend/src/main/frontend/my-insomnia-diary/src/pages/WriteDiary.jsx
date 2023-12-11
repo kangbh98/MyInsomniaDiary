@@ -16,7 +16,7 @@ const WriteDiary = () => {
     }
   }, [dateParam]);
 
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "http://ec2-15-164-210-112.ap-northeast-2.compute.amazonaws.com:8080";
   const onClickSubmit = (event) => {
     event.preventDefault();
     console.log("click submit");
@@ -96,7 +96,7 @@ const WriteDiary = () => {
           rounded-lg bg-indigo-500 ring-indigo-200 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 text-center flex items-center justify-center font-semibold text-sm font-semibold leading-6 text-gray-900 btn btn-primary '>Complete</button>
           </div>
 
-          <div className="items-center text-center mt-8">
+          <div className="items-center text-center mt-8 rounded-lg border p-4">
             <h2 className="text-lg font-semibold leading-6 text-gray-900">
               Sleep Image Example
             </h2>

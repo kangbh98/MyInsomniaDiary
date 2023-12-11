@@ -32,10 +32,11 @@ function Write() {
   const dateParam = searchParams.get('date'); //date값 가져오기
   const formattedDate = dateParam ? moment(dateParam, 'YYYY.MM.DD').format('YYYY-MM-DD') : '?'; //만약 날짜정보 존재하면 그 날짜를 formattedDate에 넣고 표시
   //없으면 그냥 일단 물음표 넣음
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "http://ec2-15-164-210-112.ap-northeast-2.compute.amazonaws.com:8080";
 
 
-  const onClickSubmit = () => {
+  const onClickSubmit = (event) => {
+    event.preventDefault();
     const requestData = {
       date: encodeURIComponent(formattedDate),
       caffeineIntake: encodeURIComponent(JSON.stringify(selectedCaffeineIntake)),
@@ -125,7 +126,7 @@ function Write() {
                   <legend className="pl-3 text-md font-extrabold leading-6 text-gray-900">
                     Caffeine
                   </legend>
-                <img className="ml-2  rounded-lg" src="/images/coffee.png" style={{width:'25px'}}></img>
+                  <img className="ml-2  rounded-lg" src="/images/coffee.png" style={{width:'25px'}}></img>
                 </div>
                 <div className="mt-2 py-2 px-3 ring-1 rounded-lg ring-gray-200">
                   <fieldset>
@@ -368,7 +369,7 @@ function Write() {
                             value={wakeUpTime}
                         />
                       </div>
-                      <span className="my-auto ml-2">times</span>
+                      <span className="my-auto ml-2">h</span>
                     </div>
                   </div>
                 </div>

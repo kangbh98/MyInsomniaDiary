@@ -30,7 +30,7 @@ const Calendarpage = () => {
         (x) => x.date === moment(selectedDate).format('YYYY-MM-DD')
     );
     //GET부분//
-    const baseUrl = "http://localhost:8080";
+    const baseUrl = "http://ec2-15-164-210-112.ap-northeast-2.compute.amazonaws.com:8080";
     const [ data, setData ] = useState('');
     
     useEffect(() => {

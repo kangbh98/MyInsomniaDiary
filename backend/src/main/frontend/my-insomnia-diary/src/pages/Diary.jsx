@@ -26,7 +26,7 @@ const Write = () => {
   const [wakeupTime, setwakeuptTime] = useState(0);
   const [bedTime, setbedTime] = useState(0);
 
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "http://ec2-15-164-210-112.ap-northeast-2.compute.amazonaws.com:8080";
   useEffect(() => {
     if (formattedDate !== '?') { // '?'는 날짜 정보가 없을 때를 의미합니다.
       fetchDiaryData(); // 날짜 정보가 있을 때 데이터를 가져오는 함수를 호출합니다.
