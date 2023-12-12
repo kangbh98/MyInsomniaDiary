@@ -164,10 +164,10 @@ const Recommendations = () => {
                     <div className="pb-2 border-b">
                       {latestSleep < tBestSleep && latestCoffIntake > tCoffIntake ? (
                               // Logic when latestSleep is greater than bestSleep but less than tBestSleep
-                              `사용자님은 커피를 ${latestCoffIntake - tCoffIntake}mg정도 줄여서 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
+                              `사용자님은 커피를 ${latestCoffIntake - tCoffIntake}mg정도 줄여서 ${((tBestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능합니다.`)
                           :(latestSleep < bestSleep && latestCoffIntake > averCoffIntake ? (
                                       // Logic when latestSleep is less than bestSleep
-                                      `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능`)
+                                      `사용자님은 커피를 ${latestCoffIntake - averCoffIntake}mg정도 줄인다면 최대 ${((bestSleep - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능합니다.`)
                                   :
                                   // Default logic when none of the above conditions are met
                                   "사용자님은 커피가 수면에 큰 영향이 없어요."
@@ -190,19 +190,19 @@ const Recommendations = () => {
                   </legend>
                   <div className="flex flex-col gap-2 ring-1 ring-gray-200 rounded-lg p-4 w-full ">
                     <div className="pb-2 border-b text-xs">
-                      {!isNaN(latestSleep) && !isNaN(maxSleepAverT) && !isNaN(latestWorkoutTime) && !isNaN(maxSleepAverTIndex) &&  latestSleep < maxSleepAverT && latestWorkoutTime > maxSleepAverTIndex ? (
-                          `사용자님은 운동 시간을 ${latestWorkoutTime-maxSleepAverT}시간 정도 줄여야 해요`
-                      ) : !isNaN(latestSleep) && !isNaN(maxSleepAverT) && !isNaN(latestWorkoutTime) && !isNaN(maxSleepAverTIndex) && latestSleep < bestSleep && latestWorkoutTime < averWorkoutTime ? (
-                          `사용자님은 운동 시간을 ${maxSleepAverT-latestWorkoutTime}시간 정도 늘려야 해요`
+                      {latestSleep !== undefined && latestWorkoutTime !== undefined && maxSleepAverT !== undefined && maxSleepAverTIndex !== undefined && latestSleep < maxSleepAverT && latestWorkoutTime > maxSleepAverTIndex ? (
+                          `사용자님은 운동 시간을 ${latestWorkoutTime-maxSleepAverTIndex}시간 정도 줄인다면 ${((maxSleepAverT - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능합니다.`
+                      ) : latestSleep !== undefined && latestWorkoutTime !== undefined && maxSleepAverT !== undefined && maxSleepAverTIndex !== undefined && latestSleep < maxSleepAverT && latestWorkoutTime < maxSleepAverTIndex ? (
+                          `사용자님은 운동 시간을 ${maxSleepAverTIndex-latestWorkoutTime}시간 정도 늘린다면 ${((maxSleepAverT - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능합니다`
                       ) : (
                           "사용자님은 운동 시간이 수면에 큰 영향이 없어요."
                       )}
                     </div>
                     <div className="text-xs">
-                      {!isNaN(latestSleep) && !isNaN(maxSleepAverB) && !isNaN(latestWorkoutBefBed) && !isNaN(maxSleepAverBIndex) &&latestSleep < maxSleepAverB && latestWorkoutBefBed > maxSleepAverBIndex ? (
-                          `사용자님은 운동을 ${latestWorkoutBefBed - maxSleepAverBIndex}시간 정도 늦게 하는 것을 추천드립니다.`
-                      ) : !isNaN(latestSleep) && !isNaN(maxSleepAverB) && !isNaN(latestWorkoutBefBed) && !isNaN(maxSleepAverBIndex) &&latestSleep < tBestSleep && latestWorkoutBefBed < maxSleepAverBIndex ? (
-                          `사용자님은 운동 시간을 ${maxSleepAverBIndex - latestWorkoutBefBed}시간 정도 일찍하는 것을 추천드립니다.`
+                      {latestSleep !== undefined && latestWorkoutBefBed !== undefined && maxSleepAverB !== undefined && maxSleepAverBIndex !== undefined &&latestSleep < maxSleepAverB && latestWorkoutBefBed > maxSleepAverBIndex ? (
+                          `사용자님은 운동을 ${latestWorkoutBefBed - maxSleepAverBIndex}시간 정도 늦게 한다면 ${((maxSleepAverB - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능합니다.`
+                      ) :  latestSleep !== undefined && latestWorkoutBefBed !== undefined && maxSleepAverB !== undefined && maxSleepAverBIndex !== undefined && latestSleep < maxSleepAverB && latestWorkoutBefBed < maxSleepAverBIndex ? (
+                          `사용자님은 운동을 ${maxSleepAverBIndex - latestWorkoutBefBed}시간 정도 일찍 한다면 ${((maxSleepAverB - latestSleep) / latestSleep * 100).toFixed(0)}% 개선 가능합니다.`
                       ) : (
                           "사용자님은 운동 시기가 수면에 큰 영향이 없어요."
                       )}

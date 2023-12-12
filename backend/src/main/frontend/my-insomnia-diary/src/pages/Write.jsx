@@ -380,7 +380,7 @@ function Write() {
 
           <div className="mt-6 pb-6 flex items-center justify-end gap-x-6">
             <Link
-                to={`/calendar`}
+                to={`/calendarpage`}
                 className="text-sm font-semibold leading-6 text-gray-900"
             >
               Cancel
