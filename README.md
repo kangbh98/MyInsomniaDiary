@@ -5,7 +5,7 @@ Sleep diary and sleep solution using Brid.zzz and DALL-E
 
 *****
 ## 🌆 Notion
-<a href="https://vvd.bz/cMqr" target="_blank">**My Insomnia Diary**</a>
+<a href="https://ringed-passive-29d.notion.site/MyInsomniaDiary-01951fc1923c458e9f89d6abb6a39dc9" target="_blank">**My Insomnia Diary**</a> - 한국어 소개
 
 
 *****
